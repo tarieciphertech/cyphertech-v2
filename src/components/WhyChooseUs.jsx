@@ -1,0 +1,27 @@
+import { FaCheckCircle } from "react-icons/fa";
+import { benefits } from "../data/site";
+import SectionTitle from "./SectionTitle";
+
+export default function WhyChooseUs() {
+  return (
+    <section className="section-shell bg-white/[0.025]">
+      <div className="mx-auto max-w-7xl px-5">
+        <div className="grid gap-10 lg:grid-cols-[0.8fr_1.2fr] lg:items-center">
+          <SectionTitle
+            label="Why Choose Us"
+            title="Premium execution with practical, local-business awareness."
+            copy="We combine modern engineering habits with clear communication, sensible budgets, and systems that are built to keep working after launch."
+          />
+          <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
+            {benefits.map((benefit) => (
+              <div key={benefit} className="flex items-center gap-3 rounded-2xl border border-white/10 bg-white/[0.045] p-4">
+                <FaCheckCircle className="shrink-0 text-cyan-300" />
+                <span className="font-bold text-gray-100">{benefit}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}

@@ -1,0 +1,131 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 96px;
+}
+
+body {
+  margin: 0;
+  background:
+    radial-gradient(circle at top left, rgba(34, 211, 238, 0.1), transparent 32rem),
+    radial-gradient(circle at top right, rgba(124, 58, 237, 0.12), transparent 30rem),
+    #05020a;
+  color: white;
+  font-family: Inter, system-ui, sans-serif;
+}
+
+::selection {
+  background: rgba(34, 211, 238, 0.35);
+  color: #ffffff;
+}
+
+.gradient-text {
+  background: linear-gradient(90deg, #22d3ee, #8b5cf6, #ec4899);
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+.glass {
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.12);
+  backdrop-filter: blur(16px);
+}
+
+.glow {
+  box-shadow: 0 0 45px rgba(34,211,238,0.35);
+}
+
+.section-shell {
+  position: relative;
+  padding-block: 6rem;
+}
+
+.nav-link {
+  position: relative;
+  transition: color 180ms ease;
+}
+
+.nav-link:hover {
+  color: #67e8f9;
+}
+
+.nav-link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -0.45rem;
+  height: 2px;
+  transform: scaleX(0);
+  transform-origin: left;
+  background: linear-gradient(90deg, #22d3ee, #8b5cf6);
+  transition: transform 180ms ease;
+}
+
+.nav-link:hover::after {
+  transform: scaleX(1);
+}
+
+.tech-orbit {
+  position: absolute;
+  display: grid;
+  width: 5.5rem;
+  height: 5.5rem;
+  place-items: center;
+  border-radius: 1.5rem;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(18px);
+  animation: orbit-float 6s ease-in-out infinite;
+}
+
+.field-label {
+  display: grid;
+  gap: 0.55rem;
+  color: #d1d5db;
+  font-size: 0.9rem;
+  font-weight: 800;
+}
+
+.field-input {
+  width: 100%;
+  border-radius: 1rem;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.055);
+  padding: 0.95rem 1rem;
+  color: #ffffff;
+  outline: none;
+  transition: border-color 180ms ease, background 180ms ease;
+}
+
+.field-input:focus {
+  border-color: rgba(103, 232, 249, 0.7);
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.field-input::placeholder {
+  color: #6b7280;
+}
+
+.field-input option {
+  background: #071022;
+  color: #ffffff;
+}
+
+@keyframes orbit-float {
+  0%, 100% {
+    transform: translate(-9rem, -8rem) rotate(-4deg);
+  }
+  50% {
+    transform: translate(8rem, 8rem) rotate(7deg);
+  }
+}
+
+@media (max-width: 768px) {
+  .section-shell {
+    padding-block: 4.5rem;
+  }
+}
