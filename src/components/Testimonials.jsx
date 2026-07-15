@@ -19,9 +19,9 @@ export default function Testimonials() {
     <section className="section-shell bg-white/[0.025]">
       <div className="mx-auto max-w-5xl px-5 text-center">
         <SectionTitle
-          label="Testimonials"
-          title="Trusted for clear thinking and dependable delivery."
-          copy="Representative client feedback from the kinds of projects Cypher Technologies supports."
+          label="Real Problems"
+          title="The work usually starts with a very human sentence."
+          copy="Before there is code, cloud, AI, or cybersecurity, there is usually a person trying to make work less frustrating."
           centered
         />
         <div className="glass rounded-3xl p-8 md:p-12">

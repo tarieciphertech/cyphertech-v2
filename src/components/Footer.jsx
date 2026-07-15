@@ -21,7 +21,7 @@ export default function Footer() {
             <span className="text-xl font-black text-white">{profile.brand}</span>
           </div>
           <p className="mt-5 max-w-sm leading-7 text-gray-400">
-            Building software, securing systems, and creating the future with modern technology solutions for businesses and individuals.
+            Founder-led software, websites, networking, security, repairs, and support for people who want technology to feel less confusing.
           </p>
           <div className="mt-6 flex flex-wrap gap-3">
             {socials.map(([label, href, Icon]) => (

@@ -40,8 +40,8 @@ export const profile = {
   tiktok: "https://www.tiktok.com/@cipherhotspot",
   linkedin: "https://www.linkedin.com/in/tarie-cipher",
   mission:
-    "Deliver innovative software, cybersecurity, networking, cloud, AI, and digital solutions that empower businesses and individuals.",
-  vision: "To become one of Africa's leading technology solution providers.",
+    "Help people and small teams use technology with more confidence, less confusion, and systems that actually fit the way they work.",
+  vision: "To grow into a trusted African technology partner known for honest advice, careful delivery, and useful digital products.",
 };
 
 export const navLinks = [
@@ -56,42 +56,42 @@ export const navLinks = [
 ];
 
 export const stats = [
-  ["100+", "Projects"],
-  ["50+", "Happy Clients"],
-  ["24/7", "Support"],
-  ["10+", "Technology Stacks"],
-  ["5+", "Industries Served"],
+  ["Founder-led", "Direct communication"],
+  ["Gaborone", "Local and remote"],
+  ["Plain English", "No confusing jargon"],
+  ["Practical", "Built around your work"],
+  ["Aftercare", "Support after launch"],
 ];
 
 export const services = [
-  ["Software Development", "Custom platforms, internal tools, dashboards, and workflow systems.", FaLaptopCode],
-  ["Custom Business Systems", "Operations software tailored to your exact teams, approvals, and reports.", FaBriefcase],
-  ["Website Development", "High-performance company sites, portals, landing pages, and web apps.", FaCode],
-  ["E-commerce", "Online stores, payment-ready catalogs, inventory flows, and customer journeys.", FaShoppingCart],
-  ["Mobile Applications", "Mobile-first product experiences for Android, iOS, and responsive web.", FaMobileAlt],
-  ["Cybersecurity", "Security reviews, hardening, safer access patterns, and awareness support.", FaShieldAlt],
-  ["Networking", "LAN, Wi-Fi, hotspot, ISP, and small business connectivity deployments.", FaNetworkWired],
-  ["Cloud Infrastructure", "Cloud hosting, deployment pipelines, backups, and scalable environments.", FaCloud],
-  ["Linux Administration", "Server setup, maintenance, monitoring, troubleshooting, and automation.", FaLinux],
-  ["Database Systems", "Schema design, migrations, reporting, tuning, and reliable data workflows.", FaDatabase],
-  ["AI Automation", "Smart assistants, content workflows, data extraction, and business automation.", FaBrain],
-  ["Computer Repairs", "Diagnostics, software repair, upgrades, setup, and maintenance support.", FaTools],
-  ["Phone Repairs", "Mobile diagnostics, setup, data transfer, software fixes, and device support.", FaMobileAlt],
-  ["IT Consulting", "Technology planning, vendor guidance, infrastructure audits, and roadmaps.", FaUsers],
-  ["Technical Support", "Responsive remote and on-site support for everyday technical issues.", FaTools],
+  ["Software Development", "Custom apps, dashboards, portals, and internal tools built around your day-to-day process.", FaLaptopCode],
+  ["Custom Business Systems", "Digitize the forms, approvals, reports, and handovers that currently live in notebooks or spreadsheets.", FaBriefcase],
+  ["Website Development", "Clean, fast websites that explain what you do clearly and make it easier for clients to contact you.", FaCode],
+  ["E-commerce", "Simple online stores, product catalogs, payment-ready flows, and inventory-friendly customer journeys.", FaShoppingCart],
+  ["Mobile Applications", "Mobile-first experiences for customers, staff, field teams, and communities that need access on the go.", FaMobileAlt],
+  ["Cybersecurity", "Practical security checks, safer login patterns, backups, and advice your team can actually follow.", FaShieldAlt],
+  ["Networking", "Office Wi-Fi, LAN setup, hotspot support, routing, and connectivity help for homes and small businesses.", FaNetworkWired],
+  ["Cloud Infrastructure", "Hosting, deployment, backups, monitoring, and simple cloud setups that do not become a mystery later.", FaCloud],
+  ["Linux Administration", "Server setup, updates, troubleshooting, automation, and everyday Linux support.", FaLinux],
+  ["Database Systems", "Organized data, useful reports, migrations, cleanup, and database designs that stay understandable.", FaDatabase],
+  ["AI Automation", "Small, useful automations for repetitive admin, content, data extraction, and customer support tasks.", FaBrain],
+  ["Computer Repairs", "Diagnostics, software fixes, upgrades, setup, and maintenance for work or personal machines.", FaTools],
+  ["Phone Repairs", "Mobile diagnostics, setup, data transfer, software fixes, and practical device support.", FaMobileAlt],
+  ["IT Consulting", "Straight answers before you spend money on tools, vendors, hosting, hardware, or a new system.", FaUsers],
+  ["Technical Support", "Remote and on-site help for the everyday tech problems that slow work down.", FaTools],
 ];
 
 export const solutions = [
-  ["Healthcare", "Secure patient workflows, appointment systems, staff dashboards, and reporting.", ["Booking portals", "Records dashboards", "SMS reminders"], FaHospital],
-  ["Education", "School management, e-learning portals, attendance, results, and parent communication.", ["Student portals", "Results systems", "Learning hubs"], FaGraduationCap],
-  ["Retail", "Inventory, sales, customer records, e-commerce, and stock visibility.", ["POS dashboards", "Stock systems", "Online stores"], FaShoppingCart],
-  ["Churches", "Member management, donations, event scheduling, livestream support, and communication.", ["Member CRM", "Giving records", "Event tools"], FaChurch],
-  ["Construction", "Project tracking, procurement, site reporting, documents, and equipment logs.", ["Project dashboards", "Asset logs", "Quote systems"], FaBuilding],
-  ["Hospitality", "Booking, guest records, menus, ordering, staff coordination, and digital presence.", ["Reservation portals", "Guest CRM", "Menu systems"], FaUsers],
-  ["Government", "Citizen portals, secure forms, reporting tools, internal workflow automation.", ["Service portals", "Case tracking", "Data reports"], FaShieldAlt],
-  ["Transport", "Fleet visibility, route records, ticketing, maintenance tracking, and dispatch tools.", ["Fleet systems", "Ticket portals", "Route dashboards"], FaTruck],
-  ["Manufacturing", "Inventory, production tracking, maintenance logs, procurement, and analytics.", ["Production boards", "Stock control", "Maintenance logs"], FaBuilding],
-  ["SMEs", "Affordable digital systems that bring order to sales, operations, finance, and support.", ["Company websites", "Client portals", "Admin dashboards"], FaBriefcase],
+  ["Healthcare", "Calmer booking, records, reminders, and reporting workflows for busy clinics and care teams.", ["Booking portals", "Records dashboards", "SMS reminders"], FaHospital],
+  ["Education", "School tools for attendance, results, learning content, parent updates, and admin work.", ["Student portals", "Results systems", "Learning hubs"], FaGraduationCap],
+  ["Retail", "Stock, sales, customer records, simple e-commerce, and clearer day-end visibility.", ["POS dashboards", "Stock systems", "Online stores"], FaShoppingCart],
+  ["Churches", "Member records, giving logs, event planning, livestream support, and better communication.", ["Member CRM", "Giving records", "Event tools"], FaChurch],
+  ["Construction", "Project progress, quotes, site reports, documents, procurement, and equipment records.", ["Project dashboards", "Asset logs", "Quote systems"], FaBuilding],
+  ["Hospitality", "Reservations, guest records, menus, ordering, staff coordination, and digital presence.", ["Reservation portals", "Guest CRM", "Menu systems"], FaUsers],
+  ["Government", "Secure forms, citizen service portals, case tracking, reporting, and internal workflows.", ["Service portals", "Case tracking", "Data reports"], FaShieldAlt],
+  ["Transport", "Fleet records, routes, tickets, maintenance reminders, and dispatch support.", ["Fleet systems", "Ticket portals", "Route dashboards"], FaTruck],
+  ["Manufacturing", "Inventory, production notes, maintenance logs, procurement, and simple analytics.", ["Production boards", "Stock control", "Maintenance logs"], FaBuilding],
+  ["SMEs", "Affordable websites and systems that bring order to sales, admin, finance, and support.", ["Company websites", "Client portals", "Admin dashboards"], FaBriefcase],
 ];
 
 export const projects = [
@@ -113,30 +113,30 @@ export const projects = [
 ];
 
 export const benefits = [
-  "Experienced Engineers",
-  "Reliable Support",
-  "Modern Technologies",
-  "Affordable Pricing",
-  "Secure Development",
-  "Custom Solutions",
-  "Scalable Infrastructure",
-  "Fast Delivery",
-  "Professional Consultation",
+  "You speak directly with the builder",
+  "Clear explanations before code",
+  "Budgets discussed early",
+  "Security considered from day one",
+  "Built for real daily use",
+  "Simple handover and training",
+  "Support after launch",
+  "Local context, remote-ready delivery",
+  "No pressure, just honest advice",
 ];
 
 export const team = [
-  ["Founder", "Strategy, product direction, architecture, and client delivery."],
-  ["Software Engineers", "Web apps, systems, integrations, dashboards, and automation."],
-  ["Cybersecurity Specialists", "Security reviews, hardening, access controls, and safer workflows."],
-  ["Network Engineers", "Connectivity, LAN, Wi-Fi, routing, Linux, and infrastructure support."],
-  ["Support Team", "Responsive technical support, maintenance, and client success."],
-  ["Hiring Soon", "We are building a stronger team as Cypher Technologies grows."],
+  ["Founder-led Delivery", "Tarie stays close to the work, from the first conversation to launch and support."],
+  ["Software Build Partner", "Web apps, internal systems, dashboards, integrations, and automations with practical structure."],
+  ["Security Mindset", "Security reviews, safer access, backups, and habits that protect the people using the system."],
+  ["Network and Linux Support", "Connectivity, Wi-Fi, routing, Linux servers, troubleshooting, and infrastructure support."],
+  ["Client Support", "Patient help when something breaks, changes, or needs to be explained again."],
+  ["Growing Carefully", "Cypher Technologies is expanding with intention, adding help where clients need it most."],
 ];
 
 export const testimonials = [
-  ["Operations Manager", "Cypher Technologies helped us turn a messy manual process into a clean digital workflow."],
-  ["Small Business Owner", "The team understood our budget, moved fast, and delivered a site that feels professional."],
-  ["Network Client", "Reliable support, clear explanations, and practical solutions for our office network."],
+  ["What clients often need", "I have records everywhere. I need one place where my team can see what is happening."],
+  ["What small businesses ask", "I need a website that looks serious, loads fast, and makes it easy for people to reach me."],
+  ["What support calls sound like", "The internet is slow, the computers are acting up, and I need someone who can explain the fix clearly."],
 ];
 
 export const techStack = [
@@ -158,11 +158,11 @@ export const techStack = [
 ];
 
 export const blogPosts = [
-  ["Technology", "How modern businesses can use custom software to reduce operational friction."],
-  ["Programming", "Why React and API-first systems are a strong foundation for scalable products."],
-  ["Cybersecurity", "Practical security habits every small business should adopt before growth."],
-  ["Networking", "What to consider before deploying office Wi-Fi, hotspots, or ISP-style networks."],
-  ["Cloud", "Cloud infrastructure basics: backups, monitoring, deployment, and cost control."],
-  ["AI", "Where AI automation can save time without making business workflows confusing."],
-  ["Business", "Choosing the right digital partner for long-term technology growth."],
+  ["Technology", "Signs your business has outgrown spreadsheets and needs a simple internal system."],
+  ["Programming", "What a good website should do before you spend money on fancy features."],
+  ["Cybersecurity", "Practical security habits every small business can start this week."],
+  ["Networking", "What to check before blaming the router for slow office Wi-Fi."],
+  ["Cloud", "Backups, hosting, and monitoring explained without the cloud confusion."],
+  ["AI", "Small ways AI can save admin time without making your workflow weird."],
+  ["Business", "How to choose a tech partner when you are not a technical person."],
 ];

@@ -24,7 +24,7 @@ export default function Navbar() {
         </div>
 
         <a href="#contact" className="hidden rounded-xl bg-cyan-500 px-5 py-3 text-sm font-bold text-[#041015] shadow-[0_0_35px_rgba(34,211,238,0.25)] transition hover:bg-cyan-300 lg:inline-flex">
-          Get a Quote
+          Talk to Us
         </a>
 
         <button

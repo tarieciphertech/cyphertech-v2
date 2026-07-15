@@ -7,8 +7,8 @@ export default function Technologies() {
       <div className="mx-auto max-w-7xl px-5">
         <SectionTitle
           label="Technology Stack"
-          title="Modern tools for robust digital products."
-          copy="We choose proven technologies that support maintainability, deployment speed, security, and scale."
+          title="Modern tools, chosen for practical reasons."
+          copy="The tools matter, but the goal is always the same: something stable, maintainable, secure, and clear enough for the next person to understand."
         />
         <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-5">
           {techStack.map(([name, Icon]) => (

@@ -4,7 +4,7 @@ import { FaClock, FaEnvelope, FaMapMarkerAlt, FaPhoneAlt } from "react-icons/fa"
 import { profile, services } from "../data/site";
 import SectionTitle from "./SectionTitle";
 
-const budgets = ["Discovery call", "Under $500", "$500 - $2,000", "$2,000 - $5,000", "$5,000+"];
+const budgets = ["Not sure yet", "Discovery call", "Under $500", "$500 - $2,000", "$2,000 - $5,000", "$5,000+"];
 
 export default function Contact() {
   const [status, setStatus] = useState("");
@@ -22,11 +22,11 @@ export default function Contact() {
       try {
         setStatus("Sending your request...");
         await emailjs.sendForm(serviceId, templateId, form, { publicKey });
-        setStatus("Request sent. We will reply as soon as possible.");
+        setStatus("Request sent. Tarie or the team will reply as soon as possible.");
         form.reset();
         return;
       } catch {
-        setStatus("EmailJS could not send right now, opening your email app instead.");
+        setStatus("The form could not send right now, so we are opening your email app instead.");
       }
     }
 
@@ -45,7 +45,7 @@ export default function Contact() {
     );
 
     if (!serviceId || !templateId || !publicKey) {
-      setStatus("Opening your email app with the project details.");
+      setStatus("Opening your email app with the details already filled in.");
     }
     window.location.href = `mailto:${profile.email}?subject=${subject}&body=${body}`;
   }
@@ -55,8 +55,8 @@ export default function Contact() {
       <div className="mx-auto max-w-7xl px-5">
         <SectionTitle
           label="Contact"
-          title="Let's build something powerful."
-          copy="Tell us what you need: a product, business system, cybersecurity review, network deployment, repair, or technical support."
+          title="Tell us what is going on."
+          copy="You do not need a perfect brief. Share the problem, the idea, or the thing that keeps breaking. We can help shape the next step."
         />
 
         <div className="grid gap-6 lg:grid-cols-[1.15fr_0.85fr]">
@@ -83,11 +83,11 @@ export default function Contact() {
             </label>
             <label className="field-label md:col-span-2">
               Message
-              <textarea name="message" rows="6" required className="field-input resize-none" placeholder="Describe your project, problem, or support request." />
+              <textarea name="message" rows="6" required className="field-input resize-none" placeholder="Tell us what you are trying to fix, build, improve, or understand." />
             </label>
             <div className="flex flex-col gap-3 md:col-span-2 md:flex-row md:items-center">
               <button type="submit" className="rounded-xl bg-cyan-400 px-6 py-4 font-black text-[#041015] glow transition hover:bg-cyan-300">
-                Send Request
+                Send Message
               </button>
               {status && <p className="text-sm font-semibold text-cyan-100">{status}</p>}
             </div>
@@ -95,7 +95,7 @@ export default function Contact() {
 
           <div className="grid gap-5">
             <div className="glass rounded-3xl p-6">
-              <h3 className="text-2xl font-black text-white">Business Details</h3>
+              <h3 className="text-2xl font-black text-white">Reach Us Directly</h3>
               <div className="mt-6 grid gap-4">
                 <Info icon={<FaEnvelope />} label="Email" value={profile.email} href={`mailto:${profile.email}`} />
                 <Info icon={<FaPhoneAlt />} label="Phone" value={profile.phone} href={`tel:${profile.phone.replace(/\s/g, "")}`} />
@@ -108,8 +108,8 @@ export default function Contact() {
               <div className="grid min-h-64 place-items-center bg-[linear-gradient(135deg,rgba(34,211,238,0.14),rgba(124,58,237,0.14)),radial-gradient(circle_at_30%_30%,rgba(255,255,255,0.12),transparent_28%)] p-8 text-center">
                 <div>
                   <FaMapMarkerAlt className="mx-auto text-4xl text-cyan-200" />
-                  <p className="mt-4 text-2xl font-black text-white">Google Maps Placeholder</p>
-                  <p className="mt-2 text-gray-400">Serving clients from Gaborone and remotely across Africa.</p>
+                  <p className="mt-4 text-2xl font-black text-white">Based in Gaborone</p>
+                  <p className="mt-2 text-gray-400">Available for local work in Botswana and remote support across Africa.</p>
                 </div>
               </div>
             </div>
