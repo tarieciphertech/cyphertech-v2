@@ -21,11 +21,11 @@ export default function Footer() {
             <span className="text-xl font-black text-white">{profile.brand}</span>
           </div>
           <p className="mt-5 max-w-sm leading-7 text-gray-400">
-            Founder-led software, websites, networking, security, repairs, and support for people who want technology to feel less confusing.
+            Building software, securing systems, and creating the future with modern technology solutions for businesses and individuals.
           </p>
           <div className="mt-6 flex flex-wrap gap-3">
             {socials.map(([label, href, Icon]) => (
-              <a key={label} href={href} target={href.startsWith("http") ? "_blank" : undefined} rel={href.startsWith("http") ? "noreferrer" : undefined} aria-label={label} className="grid h-10 w-10 place-items-center rounded-full border border-white/10 bg-white/[0.04] text-gray-300 transition hover:border-cyan-300/40 hover:text-cyan-200">
+              <a key={label} href={href} target={href.startsWith("http") ? "_blank" : undefined} rel={href.startsWith("http") ? "noreferrer" : undefined} aria-label={label} className="grid h-10 w-10 place-items-center rounded-xl border border-white/15 text-gray-300 transition hover:border-cyan-300/50 hover:bg-cyan-300/10 hover:text-cyan-200">
                 <Icon />
               </a>
             ))}
@@ -40,7 +40,7 @@ export default function Footer() {
       <div className="mx-auto mt-10 flex max-w-7xl flex-col gap-4 border-t border-white/10 pt-6 text-sm text-gray-500 md:flex-row md:items-center md:justify-between">
         <p>Copyright © {new Date().getFullYear()} {profile.brand}. All rights reserved.</p>
         <form className="flex w-full max-w-md gap-2" onSubmit={(event) => event.preventDefault()}>
-          <input type="email" aria-label="Newsletter email" placeholder="Email for updates" className="min-w-0 flex-1 rounded-xl border border-white/10 bg-white/[0.04] px-4 py-3 text-white outline-none placeholder:text-gray-600 focus:border-cyan-300/60" />
+          <input type="email" aria-label="Newsletter email" placeholder="Email for updates" className="min-w-0 flex-1 rounded-xl border border-white/10 bg-white/[0.04] px-4 py-3 text-white outline-none transition placeholder:text-gray-500 focus:border-cyan-300/50 focus:bg-white/[0.08]" />
           <button type="submit" className="rounded-xl bg-white px-4 py-3 font-black text-[#05020a]">Subscribe</button>
         </form>
       </div>

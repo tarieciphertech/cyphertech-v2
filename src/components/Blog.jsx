@@ -7,9 +7,9 @@ export default function Blog() {
     <section id="blog" className="section-shell bg-white/[0.025]">
       <div className="mx-auto max-w-7xl px-5">
         <SectionTitle
-          label="Notes"
-          title="Plain-language technology notes are coming."
-          copy="Short guides for business owners, students, founders, and teams who want to understand their options before spending money or changing systems."
+          label="Blog"
+          title="Insights for technology, security, cloud, AI, and business growth."
+          copy="A publishing hub for practical articles that help clients make better technical decisions."
         />
         <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
           {blogPosts.map(([category, title]) => (
@@ -17,7 +17,7 @@ export default function Blog() {
               <p className="text-sm font-black uppercase tracking-wide text-cyan-200">{category}</p>
               <h3 className="mt-4 min-h-[84px] text-xl font-black leading-8 text-white">{title}</h3>
               <a href="#contact" className="mt-6 inline-flex items-center gap-2 text-sm font-black text-cyan-200">
-                Ask About This <FaArrowRight className="text-xs" />
+                Read Article <FaArrowRight className="text-xs" />
               </a>
             </article>
           ))}

@@ -12,17 +12,17 @@ export default function Projects() {
         <SectionTitle
           label="Featured Project"
           title="Cypher Technologies Platform"
-          copy="This website is also part of the work: a clear home for the company, the founder, the services, and future client tools."
+          copy="A premium digital foundation for presenting services, solutions, company credibility, and future customer-facing tools."
         />
 
         <div className="glass mb-16 grid gap-8 rounded-3xl p-6 md:p-8 lg:grid-cols-[0.95fr_1.05fr] lg:items-center">
           <div>
             <p className="mb-4 inline-flex rounded-full border border-emerald-300/25 bg-emerald-300/10 px-3 py-1 text-xs font-black uppercase tracking-wide text-emerald-200">
-              Built in public
+              Flagship build
             </p>
-            <h3 className="text-3xl font-black text-white md:text-4xl">A company site that says what we do without hiding behind buzzwords.</h3>
+            <h3 className="text-3xl font-black text-white md:text-4xl">A company platform built for trust, conversion, and scale.</h3>
             <p className="mt-5 leading-8 text-gray-400">
-              The Cypher Technologies platform brings software, cybersecurity, cloud, networking, AI, repairs, and support into one place. It is designed to grow into case studies, client portals, and practical tools as the company grows.
+              The Cypher Technologies platform packages software, cybersecurity, cloud, networking, AI, and support services into a polished business website that can grow into portals, case studies, and client workflows.
             </p>
             <div className="mt-6 flex flex-wrap gap-2">
               {["React", "TailwindCSS", "Framer Motion", "SEO", "GitHub Pages"].map((tag) => (
@@ -33,10 +33,10 @@ export default function Projects() {
             </div>
             <div className="mt-8 flex flex-wrap gap-4">
               <a href="#home" className="inline-flex items-center gap-2 rounded-xl bg-cyan-400 px-5 py-3 font-black text-[#041015] transition hover:bg-cyan-300">
-                View This Site <FaExternalLinkAlt className="text-sm" />
+                Live Demo <FaExternalLinkAlt className="text-sm" />
               </a>
               <a href="#contact" className="inline-flex items-center gap-2 rounded-xl border border-white/15 bg-white/5 px-5 py-3 font-bold text-white transition hover:border-cyan-300/50">
-                Ask About a Similar Build <FaArrowRight className="text-sm" />
+                Case Study <FaArrowRight className="text-sm" />
               </a>
             </div>
           </div>
@@ -71,7 +71,7 @@ export default function Projects() {
           ))}
         </div>
 
-        <SectionTitle label="Projects" title="Things we build, repair, and keep improving." />
+        <SectionTitle label="Projects" title="Selected work and product concepts." />
         <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
           {projects.map(([title, desc, stack, liveUrl, githubUrl]) => (
             <motion.article whileHover={{ y: -8 }} key={title} className="glass group rounded-2xl p-5">

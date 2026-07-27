@@ -9,8 +9,8 @@ export default function Solutions() {
       <div className="mx-auto max-w-7xl px-5">
         <SectionTitle
           label="Solutions"
-          title="Built around how people already work."
-          copy="The best system is not the most complicated one. It is the one your staff can understand, trust, and keep using after launch."
+          title="Industry-focused systems for teams that need technology to fit the work."
+          copy="Every organization has its own workflows. We design around the people, data, security, and operating realities behind each industry."
         />
 
         <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-3">

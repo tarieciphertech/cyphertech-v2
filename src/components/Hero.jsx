@@ -6,9 +6,9 @@ import AnimatedBackground from "./AnimatedBackground";
 const asset = (path) => `${import.meta.env.BASE_URL}${path}`;
 
 const floatingCards = [
-  ["Security", "Safer choices from day one", FaLock],
-  ["Cloud", "Hosting that stays understandable", FaCloud],
-  ["Networks", "Connectivity people can rely on", FaNetworkWired],
+  ["Secure", "Cybersecurity-first delivery", FaLock],
+  ["Cloud", "Scalable infrastructure", FaCloud],
+  ["Networks", "Reliable connectivity", FaNetworkWired],
 ];
 
 export default function Hero() {
@@ -19,25 +19,25 @@ export default function Hero() {
         <motion.div initial={{ opacity: 0, y: 28 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.75 }}>
           <div className="mb-6 inline-flex items-center gap-3 rounded-full border border-cyan-300/25 bg-cyan-300/10 px-4 py-2 text-sm font-semibold text-cyan-100">
             <span className="h-2 w-2 rounded-full bg-emerald-300 shadow-[0_0_16px_rgba(110,231,183,0.85)]" />
-            Founder-led technology help from Gaborone
+            Modern technology solutions for growing organizations
           </div>
 
           <h1 className="max-w-4xl text-5xl font-black leading-[1.02] text-white md:text-7xl lg:text-8xl">
-            Software that fits.
-            <span className="block gradient-text">Support that explains.</span>
-            <span className="block">Security that matters.</span>
+            Building Software.
+            <span className="block gradient-text">Securing Systems.</span>
+            <span className="block">Creating the Future.</span>
           </h1>
 
           <p className="mt-7 max-w-2xl text-lg leading-8 text-gray-300 md:text-xl">
-            {profile.brand} helps small businesses, teams, and founders turn messy tech problems into calm, useful systems. Websites, custom software, networks, repairs, cloud, AI, and security, explained in plain English.
+            {profile.brand} delivers modern software, cybersecurity, cloud infrastructure, networking, AI, and IT solutions for businesses of every size.
           </p>
 
           <div className="mt-9 flex flex-wrap gap-4">
             <a href="#contact" className="inline-flex items-center gap-3 rounded-xl bg-cyan-400 px-6 py-4 font-black text-[#041015] glow transition hover:-translate-y-1 hover:bg-cyan-300">
-              Tell Us What You Need <FaArrowRight />
+              Get a Quote <FaArrowRight />
             </a>
             <a href="#services" className="inline-flex items-center gap-3 rounded-xl border border-white/15 bg-white/5 px-6 py-4 font-bold text-white transition hover:-translate-y-1 hover:border-cyan-300/50 hover:bg-white/10">
-              See How We Help
+              Explore Services
             </a>
           </div>
 

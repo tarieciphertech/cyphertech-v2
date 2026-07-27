@@ -9,8 +9,8 @@ export default function WhyChooseUs() {
         <div className="grid gap-10 lg:grid-cols-[0.8fr_1.2fr] lg:items-center">
           <SectionTitle
             label="Why Choose Us"
-            title="You get the technical work without the technical fog."
-            copy="A good build should leave you feeling more in control, not more dependent. We explain the tradeoffs, keep the scope honest, and build with the people who will use the system in mind."
+            title="Premium execution with practical, local-business awareness."
+            copy="We combine modern engineering habits with clear communication, sensible budgets, and systems that are built to keep working after launch."
           />
           <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
             {benefits.map((benefit) => (
