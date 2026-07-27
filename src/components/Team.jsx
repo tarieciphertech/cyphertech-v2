@@ -8,8 +8,8 @@ export default function Team() {
       <div className="mx-auto max-w-7xl px-5">
         <SectionTitle
           label="Team"
-          title="Small, focused, and growing carefully."
-          copy="Right now, the advantage is closeness: you are not passed from person to person. As the company grows, the standard stays the same: useful work, honest communication, and dependable support."
+          title="Built by specialists, growing with intention."
+          copy="Cypher Technologies is structured around the disciplines modern clients need most: software, security, networking, infrastructure, and support."
         />
         <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
           {team.map(([title, copy]) => (

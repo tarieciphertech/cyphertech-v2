@@ -9,8 +9,8 @@ export default function Services() {
       <div className="mx-auto max-w-7xl px-5">
         <SectionTitle
           label="Services"
-          title="Practical technology help for the work in front of you."
-          copy="Some clients need a website. Some need a broken workflow fixed. Some just need someone technical to sit with the problem and explain the next move. We meet you there."
+          title="Enterprise-grade technology services for real business outcomes."
+          copy="From customer-facing products to infrastructure and technical support, Cypher Technologies builds practical systems that are secure, scalable, and easy to operate."
         />
 
         <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
@@ -26,7 +26,7 @@ export default function Services() {
               <h3 className="text-xl font-black text-white">{title}</h3>
               <p className="mt-3 min-h-[84px] leading-7 text-gray-400">{desc}</p>
               <a href="#contact" className="mt-6 inline-flex items-center gap-2 text-sm font-black text-cyan-200 hover:text-cyan-100">
-                Talk About This <FaArrowRight className="text-xs" />
+                Learn More <FaArrowRight className="text-xs" />
               </a>
             </motion.article>
           ))}
