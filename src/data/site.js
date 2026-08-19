@@ -75,6 +75,26 @@ export const stats = [
   ["100%", "Botswana-Based"],
 ];
 
+// Core capabilities shown in the homepage trust strip — no fabricated numbers,
+// just the disciplines Cypher Technologies actually delivers.
+export const capabilities = [
+  ["Software Development", FaLaptopCode],
+  ["Web Development", FaCode],
+  ["Cybersecurity", FaShieldAlt],
+  ["Cloud & Infrastructure", FaCloud],
+  ["IT Support", FaTools],
+];
+
+// "How we work" process used by the Process section.
+export const process = [
+  ["Understand", "We learn your goals, workflows, and constraints before proposing anything."],
+  ["Plan", "Clear scope, timeline, and budget — no surprises, no jargon."],
+  ["Build", "Development with regular check-ins so you always know where things stand."],
+  ["Test", "Quality checks across function, security, and performance before launch."],
+  ["Deliver", "Clean handover with documentation and training for your team."],
+  ["Support", "Ongoing maintenance and responsive support after go-live."],
+];
+
 // Shape: [name, description, Icon, category]
 // Categories power the filter in the Services section: Build | Secure | Infrastructure | Support
 export const services = [

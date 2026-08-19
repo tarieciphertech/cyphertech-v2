@@ -80,7 +80,7 @@ export default function Contact() {
         />
 
         <div className="grid gap-6 lg:grid-cols-[1.15fr_0.85fr]">
-          <form onSubmit={handleSubmit} className="glass grid gap-5 rounded-3xl p-6 md:grid-cols-2 md:p-8">
+          <form onSubmit={handleSubmit} className="card grid gap-5 rounded-3xl p-6 md:grid-cols-2 md:p-8">
             <Field label="Name" name="name" required autoComplete="name" placeholder="Your full name" />
             <Field label="Company" name="company" autoComplete="organization" placeholder="Optional" />
             <Field label="Email" name="email" type="email" required autoComplete="email" placeholder="you@example.com" />
@@ -124,18 +124,14 @@ export default function Contact() {
 
             <div className="flex flex-col gap-4 md:col-span-2">
               <div className="flex flex-col gap-3 sm:flex-row">
-                <button
-                  type="submit"
-                  disabled={sending}
-                  className="rounded-xl bg-cyan-400 px-6 py-4 font-black text-[#041015] glow transition hover:bg-cyan-300 disabled:cursor-not-allowed disabled:opacity-60"
-                >
+                <button type="submit" disabled={sending} className="btn btn-primary">
                   {sending ? "Sending..." : "Send Request"}
                 </button>
                 <a
                   href={whatsappUrl}
                   target="_blank"
                   rel="noreferrer"
-                  className="inline-flex items-center justify-center gap-3 rounded-xl border border-emerald-300/30 bg-emerald-300/10 px-6 py-4 font-bold text-emerald-200 transition hover:border-emerald-300/60 hover:bg-emerald-300/20"
+                  className="btn btn-success"
                 >
                   <FaWhatsapp className="text-lg" /> Chat on WhatsApp
                 </a>
@@ -149,7 +145,7 @@ export default function Contact() {
           </form>
 
           <div className="grid gap-5">
-            <div className="glass rounded-3xl p-6">
+            <div className="card rounded-3xl p-6">
               <h3 className="text-2xl font-black text-white">Business Details</h3>
               <div className="mt-6 grid gap-4">
                 <Info icon={<FaEnvelope />} label="Email" value={profile.email} href={`mailto:${profile.email}`} />

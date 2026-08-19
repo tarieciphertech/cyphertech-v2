@@ -37,7 +37,7 @@ export default function Navbar() {
           ))}
         </div>
 
-        <a href="#contact" className="hidden rounded-xl bg-cyan-500 px-5 py-3 text-sm font-bold text-[#041015] shadow-[0_0_35px_rgba(34,211,238,0.25)] transition hover:bg-cyan-300 lg:inline-flex">
+        <a href="#contact" className="btn btn-primary hidden !px-5 !py-3 text-sm lg:inline-flex">
           Get a Quote
         </a>
 
@@ -66,11 +66,7 @@ export default function Navbar() {
                 {label}
               </a>
             ))}
-            <a
-              href="#contact"
-              onClick={() => setOpen(false)}
-              className="mt-2 rounded-xl bg-cyan-500 px-4 py-3 text-center text-sm font-bold text-[#041015]"
-            >
+            <a href="#contact" onClick={() => setOpen(false)} className="btn btn-primary mt-2 w-full">
               Get a Quote
             </a>
           </div>

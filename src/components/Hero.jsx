@@ -32,17 +32,17 @@ export default function Hero() {
           </p>
 
           <div className="mt-9 flex flex-wrap gap-4">
-            <a href="#contact" className="inline-flex items-center gap-3 rounded-xl bg-cyan-400 px-6 py-4 font-black text-[#041015] glow transition hover:-translate-y-1 hover:bg-cyan-300">
+            <a href="#contact" className="btn btn-primary !px-7 !py-4 text-base">
               Get a Quote <FaArrowRight />
             </a>
-            <a href="#services" className="inline-flex items-center gap-3 rounded-xl border border-white/15 bg-white/5 px-6 py-4 font-bold text-white transition hover:-translate-y-1 hover:border-cyan-300/50 hover:bg-white/10">
+            <a href="#services" className="btn btn-secondary !px-7 !py-4 text-base">
               Explore Services
             </a>
           </div>
 
           <div className="mt-12 grid grid-cols-2 gap-3 sm:grid-cols-5">
             {stats.map(([value, label]) => (
-              <div key={label} className="glass rounded-2xl p-4">
+              <div key={label} className="card p-4">
                 <p className="text-3xl font-black text-white">{value}</p>
                 <p className="mt-1 text-xs font-semibold uppercase tracking-wide text-gray-400">{label}</p>
               </div>

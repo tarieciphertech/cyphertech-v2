@@ -22,7 +22,7 @@ export default function Projects() {
           copy="A premium digital foundation for presenting services, solutions, company credibility, and future customer-facing tools."
         />
 
-        <div className="glass mb-16 grid gap-8 rounded-3xl p-6 md:p-8 lg:grid-cols-[0.95fr_1.05fr] lg:items-center">
+        <div className="card mb-16 grid gap-8 rounded-3xl p-6 md:p-8 lg:grid-cols-[0.95fr_1.05fr] lg:items-center">
           <div>
             <p className="mb-4 inline-flex rounded-full border border-emerald-300/25 bg-emerald-300/10 px-3 py-1 text-xs font-black uppercase tracking-wide text-emerald-200">
               Flagship build — you are viewing it
@@ -39,14 +39,14 @@ export default function Projects() {
               ))}
             </div>
             <div className="mt-8 flex flex-wrap gap-4">
-              <a href="#contact" className="inline-flex items-center gap-2 rounded-xl bg-cyan-400 px-5 py-3 font-black text-[#041015] transition hover:bg-cyan-300">
+              <a href="#contact" className="btn btn-primary">
                 Start Your Project <FaArrowRight className="text-sm" />
               </a>
               <a
                 href="https://github.com/tarieciphertech/cyphertech-v2"
                 target="_blank"
                 rel="noreferrer"
-                className="inline-flex items-center gap-2 rounded-xl border border-white/15 bg-white/5 px-5 py-3 font-bold text-white transition hover:border-cyan-300/50"
+                className="btn btn-secondary"
               >
                 View Source <FaGithub className="text-sm" />
               </a>
@@ -90,10 +90,10 @@ export default function Projects() {
         />
         <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
           {projects.map(([title, desc, stack, liveUrl, githubUrl, status]) => (
-            <motion.article whileHover={{ y: -8 }} key={title} className="glass group flex flex-col rounded-2xl p-5">
+            <motion.article whileHover={{ y: -8 }} key={title} className="card group flex flex-col p-5">
               <div className="relative mb-5 grid h-40 place-items-center overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-br from-white/[0.08] to-cyan-300/10">
                 <span className="text-4xl font-black gradient-text">{title.split(" ").map((word) => word[0]).join("").slice(0, 3)}</span>
-                <span className={`absolute right-3 top-3 rounded-full border px-3 py-1 text-xs font-bold ${statusStyles[status] || statusStyles.Concept}`}>
+                <span className={`chip absolute right-3 top-3 !font-bold ${statusStyles[status] || statusStyles.Concept}`}>
                   {status}
                 </span>
               </div>
