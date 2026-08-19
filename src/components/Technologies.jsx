@@ -1,5 +1,8 @@
-import { techStack } from "../data/site";
+import { techGroups, techStack } from "../data/site";
 import SectionTitle from "./SectionTitle";
+
+// Build a name -> Icon lookup from the centralized techStack data.
+const iconLookup = Object.fromEntries(techStack.map(([name, Icon]) => [name, Icon]));
 
 export default function Technologies() {
   return (
@@ -8,13 +11,23 @@ export default function Technologies() {
         <SectionTitle
           label="Technology Stack"
           title="Modern tools for robust digital products."
-          copy="We choose proven technologies that support maintainability, deployment speed, security, and scale."
+          copy="We choose proven technologies that support maintainability, deployment speed, security, and scale — grouped by the discipline they serve."
         />
-        <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-5">
-          {techStack.map(([name, Icon]) => (
-            <div key={name} className="flex min-h-28 flex-col items-center justify-center rounded-2xl border border-white/10 bg-white/[0.045] p-4 text-center transition hover:border-cyan-300/40 hover:bg-white/[0.08]">
-              <Icon className="text-3xl text-cyan-200" />
-              <p className="mt-3 font-black text-gray-100">{name}</p>
+
+        <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
+          {techGroups.map(([group, names]) => (
+            <div key={group} className="card p-6">
+              <h3 className="text-lg font-black text-white">{group}</h3>
+              <div className="mt-4 flex flex-wrap gap-2">
+                {names.map((name) => {
+                  const Icon = iconLookup[name];
+                  return (
+                    <span key={name} className="chip !py-2 text-gray-200">
+                      {Icon && <Icon className="text-cyan-300" />} {name}
+                    </span>
+                  );
+                })}
+              </div>
             </div>
           ))}
         </div>

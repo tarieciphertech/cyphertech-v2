@@ -80,69 +80,84 @@ export default function Contact() {
         />
 
         <div className="grid gap-6 lg:grid-cols-[1.15fr_0.85fr]">
-          <form onSubmit={handleSubmit} className="card grid gap-5 rounded-3xl p-6 md:grid-cols-2 md:p-8">
-            <Field label="Name" name="name" required autoComplete="name" placeholder="Your full name" />
-            <Field label="Company" name="company" autoComplete="organization" placeholder="Optional" />
-            <Field label="Email" name="email" type="email" required autoComplete="email" placeholder="you@example.com" />
-            <Field label="Phone" name="phone" type="tel" autoComplete="tel" placeholder="+267 ..." />
-            <label className="field-label">
-              Service
-              <select name="service" className="field-input">
-                <option>Not sure yet — advise me</option>
-                {services.map(([name]) => (
-                  <option key={name}>{name}</option>
-                ))}
-              </select>
-            </label>
-            <label className="field-label">
-              Budget
-              <select name="budget" className="field-input">
-                {budgets.map((budget) => (
-                  <option key={budget}>{budget}</option>
-                ))}
-              </select>
-            </label>
-            <label className="field-label md:col-span-2">
-              Message
-              <textarea
-                name="message"
-                rows="6"
-                required
-                minLength={10}
-                className="field-input resize-none"
-                placeholder="Describe your project, problem, or support request."
-              />
-            </label>
-
-            {/* Honeypot — hidden from humans, catches simple spam bots */}
-            <div className="hidden" aria-hidden="true">
-              <label>
-                Website
-                <input type="text" name="website" tabIndex={-1} autoComplete="off" />
-              </label>
-            </div>
-
-            <div className="flex flex-col gap-4 md:col-span-2">
-              <div className="flex flex-col gap-3 sm:flex-row">
-                <button type="submit" disabled={sending} className="btn btn-primary">
-                  {sending ? "Sending..." : "Send Request"}
-                </button>
-                <a
-                  href={whatsappUrl}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="btn btn-success"
-                >
-                  <FaWhatsapp className="text-lg" /> Chat on WhatsApp
-                </a>
-              </div>
-              {status && (
-                <p role={status.type === "error" ? "alert" : "status"} className={`rounded-xl border px-4 py-3 text-sm font-semibold ${statusStyles[status.type]}`}>
-                  {status.message}
+          <div className="grid gap-5">
+            {/* Primary action: request a quote */}
+            <div className="card rounded-3xl p-6 md:p-8">
+              <div className="mb-6">
+                <h3 className="text-2xl font-black text-white">Request a Quote</h3>
+                <p className="mt-2 text-sm leading-6 text-gray-400">
+                  The more you can tell us, the faster we can help. A few details about your project, timeline, and budget go a long way.
                 </p>
-              )}
+              </div>
+
+              <form onSubmit={handleSubmit} className="grid gap-5 md:grid-cols-2">
+                <Field label="Name" name="name" required autoComplete="name" placeholder="Your full name" />
+                <Field label="Company" name="company" autoComplete="organization" placeholder="Optional" />
+                <Field label="Email" name="email" type="email" required autoComplete="email" placeholder="you@example.com" />
+                <Field label="Phone" name="phone" type="tel" autoComplete="tel" placeholder="+267 ..." />
+                <label className="field-label">
+                  Service
+                  <select name="service" className="field-input">
+                    <option>Not sure yet — advise me</option>
+                    {services.map(([name]) => (
+                      <option key={name}>{name}</option>
+                    ))}
+                  </select>
+                </label>
+                <label className="field-label">
+                  Budget
+                  <select name="budget" className="field-input">
+                    {budgets.map((budget) => (
+                      <option key={budget}>{budget}</option>
+                    ))}
+                  </select>
+                </label>
+                <label className="field-label md:col-span-2">
+                  Message
+                  <textarea
+                    name="message"
+                    rows="6"
+                    required
+                    minLength={10}
+                    className="field-input resize-none"
+                    placeholder="Describe your project, problem, or support request."
+                  />
+                </label>
+
+                {/* Honeypot — hidden from humans, catches simple spam bots */}
+                <div className="hidden" aria-hidden="true">
+                  <label>
+                    Website
+                    <input type="text" name="website" tabIndex={-1} autoComplete="off" />
+                  </label>
+                </div>
+
+                <div className="flex flex-col gap-4 md:col-span-2">
+                  <button type="submit" disabled={sending} className="btn btn-primary w-full sm:w-auto">
+                    {sending ? "Sending..." : "Send Request"}
+                  </button>
+                  {status && (
+                    <p role={status.type === "error" ? "alert" : "status"} className={`rounded-xl border px-4 py-3 text-sm font-semibold ${statusStyles[status.type]}`}>
+                      {status.message}
+                    </p>
+                  )}
+                </div>
+              </form>
             </div>
-          </form>
+
+            {/* Secondary action: WhatsApp */}
+            <div className="card flex flex-col items-start gap-4 rounded-3xl p-6 sm:flex-row sm:items-center sm:justify-between">
+              <div>
+                <h3 className="text-lg font-black text-white">Prefer to chat?</h3>
+                <p className="mt-1 text-sm leading-6 text-gray-400">
+                  Message us on WhatsApp for a quick conversation — no form needed.
+                </p>
+              </div>
+              <a href={whatsappUrl} target="_blank" rel="noreferrer" className="btn btn-success shrink-0">
+                <FaWhatsapp className="text-lg" /> Chat on WhatsApp
+              </a>
+            </div>
+          </div>
 
           <div className="grid gap-5">
             <div className="card rounded-3xl p-6">
@@ -179,7 +194,7 @@ function Field({ label, name, type = "text", required = false, autoComplete, pla
   return (
     <label className="field-label">
       {label}
-      {required && <span className="sr-only">(required)</span>}
+      {required && <span className="text-rose-300" aria-hidden="true"> *</span>}
       <input name={name} type={type} required={required} autoComplete={autoComplete} placeholder={placeholder} className="field-input" />
     </label>
   );

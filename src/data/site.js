@@ -448,6 +448,18 @@ export const techStack = [
   ["AI", FaBrain],
 ];
 
+// Technologies grouped by discipline — makes the stack meaningful, not decorative.
+// Each group references names from techStack above; icons are looked up from there.
+export const techGroups = [
+  ["Frontend", ["React"]],
+  ["Backend & APIs", ["Python", "FastAPI", "Node.js"]],
+  ["Databases", ["PostgreSQL", "MySQL", "MongoDB"]],
+  ["Cloud & Infrastructure", ["AWS", "Docker", "Linux", "Cloud"]],
+  ["Security", ["Cybersecurity"]],
+  ["Networking", ["Networking"]],
+  ["Development Tools", ["GitHub", "AI"]],
+];
+
 // Upcoming writing topics — articles are in preparation, not yet published.
 export const blogPosts = [
   ["Technology", "How modern businesses can use custom software to reduce operational friction."],
