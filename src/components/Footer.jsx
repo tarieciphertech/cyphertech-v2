@@ -1,5 +1,6 @@
-import { FaEnvelope, FaGithub, FaGlobe, FaInstagram, FaLinkedin, FaTiktok, FaYoutube } from "react-icons/fa";
-import { navLinks, profile, services, solutions } from "../data/site";
+import { FaClock, FaEnvelope, FaGithub, FaGlobe, FaInstagram, FaLinkedin, FaMapMarkerAlt, FaPhoneAlt, FaTiktok, FaWhatsapp, FaYoutube } from "react-icons/fa";
+import { navLinks, profile, services } from "../data/site";
+import { asset } from "../utils/paths";
 
 const socials = [
   ["Portfolio", profile.portfolio, FaGlobe],
@@ -8,6 +9,7 @@ const socials = [
   ["Instagram", profile.instagram, FaInstagram],
   ["TikTok", profile.tiktok, FaTiktok],
   ["LinkedIn", profile.linkedin, FaLinkedin],
+  ["WhatsApp", profile.whatsapp, FaWhatsapp],
   ["Email", `mailto:${profile.email}`, FaEnvelope],
 ];
 
@@ -17,11 +19,13 @@ export default function Footer() {
       <div className="mx-auto grid max-w-7xl gap-10 md:grid-cols-2 lg:grid-cols-[1.2fr_0.8fr_0.8fr_1fr]">
         <div>
           <div className="flex items-center gap-3">
-            <span className="grid h-11 w-11 place-items-center rounded-xl bg-cyan-300/10 font-black text-cyan-200">CT</span>
+            <span className="h-11 w-11 overflow-hidden rounded-xl border border-cyan-300/30">
+              <img src={asset("brand/cypher-logo-dark.png")} alt="" className="h-full w-full object-cover" loading="lazy" />
+            </span>
             <span className="text-xl font-black text-white">{profile.brand}</span>
           </div>
           <p className="mt-5 max-w-sm leading-7 text-gray-400">
-            Building software, securing systems, and creating the future with modern technology solutions for businesses and individuals.
+            Building software, securing systems, and creating the future with modern technology solutions for businesses and organizations.
           </p>
           <div className="mt-6 flex flex-wrap gap-3">
             {socials.map(([label, href, Icon]) => (
@@ -33,16 +37,35 @@ export default function Footer() {
         </div>
 
         <FooterColumn title="Quick Links" items={navLinks.map(([id, label]) => [label, `#${id}`])} />
-        <FooterColumn title="Services" items={services.slice(0, 7).map(([name]) => [name, "#services"])} />
-        <FooterColumn title="Solutions" items={solutions.slice(0, 7).map(([name]) => [name, "#solutions"])} />
+        <FooterColumn title="Services" items={services.slice(0, 8).map(([name]) => [name, "#services"])} />
+
+        <div>
+          <h3 className="font-black text-white">Contact</h3>
+          <div className="mt-5 grid gap-3 text-sm font-semibold text-gray-400">
+            <a href={`mailto:${profile.email}`} className="flex items-center gap-3 transition hover:text-cyan-200">
+              <FaEnvelope className="shrink-0 text-cyan-300" /> {profile.email}
+            </a>
+            <a href={`tel:${profile.phone.replace(/\s/g, "")}`} className="flex items-center gap-3 transition hover:text-cyan-200">
+              <FaPhoneAlt className="shrink-0 text-cyan-300" /> {profile.phone}
+            </a>
+            <p className="flex items-center gap-3">
+              <FaClock className="shrink-0 text-cyan-300" /> {profile.hours}
+            </p>
+            <p className="flex items-center gap-3">
+              <FaMapMarkerAlt className="shrink-0 text-cyan-300" /> {profile.location}
+            </p>
+          </div>
+        </div>
       </div>
 
-      <div className="mx-auto mt-10 flex max-w-7xl flex-col gap-4 border-t border-white/10 pt-6 text-sm text-gray-500 md:flex-row md:items-center md:justify-between">
+      <div className="mx-auto mt-10 flex max-w-7xl flex-col gap-3 border-t border-white/10 pt-6 text-sm text-gray-500 md:flex-row md:items-center md:justify-between">
         <p>Copyright © {new Date().getFullYear()} {profile.brand}. All rights reserved.</p>
-        <form className="flex w-full max-w-md gap-2" onSubmit={(event) => event.preventDefault()}>
-          <input type="email" aria-label="Newsletter email" placeholder="Email for updates" className="min-w-0 flex-1 rounded-xl border border-white/10 bg-white/[0.04] px-4 py-3 text-white outline-none transition placeholder:text-gray-500 focus:border-cyan-300/50 focus:bg-white/[0.08]" />
-          <button type="submit" className="rounded-xl bg-white px-4 py-3 font-black text-[#05020a]">Subscribe</button>
-        </form>
+        <p>
+          Founded by {profile.owner} · {profile.location}
+        </p>
+        <a href="#home" className="font-bold text-gray-400 transition hover:text-cyan-200">
+          Back to top ↑
+        </a>
       </div>
     </footer>
   );

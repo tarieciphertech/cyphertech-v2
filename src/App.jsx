@@ -8,7 +8,7 @@ import Solutions from "./components/Solutions";
 import Projects from "./components/Projects";
 import Team from "./components/Team";
 import Technologies from "./components/Technologies";
-import Testimonials from "./components/Testimonials";
+import ServicePromises from "./components/ServicePromises";
 import WhyChooseUs from "./components/WhyChooseUs";
 import Contact from "./components/Contact";
 import Footer from "./components/Footer";
@@ -25,7 +25,7 @@ export default function App() {
       <WhyChooseUs />
       <About />
       <Team />
-      <Testimonials />
+      <ServicePromises />
       <Technologies />
       <Blog />
       <Careers />

@@ -1,16 +1,30 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { FaBars, FaTimes } from "react-icons/fa";
 import { navLinks, profile } from "../data/site";
+import { asset } from "../utils/paths";
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
 
+  useEffect(() => {
+    function onKeyDown(event) {
+      if (event.key === "Escape") setOpen(false);
+    }
+    window.addEventListener("keydown", onKeyDown);
+    return () => window.removeEventListener("keydown", onKeyDown);
+  }, []);
+
   return (
     <nav className="fixed top-0 left-0 w-full z-50 border-b border-white/10 bg-[#05020a]/75 backdrop-blur-2xl">
       <div className="mx-auto flex max-w-7xl items-center justify-between px-5 py-4 lg:px-6">
-        <a href="#home" className="flex items-center gap-3">
-          <span className="grid h-10 w-10 place-items-center rounded-xl border border-cyan-300/30 bg-cyan-300/10 font-black text-cyan-200 shadow-[0_0_35px_rgba(34,211,238,0.2)]">
-            CT
+        <a href="#home" aria-label="Cypher Technologies — back to top" className="flex items-center gap-3">
+          <span className="h-10 w-10 overflow-hidden rounded-xl border border-cyan-300/30 shadow-[0_0_35px_rgba(34,211,238,0.2)]">
+            <img
+              src={asset("brand/cypher-logo-dark.png")}
+              alt=""
+              className="h-full w-full object-cover"
+              loading="eager"
+            />
           </span>
           <span className="text-lg font-black tracking-wide text-white">{profile.brand}</span>
         </a>
@@ -29,7 +43,9 @@ export default function Navbar() {
 
         <button
           type="button"
-          aria-label="Toggle menu"
+          aria-label={open ? "Close menu" : "Open menu"}
+          aria-expanded={open}
+          aria-controls="mobile-menu"
           onClick={() => setOpen((value) => !value)}
           className="grid h-11 w-11 place-items-center rounded-xl border border-white/15 bg-white/5 text-white lg:hidden"
         >
@@ -38,7 +54,7 @@ export default function Navbar() {
       </div>
 
       {open && (
-        <div className="border-t border-white/10 bg-[#05020a]/95 px-5 py-5 lg:hidden">
+        <div id="mobile-menu" className="border-t border-white/10 bg-[#05020a]/95 px-5 py-5 lg:hidden">
           <div className="grid gap-2">
             {navLinks.map(([id, label]) => (
               <a
@@ -50,6 +66,13 @@ export default function Navbar() {
                 {label}
               </a>
             ))}
+            <a
+              href="#contact"
+              onClick={() => setOpen(false)}
+              className="mt-2 rounded-xl bg-cyan-500 px-4 py-3 text-center text-sm font-bold text-[#041015]"
+            >
+              Get a Quote
+            </a>
           </div>
         </div>
       )}

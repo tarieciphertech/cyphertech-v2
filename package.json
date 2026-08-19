@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
+    "postbuild": "node scripts/copy-404.mjs",
     "lint": "eslint .",
     "preview": "vite preview",
     "predeploy": "npm run build",
@@ -34,5 +35,5 @@
     "tailwindcss": "^3.4.17",
     "vite": "^8.1.1"
   },
-  "homepage": "https://tarieciphertech.github.io/cyphertech-v2"
+  "homepage": "https://cyphertech.co.zw"
 }

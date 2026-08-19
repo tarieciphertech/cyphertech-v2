@@ -1,9 +1,8 @@
 import { motion } from "framer-motion";
 import { FaArrowRight, FaCloud, FaLock, FaNetworkWired, FaServer } from "react-icons/fa";
 import { profile, stats } from "../data/site";
+import { asset } from "../utils/paths";
 import AnimatedBackground from "./AnimatedBackground";
-
-const asset = (path) => `${import.meta.env.BASE_URL}${path}`;
 
 const floatingCards = [
   ["Secure", "Cybersecurity-first delivery", FaLock],
@@ -19,7 +18,7 @@ export default function Hero() {
         <motion.div initial={{ opacity: 0, y: 28 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.75 }}>
           <div className="mb-6 inline-flex items-center gap-3 rounded-full border border-cyan-300/25 bg-cyan-300/10 px-4 py-2 text-sm font-semibold text-cyan-100">
             <span className="h-2 w-2 rounded-full bg-emerald-300 shadow-[0_0_16px_rgba(110,231,183,0.85)]" />
-            Modern technology solutions for growing organizations
+            {profile.tagline}
           </div>
 
           <h1 className="max-w-4xl text-5xl font-black leading-[1.02] text-white md:text-7xl lg:text-8xl">
@@ -29,7 +28,7 @@ export default function Hero() {
           </h1>
 
           <p className="mt-7 max-w-2xl text-lg leading-8 text-gray-300 md:text-xl">
-            {profile.brand} delivers modern software, cybersecurity, cloud infrastructure, networking, AI, and IT solutions for businesses of every size.
+            {profile.positioning}
           </p>
 
           <div className="mt-9 flex flex-wrap gap-4">
