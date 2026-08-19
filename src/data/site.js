@@ -291,9 +291,11 @@ export const industries = [
   ["SMEs", FaBriefcase],
 ];
 
-// Shape: [title, description, stack, liveUrl, githubUrl, status]
+// Shape: [title, description, stack, liveUrl, githubUrl, status, category, problem]
 // status: Completed | Ongoing | In Development | Prototype | Concept
-// Statuses must stay honest — do not present concepts as delivered client work.
+// category: Web | Software | Infrastructure | Network — only where the data supports it
+// problem: what the project addresses, derived from the project description.
+// Statuses and links must stay honest — never fabricate URLs, clients, dates, or results.
 export const projects = [
   [
     "Job Board Platform",
@@ -302,16 +304,99 @@ export const projects = [
     "https://jobboard.co.zw/",
     null,
     "Completed",
+    "Web",
+    "Recruiters need a structured way to publish roles, attract applicants, and manage the hiring pipeline.",
   ],
-  ["FootballFlix", "Media platform concept for local and regional football content with a modern viewing experience.", ["React", "Streaming", "Media"], null, null, "Concept"],
-  ["MiniFlix", "LAN-friendly movie streaming platform for private local networks and controlled access.", ["Flask", "HLS", "SQLite"], null, null, "Prototype"],
-  ["Internet Cafe Portal", "Captive portal for user sessions, timing, admin controls, and small business network operations.", ["Flask", "Networking", "SQLite"], null, null, "Prototype"],
-  ["ISP Management Platform", "Subscriber, package, ticketing, billing, and infrastructure management concept for ISPs.", ["React", "FastAPI", "Networking"], null, null, "Concept"],
-  ["Business Websites", "Fast, modern, responsive websites for companies that need credibility and lead generation.", ["React", "Tailwind", "SEO"], null, null, "Ongoing"],
-  ["Inventory System", "Stock control platform with item records, movement history, reports, and team access.", ["Python", "Database", "Reports"], null, null, "Prototype"],
-  ["School Management System", "Administrative system for students, staff, results, attendance, and communication.", ["React", "PostgreSQL", "Dashboards"], null, null, "In Development"],
-  ["Church Management System", "Member, giving, event, and communication workflows for growing churches.", ["Web App", "CRM", "Reports"], null, null, "In Development"],
-  ["Network Deployments", "Structured Wi-Fi, hotspot, LAN, and small business network rollout projects.", ["Linux", "Routing", "Wi-Fi"], null, null, "Ongoing"],
+  [
+    "FootballFlix",
+    "Media platform concept for local and regional football content with a modern viewing experience.",
+    ["React", "Streaming", "Media"],
+    null,
+    null,
+    "Concept",
+    "Web",
+    "Local and regional football fans lack a dedicated platform for match content and viewing.",
+  ],
+  [
+    "MiniFlix",
+    "LAN-friendly movie streaming platform for private local networks and controlled access.",
+    ["Flask", "HLS", "SQLite"],
+    null,
+    null,
+    "Prototype",
+    "Software",
+    "Private networks need a controlled way to stream media without relying on external internet.",
+  ],
+  [
+    "Internet Cafe Portal",
+    "Captive portal for user sessions, timing, admin controls, and small business network operations.",
+    ["Flask", "Networking", "SQLite"],
+    null,
+    null,
+    "Prototype",
+    "Network",
+    "Internet cafes need reliable session management, time tracking, and admin control for customers.",
+  ],
+  [
+    "ISP Management Platform",
+    "Subscriber, package, ticketing, billing, and infrastructure management concept for ISPs.",
+    ["React", "FastAPI", "Networking"],
+    null,
+    null,
+    "Concept",
+    "Software",
+    "Small ISPs need a clear way to manage subscribers, packages, billing, and support tickets.",
+  ],
+  [
+    "Business Websites",
+    "Fast, modern, responsive websites for companies that need credibility and lead generation.",
+    ["React", "Tailwind", "SEO"],
+    null,
+    null,
+    "Ongoing",
+    "Web",
+    "Companies need an online presence that builds trust and turns visitors into enquiries.",
+  ],
+  [
+    "Inventory System",
+    "Stock control platform with item records, movement history, reports, and team access.",
+    ["Python", "Database", "Reports"],
+    null,
+    null,
+    "Prototype",
+    "Software",
+    "Businesses need accurate stock tracking, movement history, and reporting without manual spreadsheets.",
+  ],
+  [
+    "School Management System",
+    "Administrative system for students, staff, results, attendance, and communication.",
+    ["React", "PostgreSQL", "Dashboards"],
+    null,
+    null,
+    "In Development",
+    "Software",
+    "Schools need a central system to manage students, staff, results, attendance, and parent communication.",
+  ],
+  [
+    "Church Management System",
+    "Member, giving, event, and communication workflows for growing churches.",
+    ["Web App", "CRM", "Reports"],
+    null,
+    null,
+    "In Development",
+    "Software",
+    "Growing churches need organized workflows for members, giving, events, and communication.",
+  ],
+  [
+    "Network Deployments",
+    "Structured Wi-Fi, hotspot, LAN, and small business network rollout projects.",
+    ["Linux", "Routing", "Wi-Fi"],
+    null,
+    null,
+    "Ongoing",
+    "Network",
+    "Offices and venues need reliable, structured connectivity that users can depend on.",
+  ],
 ];
 
 export const benefits = [
