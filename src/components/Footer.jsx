@@ -20,7 +20,7 @@ export default function Footer() {
         <div>
           <div className="flex items-center gap-3">
             <span className="h-11 w-11 overflow-hidden rounded-xl border border-cyan-300/30">
-              <img src={asset("brand/cypher-logo-dark.png")} alt="" className="h-full w-full object-cover" loading="lazy" />
+              <img src={asset("brand/cypher-logo-dark.webp")} alt="" className="h-full w-full object-cover" loading="lazy" />
             </span>
             <span className="text-xl font-black text-white">{profile.brand}</span>
           </div>

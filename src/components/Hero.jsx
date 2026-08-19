@@ -60,7 +60,7 @@ export default function Hero() {
             </div>
             <div className="relative overflow-hidden rounded-[2rem] border border-cyan-300/20 bg-[#070b18]/85 shadow-[0_0_90px_rgba(14,165,233,0.32)] backdrop-blur-2xl">
               <img
-                src={asset("brand/cypher-security-hero.png")}
+                src={asset("brand/cypher-security-hero.webp")}
                 alt="Cypher Technologies cybersecurity brand artwork"
                 className="h-[360px] w-[540px] object-cover"
                 loading="eager"

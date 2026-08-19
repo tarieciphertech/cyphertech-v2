@@ -82,7 +82,7 @@ export default function Projects() {
               <span className="h-3 w-3 rounded-full bg-emerald-300" />
             </div>
             <img
-              src={asset("brand/cypher-brand-system.png")}
+              src={asset("brand/cypher-brand-system.webp")}
               alt="Cypher Technologies brand system and product mockups"
               className="h-[360px] w-full rounded-2xl object-cover object-left"
               loading="lazy"
@@ -92,9 +92,9 @@ export default function Projects() {
 
         <div className="mb-16 grid gap-5 md:grid-cols-3">
           {[
-            ["Identity", "brand/cypher-logo-dark.png", "Cypher Technologies logo on dark circuit background"],
-            ["Services", "brand/cypher-services-showcase.png", "Cypher Technologies services and office brand showcase"],
-            ["Light Mark", "brand/cypher-logo-light.png", "Cypher Technologies blue mark on light background"],
+            ["Identity", "brand/cypher-logo-dark.webp", "Cypher Technologies logo on dark circuit background"],
+            ["Services", "brand/cypher-services-showcase.webp", "Cypher Technologies services and office brand showcase"],
+            ["Light Mark", "brand/cypher-logo-light.webp", "Cypher Technologies blue mark on light background"],
           ].map(([title, path, alt]) => (
             <div key={title} className="card overflow-hidden !p-0">
               <img src={asset(path)} alt={alt} className="h-52 w-full object-cover" loading="lazy" />

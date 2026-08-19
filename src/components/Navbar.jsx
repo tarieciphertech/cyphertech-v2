@@ -20,7 +20,7 @@ export default function Navbar() {
         <a href="#home" aria-label="Cypher Technologies — back to top" className="flex items-center gap-3">
           <span className="h-10 w-10 overflow-hidden rounded-xl border border-cyan-300/30 shadow-[0_0_35px_rgba(34,211,238,0.2)]">
             <img
-              src={asset("brand/cypher-logo-dark.png")}
+              src={asset("brand/cypher-logo-dark.webp")}
               alt=""
               className="h-full w-full object-cover"
               loading="eager"
