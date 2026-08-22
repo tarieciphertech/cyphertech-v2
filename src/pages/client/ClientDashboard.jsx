@@ -12,6 +12,8 @@ export default function ClientDashboard() {
   const { user, profile } = useAuth();
   const [projectCount, setProjectCount] = useState(null);
   const [projectsLoading, setProjectsLoading] = useState(true);
+  const [ticketCount, setTicketCount] = useState(null);
+  const [ticketsLoading, setTicketsLoading] = useState(true);
 
   useEffect(() => {
     let active = true;
@@ -36,6 +38,26 @@ export default function ClientDashboard() {
 
     loadProjectCount();
 
+    async function loadTicketCount() {
+      if (!supabase || !user) {
+        setTicketsLoading(false);
+        return;
+      }
+
+      const { count, error } = await supabase
+        .from("tickets")
+        .select("id", { count: "exact", head: true });
+
+      if (!active) return;
+
+      if (!error) {
+        setTicketCount(count ?? 0);
+      }
+      setTicketsLoading(false);
+    }
+
+    loadTicketCount();
+
     return () => {
       active = false;
     };
@@ -54,10 +76,20 @@ export default function ClientDashboard() {
   ];
 
   const futureCards = [
-    { label: "Tickets", icon: FaHeadset, copy: "Open and track support requests." },
     { label: "Messages", icon: FaPaperPlane, copy: "Message the Cypher team directly." },
     { label: "Files", icon: FaFolder, copy: "Access shared project files." },
   ];
+
+  const ticketSummary =
+    ticketsLoading
+      ? "Loading..."
+      : ticketCount === null
+        ? "Ticket summary unavailable right now."
+        : ticketCount === 0
+          ? "You don't have any support tickets yet."
+          : ticketCount === 1
+            ? "You have 1 support ticket."
+            : `You have ${ticketCount} support tickets.`;
 
   return (
     <div className="grid gap-6">
@@ -105,6 +137,24 @@ export default function ClientDashboard() {
           </div>
           <Link to="/client/projects" className="btn btn-primary shrink-0">
             View Projects
+          </Link>
+        </div>
+      </div>
+
+      {/* Tickets summary */}
+      <div className="card rounded-3xl p-6">
+        <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+          <div className="flex items-center gap-4">
+            <span className="grid h-12 w-12 shrink-0 place-items-center rounded-2xl bg-cyan-300/10 text-cyan-200">
+              <FaHeadset className="text-xl" />
+            </span>
+            <div>
+              <h2 className="text-lg font-black text-white">Support tickets</h2>
+              <p className="mt-0.5 text-sm text-gray-400">{ticketSummary}</p>
+            </div>
+          </div>
+          <Link to="/client/tickets" className="btn btn-primary shrink-0">
+            View Tickets
           </Link>
         </div>
       </div>

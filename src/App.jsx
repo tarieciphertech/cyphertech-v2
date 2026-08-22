@@ -8,6 +8,9 @@ import ClientLayout from "./pages/client/ClientLayout";
 import ClientDashboard from "./pages/client/ClientDashboard";
 import ClientProfile from "./pages/client/ClientProfile";
 import ClientProjects from "./pages/client/ClientProjects";
+import ClientTickets from "./pages/client/ClientTickets";
+import ClientTicketNew from "./pages/client/ClientTicketNew";
+import ClientTicketDetail from "./pages/client/ClientTicketDetail";
 
 /**
  * App — route table for the Cypher Technologies site.
@@ -15,11 +18,12 @@ import ClientProjects from "./pages/client/ClientProjects";
  * Public marketing site stays at "/" (anchor navigation preserved).
  * Authentication lives at /login and /register (guest-only routes that
  * redirect authenticated users to /client).
- * The client area (/client, /client/projects, /client/profile) is protected:
- * unauthenticated users are redirected to /login.
+ * The client area (/client, /client/projects, /client/tickets,
+ * /client/tickets/:ticketId, /client/profile) is protected: unauthenticated
+ * users are redirected to /login.
  *
- * Future routes (/client/tickets, /admin/*, etc.) are intentionally NOT
- * defined yet — they belong to later stages.
+ * Future routes (/admin/*, etc.) are intentionally NOT defined yet — they
+ * belong to later stages.
  */
 export default function App() {
   return (
@@ -56,6 +60,9 @@ export default function App() {
       >
         <Route index element={<ClientDashboard />} />
         <Route path="projects" element={<ClientProjects />} />
+        <Route path="tickets" element={<ClientTickets />} />
+        <Route path="tickets/new" element={<ClientTicketNew />} />
+        <Route path="tickets/:ticketId" element={<ClientTicketDetail />} />
         <Route path="profile" element={<ClientProfile />} />
       </Route>
 
