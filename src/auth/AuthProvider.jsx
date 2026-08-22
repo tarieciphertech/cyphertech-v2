@@ -105,11 +105,51 @@ export default function AuthProvider({ children }) {
     const { data, error } = await supabase.auth.signInWithPassword({ email, password });
 
     if (error) {
-      const message =
-        error.message === "Invalid login credentials"
-          ? "Incorrect email or password."
-          : "Unable to sign in. Please try again.";
-      return { error: { friendly: message } };
+      const rawMessage = typeof error.message === "string" ? error.message : "";
+      const message = rawMessage.toLowerCase();
+
+      // Email confirmation required
+      // (live failure mode: HTTP 400, x-sb-error-code: email_not_confirmed).
+      if (
+        error.code === "email_not_confirmed" ||
+        message.includes("email not confirmed") ||
+        message.includes("email address not confirmed") ||
+        message.includes("confirm your email")
+      ) {
+        return {
+          error: {
+            friendly:
+              "Please confirm your email before signing in. Check your inbox for the confirmation link.",
+          },
+        };
+      }
+
+      // Rate limiting.
+      if (
+        error.status === 429 ||
+        message.includes("rate limit") ||
+        message.includes("too many requests") ||
+        message.includes("too many signin") ||
+        message.includes("too many sign-in")
+      ) {
+        return {
+          error: { friendly: "Too many sign-in attempts. Please wait a few minutes and try again." },
+        };
+      }
+
+      // Invalid credentials.
+      if (rawMessage === "Invalid login credentials") {
+        return { error: { friendly: "Incorrect email or password." } };
+      }
+
+      // Any other Supabase error — expose ONLY the safe message text.
+      // Never leak service_role, API keys, JWTs, DB credentials, headers,
+      // or the raw error object.
+      const safeMessage =
+        typeof error.message === "string" && error.message.trim()
+          ? error.message.trim()
+          : "Unable to sign in right now. Please try again.";
+      return { error: { friendly: safeMessage } };
     }
 
     // onAuthStateChange will populate user + profile asynchronously.
