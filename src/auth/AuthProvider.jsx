@@ -133,13 +133,34 @@ export default function AuthProvider({ children }) {
     });
 
     if (error) {
-      if (error.message.toLowerCase().includes("already registered")) {
+      const status = error.status;
+      const message = (error.message || "").toLowerCase();
+
+      // Rate limiting (HTTP 429 or rate-limit wording) — user-friendly message.
+      if (
+        status === 429 ||
+        message.includes("rate limit") ||
+        message.includes("too many requests") ||
+        message.includes("too many signup")
+      ) {
+        return {
+          error: {
+            message: "Too many signup attempts from this connection. Please wait a few minutes and try again.",
+          },
+        };
+      }
+
+      // Already registered — guide the user to sign in instead.
+      if (message.includes("already registered") || message.includes("already been registered")) {
         return { error: { message: "This email is already registered. Try signing in instead." } };
       }
-      if (error.message.toLowerCase().includes("password")) {
-        return { error: { message: error.message } };
-      }
-      return { error: { message: "We could not create your account right now. Please try again." } };
+
+      // Otherwise pass through the actual safe Supabase error message so the
+      // UI can show something specific (e.g. weak password, invalid email),
+      // falling back to a generic message only if Supabase returned none.
+      return {
+        error: { message: error.message || "We could not create your account right now. Please try again." },
+      };
     }
 
     setUser(data.user ?? null);
