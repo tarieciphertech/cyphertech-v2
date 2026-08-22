@@ -1,42 +1,64 @@
-import Navbar from "./components/Navbar";
-import Hero from "./components/Hero";
-import CapabilitiesStrip from "./components/CapabilitiesStrip";
-import About from "./components/About";
-import Blog from "./components/Blog";
-import Careers from "./components/Careers";
-import Services from "./components/Services";
-import Solutions from "./components/Solutions";
-import Projects from "./components/Projects";
-import Team from "./components/Team";
-import Technologies from "./components/Technologies";
-import ServicePromises from "./components/ServicePromises";
-import WhyChooseUs from "./components/WhyChooseUs";
-import Process from "./components/Process";
-import FinalCTA from "./components/FinalCTA";
-import Contact from "./components/Contact";
-import Footer from "./components/Footer";
-import "./index.css";
+import { Routes, Route } from "react-router-dom";
+import HomePage from "./pages/HomePage";
+import Login from "./pages/Login";
+import Register from "./pages/Register";
+import GuestRoute from "./components/GuestRoute";
+import ProtectedRoute from "./components/ProtectedRoute";
+import ClientLayout from "./pages/client/ClientLayout";
+import ClientDashboard from "./pages/client/ClientDashboard";
+import ClientProfile from "./pages/client/ClientProfile";
 
+/**
+ * App — route table for the Cypher Technologies site.
+ *
+ * Public marketing site stays at "/" (anchor navigation preserved).
+ * Authentication lives at /login and /register (guest-only routes that
+ * redirect authenticated users to /client).
+ * The client area (/client, /client/profile) is protected: unauthenticated
+ * users are redirected to /login.
+ *
+ * Future routes (/client/projects, /admin/*, etc.) are intentionally NOT
+ * defined yet — they belong to later stages.
+ */
 export default function App() {
   return (
-    <main className="min-h-screen bg-[#05020a] text-white overflow-hidden">
-      <Navbar />
-      <Hero />
-      <CapabilitiesStrip />
-      <Services />
-      <Solutions />
-      <WhyChooseUs />
-      <Projects />
-      <Process />
-      <About />
-      <Team />
-      <ServicePromises />
-      <Technologies />
-      <Blog />
-      <Careers />
-      <FinalCTA />
-      <Contact />
-      <Footer />
-    </main>
+    <Routes>
+      {/* Public marketing homepage — unchanged */}
+      <Route path="/" element={<HomePage />} />
+
+      {/* Auth pages — only visible when logged out */}
+      <Route
+        path="/login"
+        element={
+          <GuestRoute>
+            <Login />
+          </GuestRoute>
+        }
+      />
+      <Route
+        path="/register"
+        element={
+          <GuestRoute>
+            <Register />
+          </GuestRoute>
+        }
+      />
+
+      {/* Protected client area */}
+      <Route
+        path="/client"
+        element={
+          <ProtectedRoute>
+            <ClientLayout />
+          </ProtectedRoute>
+        }
+      >
+        <Route index element={<ClientDashboard />} />
+        <Route path="profile" element={<ClientProfile />} />
+      </Route>
+
+      {/* Unknown paths fall back to the homepage (SPA 404 via copy-404.mjs) */}
+      <Route path="*" element={<HomePage />} />
+    </Routes>
   );
 }

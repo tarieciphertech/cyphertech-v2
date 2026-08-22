@@ -1,10 +1,13 @@
 import { useEffect, useState } from "react";
-import { FaBars, FaTimes } from "react-icons/fa";
+import { Link } from "react-router-dom";
+import { FaBars, FaTimes, FaUserLock, FaUserCog } from "react-icons/fa";
 import { navLinks, profile } from "../data/site";
 import { asset } from "../utils/paths";
+import { useAuth } from "../auth/useAuth";
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
+  const { user } = useAuth();
 
   useEffect(() => {
     function onKeyDown(event) {
@@ -37,9 +40,20 @@ export default function Navbar() {
           ))}
         </div>
 
-        <a href="#contact" className="btn btn-primary hidden !px-5 !py-3 text-sm lg:inline-flex">
-          Get a Quote
-        </a>
+        <div className="hidden items-center gap-3 lg:flex">
+          {user ? (
+            <Link to="/client" className="btn btn-secondary !px-5 !py-3 text-sm">
+              <FaUserCog className="text-sm" /> Client Portal
+            </Link>
+          ) : (
+            <Link to="/login" className="btn btn-secondary !px-5 !py-3 text-sm">
+              <FaUserLock className="text-sm" /> Login
+            </Link>
+          )}
+          <a href="#contact" className="btn btn-primary !px-5 !py-3 text-sm">
+            Get a Quote
+          </a>
+        </div>
 
         <button
           type="button"
@@ -66,6 +80,23 @@ export default function Navbar() {
                 {label}
               </a>
             ))}
+            {user ? (
+              <Link
+                to="/client"
+                onClick={() => setOpen(false)}
+                className="btn btn-secondary mt-2 w-full"
+              >
+                <FaUserCog className="text-sm" /> Client Portal
+              </Link>
+            ) : (
+              <Link
+                to="/login"
+                onClick={() => setOpen(false)}
+                className="btn btn-secondary mt-2 w-full"
+              >
+                <FaUserLock className="text-sm" /> Login
+              </Link>
+            )}
             <a href="#contact" onClick={() => setOpen(false)} className="btn btn-primary mt-2 w-full">
               Get a Quote
             </a>
