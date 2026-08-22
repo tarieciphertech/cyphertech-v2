@@ -11,6 +11,9 @@ import ClientProjects from "./pages/client/ClientProjects";
 import ClientTickets from "./pages/client/ClientTickets";
 import ClientTicketNew from "./pages/client/ClientTicketNew";
 import ClientTicketDetail from "./pages/client/ClientTicketDetail";
+import ClientNotifications from "./pages/client/ClientNotifications";
+import ClientFiles from "./pages/client/ClientFiles";
+import ClientMessages from "./pages/client/ClientMessages";
 
 /**
  * App — route table for the Cypher Technologies site.
@@ -19,8 +22,9 @@ import ClientTicketDetail from "./pages/client/ClientTicketDetail";
  * Authentication lives at /login and /register (guest-only routes that
  * redirect authenticated users to /client).
  * The client area (/client, /client/projects, /client/tickets,
- * /client/tickets/:ticketId, /client/profile) is protected: unauthenticated
- * users are redirected to /login.
+ * /client/tickets/:ticketId, /client/messages, /client/notifications,
+ * /client/files, /client/profile) is protected: unauthenticated users are
+ * redirected to /login.
  *
  * Future routes (/admin/*, etc.) are intentionally NOT defined yet — they
  * belong to later stages.
@@ -63,6 +67,9 @@ export default function App() {
         <Route path="tickets" element={<ClientTickets />} />
         <Route path="tickets/new" element={<ClientTicketNew />} />
         <Route path="tickets/:ticketId" element={<ClientTicketDetail />} />
+        <Route path="messages" element={<ClientMessages />} />
+        <Route path="notifications" element={<ClientNotifications />} />
+        <Route path="files" element={<ClientFiles />} />
         <Route path="profile" element={<ClientProfile />} />
       </Route>
 

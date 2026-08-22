@@ -1,5 +1,5 @@
 import { NavLink, Outlet, Link, useNavigate } from "react-router-dom";
-import { FaArrowLeft, FaBriefcase, FaFolder, FaHeadset, FaHome, FaPaperPlane, FaSignOutAlt, FaUser } from "react-icons/fa";
+import { FaArrowLeft, FaBell, FaBriefcase, FaFolder, FaHeadset, FaHome, FaPaperPlane, FaSignOutAlt, FaUser } from "react-icons/fa";
 import { useAuth } from "../../auth/useAuth";
 import { asset } from "../../utils/paths";
 
@@ -7,14 +7,17 @@ const navItems = [
   { to: "/client", label: "Dashboard", icon: FaHome, end: true },
   { to: "/client/projects", label: "Projects", icon: FaBriefcase, end: false },
   { to: "/client/tickets", label: "Tickets", icon: FaHeadset, end: false },
+  { to: "/client/messages", label: "Messages", icon: FaPaperPlane, end: false },
+  { to: "/client/notifications", label: "Notifications", icon: FaBell, end: false },
+  { to: "/client/files", label: "Files", icon: FaFolder, end: false },
   { to: "/client/profile", label: "Profile", icon: FaUser, end: false },
 ];
 
 // Future modules — placeholders only, delivered in later stages.
-const upcomingModules = [
-  { label: "Messages", icon: FaPaperPlane },
-  { label: "Files", icon: FaFolder },
-];
+// Currently empty: every planned client module is implemented. Add entries
+// here when new future modules are introduced; the section renders only
+// when non-empty.
+const upcomingModules = [];
 
 export default function ClientLayout() {
   const { user, profile, signOut } = useAuth();
@@ -56,24 +59,26 @@ export default function ClientLayout() {
           ))}
         </nav>
 
-        <div className="mt-8">
-          <p className="px-4 text-xs font-black uppercase tracking-wider text-gray-600">Coming soon</p>
-          <div className="mt-2 grid gap-1">
-            {upcomingModules.map(({ label, icon: Icon }) => (
-              <div
-                key={label}
-                className="flex items-center gap-3 rounded-xl px-4 py-3 text-sm font-semibold text-gray-600"
-                title="Available in an upcoming release"
-              >
-                <Icon className="text-base" />
-                {label}
-                <span className="ml-auto rounded-full bg-white/5 px-2 py-0.5 text-[10px] font-bold uppercase tracking-wide text-gray-500">
-                  Soon
-                </span>
-              </div>
-            ))}
+        {upcomingModules.length > 0 && (
+          <div className="mt-8">
+            <p className="px-4 text-xs font-black uppercase tracking-wider text-gray-600">Coming soon</p>
+            <div className="mt-2 grid gap-1">
+              {upcomingModules.map(({ label, icon: Icon }) => (
+                <div
+                  key={label}
+                  className="flex items-center gap-3 rounded-xl px-4 py-3 text-sm font-semibold text-gray-600"
+                  title="Available in an upcoming release"
+                >
+                  <Icon className="text-base" />
+                  {label}
+                  <span className="ml-auto rounded-full bg-white/5 px-2 py-0.5 text-[10px] font-bold uppercase tracking-wide text-gray-500">
+                    Soon
+                  </span>
+                </div>
+              ))}
+            </div>
           </div>
-        </div>
+        )}
 
         <button
           type="button"

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { FaBriefcase, FaEnvelope, FaFolder, FaHeadset, FaPaperPlane } from "react-icons/fa";
+import { FaBell, FaBriefcase, FaEnvelope, FaFolder, FaHeadset, FaPaperPlane } from "react-icons/fa";
 import { supabase } from "../../lib/supabase";
 import { useAuth } from "../../auth/useAuth";
 
@@ -14,6 +14,12 @@ export default function ClientDashboard() {
   const [projectsLoading, setProjectsLoading] = useState(true);
   const [ticketCount, setTicketCount] = useState(null);
   const [ticketsLoading, setTicketsLoading] = useState(true);
+  const [unreadCount, setUnreadCount] = useState(null);
+  const [notificationsLoading, setNotificationsLoading] = useState(true);
+  const [fileCount, setFileCount] = useState(null);
+  const [filesLoading, setFilesLoading] = useState(true);
+  const [conversationCount, setConversationCount] = useState(null);
+  const [messagesLoading, setMessagesLoading] = useState(true);
 
   useEffect(() => {
     let active = true;
@@ -58,6 +64,83 @@ export default function ClientDashboard() {
 
     loadTicketCount();
 
+    async function loadUnreadCount() {
+      if (!supabase || !user) {
+        setNotificationsLoading(false);
+        return;
+      }
+
+      const { count, error } = await supabase
+        .from("notifications")
+        .select("id", { count: "exact", head: true })
+        .is("read_at", null);
+
+      if (!active) return;
+
+      if (!error) {
+        setUnreadCount(count ?? 0);
+      }
+      setNotificationsLoading(false);
+    }
+
+    loadUnreadCount();
+
+    async function loadFileCount() {
+      if (!supabase || !user) {
+        setFilesLoading(false);
+        return;
+      }
+
+      const { count, error } = await supabase
+        .from("files")
+        .select("id", { count: "exact", head: true });
+
+      if (!active) return;
+
+      if (!error) {
+        setFileCount(count ?? 0);
+      }
+      setFilesLoading(false);
+    }
+
+    loadFileCount();
+
+    async function loadConversationCount() {
+      if (!supabase || !user) {
+        setMessagesLoading(false);
+        return;
+      }
+
+      // Conversations are tickets (RLS-scoped) that contain at least one
+      // message. Two-step: accessible ticket IDs, then their message rows.
+      const { data: tickets, error: ticketsError } = await supabase
+        .from("tickets")
+        .select("id");
+
+      if (!active) return;
+
+      if (ticketsError || !tickets || tickets.length === 0) {
+        if (!ticketsError) setConversationCount(0);
+        setMessagesLoading(false);
+        return;
+      }
+
+      const ticketIds = tickets.map((ticket) => ticket.id);
+      const { data: messages, error: messagesError } = await supabase
+        .from("ticket_messages")
+        .select("ticket_id")
+        .in("ticket_id", ticketIds);
+
+      if (!active) return;
+
+      if (!messagesError && messages) {
+        setConversationCount(new Set(messages.map((message) => message.ticket_id)).size);
+      }
+      setMessagesLoading(false);
+    }
+
+    loadConversationCount();
+
     return () => {
       active = false;
     };
@@ -75,10 +158,29 @@ export default function ClientDashboard() {
     { label: "Role", value: profile?.role || "client" },
   ];
 
-  const futureCards = [
-    { label: "Messages", icon: FaPaperPlane, copy: "Message the Cypher team directly." },
-    { label: "Files", icon: FaFolder, copy: "Access shared project files." },
-  ];
+  const futureCards = [];
+
+  const messageSummary =
+    messagesLoading
+      ? "Loading..."
+      : conversationCount === null
+        ? "Message summary unavailable right now."
+        : conversationCount === 0
+          ? "You don't have any conversations yet."
+          : conversationCount === 1
+            ? "You have 1 conversation."
+            : `You have ${conversationCount} conversations.`;
+
+  const fileSummary =
+    filesLoading
+      ? "Loading..."
+      : fileCount === null
+        ? "File summary unavailable right now."
+        : fileCount === 0
+          ? "You don't have any files yet."
+          : fileCount === 1
+            ? "You have 1 file."
+            : `You have ${fileCount} files.`;
 
   const ticketSummary =
     ticketsLoading
@@ -90,6 +192,17 @@ export default function ClientDashboard() {
           : ticketCount === 1
             ? "You have 1 support ticket."
             : `You have ${ticketCount} support tickets.`;
+
+  const notificationSummary =
+    notificationsLoading
+      ? "Loading..."
+      : unreadCount === null
+        ? "Notification summary unavailable right now."
+        : unreadCount === 0
+          ? "You don't have any unread notifications."
+          : unreadCount === 1
+            ? "You have 1 unread notification."
+            : `You have ${unreadCount} unread notifications.`;
 
   return (
     <div className="grid gap-6">
@@ -159,6 +272,60 @@ export default function ClientDashboard() {
         </div>
       </div>
 
+      {/* Notifications summary */}
+      <div className="card rounded-3xl p-6">
+        <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+          <div className="flex items-center gap-4">
+            <span className="grid h-12 w-12 shrink-0 place-items-center rounded-2xl bg-cyan-300/10 text-cyan-200">
+              <FaBell className="text-xl" />
+            </span>
+            <div>
+              <h2 className="text-lg font-black text-white">Notifications</h2>
+              <p className="mt-0.5 text-sm text-gray-400">{notificationSummary}</p>
+            </div>
+          </div>
+          <Link to="/client/notifications" className="btn btn-primary shrink-0">
+            View Notifications
+          </Link>
+        </div>
+      </div>
+
+      {/* Files summary */}
+      <div className="card rounded-3xl p-6">
+        <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+          <div className="flex items-center gap-4">
+            <span className="grid h-12 w-12 shrink-0 place-items-center rounded-2xl bg-cyan-300/10 text-cyan-200">
+              <FaFolder className="text-xl" />
+            </span>
+            <div>
+              <h2 className="text-lg font-black text-white">Files</h2>
+              <p className="mt-0.5 text-sm text-gray-400">{fileSummary}</p>
+            </div>
+          </div>
+          <Link to="/client/files" className="btn btn-primary shrink-0">
+            View Files
+          </Link>
+        </div>
+      </div>
+
+      {/* Messages summary */}
+      <div className="card rounded-3xl p-6">
+        <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+          <div className="flex items-center gap-4">
+            <span className="grid h-12 w-12 shrink-0 place-items-center rounded-2xl bg-cyan-300/10 text-cyan-200">
+              <FaPaperPlane className="text-xl" />
+            </span>
+            <div>
+              <h2 className="text-lg font-black text-white">Messages</h2>
+              <p className="mt-0.5 text-sm text-gray-400">{messageSummary}</p>
+            </div>
+          </div>
+          <Link to="/client/messages" className="btn btn-primary shrink-0">
+            View Messages
+          </Link>
+        </div>
+      </div>
+
       <div className="grid gap-6 lg:grid-cols-[1fr_1.1fr]">
         {/* Profile summary */}
         <div className="card rounded-3xl p-6">
@@ -183,32 +350,34 @@ export default function ClientDashboard() {
 
         {/* Coming modules */}
         <div className="grid gap-4">
-          <div className="card rounded-3xl p-6">
-            <h2 className="text-lg font-black text-white">What's next</h2>
-            <p className="mt-1 text-sm text-gray-400">
-              These modules are being prepared and will appear here soon.
-            </p>
-            <div className="mt-5 grid gap-3 sm:grid-cols-2">
-              {futureCards.map(({ label, icon: Icon, copy }) => (
-                <div
-                  key={label}
-                  className="rounded-2xl border border-white/10 bg-white/[0.045] p-4 opacity-70"
-                  title="Available in an upcoming release"
-                >
-                  <span className="grid h-9 w-9 place-items-center rounded-xl bg-cyan-300/10 text-cyan-200">
-                    <Icon className="text-base" />
-                  </span>
-                  <p className="mt-3 flex items-center gap-2 text-sm font-black text-white">
-                    {label}
-                    <span className="rounded-full bg-white/5 px-2 py-0.5 text-[10px] font-bold uppercase tracking-wide text-gray-500">
-                      Soon
+          {futureCards.length > 0 && (
+            <div className="card rounded-3xl p-6">
+              <h2 className="text-lg font-black text-white">What's next</h2>
+              <p className="mt-1 text-sm text-gray-400">
+                These modules are being prepared and will appear here soon.
+              </p>
+              <div className="mt-5 grid gap-3 sm:grid-cols-2">
+                {futureCards.map(({ label, icon: Icon, copy }) => (
+                  <div
+                    key={label}
+                    className="rounded-2xl border border-white/10 bg-white/[0.045] p-4 opacity-70"
+                    title="Available in an upcoming release"
+                  >
+                    <span className="grid h-9 w-9 place-items-center rounded-xl bg-cyan-300/10 text-cyan-200">
+                      <Icon className="text-base" />
                     </span>
-                  </p>
-                  <p className="mt-1 text-xs leading-5 text-gray-500">{copy}</p>
-                </div>
-              ))}
+                    <p className="mt-3 flex items-center gap-2 text-sm font-black text-white">
+                      {label}
+                      <span className="rounded-full bg-white/5 px-2 py-0.5 text-[10px] font-bold uppercase tracking-wide text-gray-500">
+                        Soon
+                      </span>
+                    </p>
+                    <p className="mt-1 text-xs leading-5 text-gray-500">{copy}</p>
+                  </div>
+                ))}
+              </div>
             </div>
-          </div>
+          )}
 
           <div className="flex items-center gap-4 rounded-3xl border border-cyan-300/20 bg-cyan-300/5 p-5">
             <span className="grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-cyan-300/10 text-cyan-200">
