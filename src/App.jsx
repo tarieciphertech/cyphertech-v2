@@ -7,6 +7,7 @@ import ProtectedRoute from "./components/ProtectedRoute";
 import ClientLayout from "./pages/client/ClientLayout";
 import ClientDashboard from "./pages/client/ClientDashboard";
 import ClientProfile from "./pages/client/ClientProfile";
+import ClientProjects from "./pages/client/ClientProjects";
 
 /**
  * App — route table for the Cypher Technologies site.
@@ -14,10 +15,10 @@ import ClientProfile from "./pages/client/ClientProfile";
  * Public marketing site stays at "/" (anchor navigation preserved).
  * Authentication lives at /login and /register (guest-only routes that
  * redirect authenticated users to /client).
- * The client area (/client, /client/profile) is protected: unauthenticated
- * users are redirected to /login.
+ * The client area (/client, /client/projects, /client/profile) is protected:
+ * unauthenticated users are redirected to /login.
  *
- * Future routes (/client/projects, /admin/*, etc.) are intentionally NOT
+ * Future routes (/client/tickets, /admin/*, etc.) are intentionally NOT
  * defined yet — they belong to later stages.
  */
 export default function App() {
@@ -54,6 +55,7 @@ export default function App() {
         }
       >
         <Route index element={<ClientDashboard />} />
+        <Route path="projects" element={<ClientProjects />} />
         <Route path="profile" element={<ClientProfile />} />
       </Route>
 

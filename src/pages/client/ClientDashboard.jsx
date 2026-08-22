@@ -1,5 +1,7 @@
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { FaBriefcase, FaEnvelope, FaFolder, FaHeadset, FaPaperPlane } from "react-icons/fa";
+import { supabase } from "../../lib/supabase";
 import { useAuth } from "../../auth/useAuth";
 
 /**
@@ -8,6 +10,36 @@ import { useAuth } from "../../auth/useAuth";
  */
 export default function ClientDashboard() {
   const { user, profile } = useAuth();
+  const [projectCount, setProjectCount] = useState(null);
+  const [projectsLoading, setProjectsLoading] = useState(true);
+
+  useEffect(() => {
+    let active = true;
+
+    async function loadProjectCount() {
+      if (!supabase || !user) {
+        setProjectsLoading(false);
+        return;
+      }
+
+      const { count, error } = await supabase
+        .from("projects")
+        .select("id", { count: "exact", head: true });
+
+      if (!active) return;
+
+      if (!error) {
+        setProjectCount(count ?? 0);
+      }
+      setProjectsLoading(false);
+    }
+
+    loadProjectCount();
+
+    return () => {
+      active = false;
+    };
+  }, [user]);
 
   const displayName = profile?.full_name || user?.email?.split("@")[0] || "there";
   const initial = (profile?.full_name?.charAt(0) || user?.email?.charAt(0) || "C").toUpperCase();
@@ -22,7 +54,6 @@ export default function ClientDashboard() {
   ];
 
   const futureCards = [
-    { label: "Projects", icon: FaBriefcase, copy: "View project progress and timelines." },
     { label: "Tickets", icon: FaHeadset, copy: "Open and track support requests." },
     { label: "Messages", icon: FaPaperPlane, copy: "Message the Cypher team directly." },
     { label: "Files", icon: FaFolder, copy: "Access shared project files." },
@@ -49,6 +80,32 @@ export default function ClientDashboard() {
               Staff access
             </span>
           )}
+        </div>
+      </div>
+
+      {/* Projects summary */}
+      <div className="card rounded-3xl p-6">
+        <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+          <div className="flex items-center gap-4">
+            <span className="grid h-12 w-12 shrink-0 place-items-center rounded-2xl bg-cyan-300/10 text-cyan-200">
+              <FaBriefcase className="text-xl" />
+            </span>
+            <div>
+              <h2 className="text-lg font-black text-white">Projects</h2>
+              <p className="mt-0.5 text-sm text-gray-400">
+                {projectsLoading
+                  ? "Loading..."
+                  : projectCount === null
+                    ? "Project summary unavailable right now."
+                    : projectCount === 0
+                      ? "You don't have any projects yet."
+                      : `You have ${projectCount} ${projectCount === 1 ? "project" : "projects"}.`}
+              </p>
+            </div>
+          </div>
+          <Link to="/client/projects" className="btn btn-primary shrink-0">
+            View Projects
+          </Link>
         </div>
       </div>
 

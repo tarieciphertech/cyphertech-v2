@@ -5,12 +5,12 @@ import { asset } from "../../utils/paths";
 
 const navItems = [
   { to: "/client", label: "Dashboard", icon: FaHome, end: true },
+  { to: "/client/projects", label: "Projects", icon: FaBriefcase, end: false },
   { to: "/client/profile", label: "Profile", icon: FaUser, end: false },
 ];
 
 // Future modules — placeholders only, delivered in later stages.
 const upcomingModules = [
-  { label: "Projects", icon: FaBriefcase },
   { label: "Tickets", icon: FaHeadset },
   { label: "Messages", icon: FaPaperPlane },
   { label: "Files", icon: FaFolder },
