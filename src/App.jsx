@@ -14,6 +14,11 @@ import ClientTicketDetail from "./pages/client/ClientTicketDetail";
 import ClientNotifications from "./pages/client/ClientNotifications";
 import ClientFiles from "./pages/client/ClientFiles";
 import ClientMessages from "./pages/client/ClientMessages";
+import AdminRoute from "./components/AdminRoute";
+import AdminLayout from "./pages/admin/AdminLayout";
+import AdminDashboard from "./pages/admin/AdminDashboard";
+import AdminTickets from "./pages/admin/AdminTickets";
+import AdminTicketDetail from "./pages/admin/AdminTicketDetail";
 
 /**
  * App — route table for the Cypher Technologies site.
@@ -26,8 +31,10 @@ import ClientMessages from "./pages/client/ClientMessages";
  * /client/files, /client/profile) is protected: unauthenticated users are
  * redirected to /login.
  *
- * Future routes (/admin/*, etc.) are intentionally NOT defined yet — they
- * belong to later stages.
+ * The admin area (/admin, /admin/tickets, /admin/tickets/:ticketId) is
+ * role-gated: only DB-verified admin/staff users may enter; everyone else is
+ * redirected. Additional /admin/* module routes are added in their own stages
+ * as real functionality is built.
  */
 export default function App() {
   return (
@@ -71,6 +78,22 @@ export default function App() {
         <Route path="notifications" element={<ClientNotifications />} />
         <Route path="files" element={<ClientFiles />} />
         <Route path="profile" element={<ClientProfile />} />
+      </Route>
+
+      {/* Protected admin area — role-gated (admin/staff only, DB-verified).
+          Only implemented modules get routes; /admin/users etc. are added
+          in their own stages when real functionality exists. */}
+      <Route
+        path="/admin"
+        element={
+          <AdminRoute>
+            <AdminLayout />
+          </AdminRoute>
+        }
+      >
+        <Route index element={<AdminDashboard />} />
+        <Route path="tickets" element={<AdminTickets />} />
+        <Route path="tickets/:ticketId" element={<AdminTicketDetail />} />
       </Route>
 
       {/* Unknown paths fall back to the homepage (SPA 404 via copy-404.mjs) */}
