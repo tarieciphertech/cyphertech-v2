@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react";
 import { Navigate, useLocation } from "react-router-dom";
 import { useAuth } from "../auth/useAuth";
 
@@ -12,35 +11,22 @@ import { useAuth } from "../auth/useAuth";
  *  - Deny by default: access is granted ONLY when the DB-confirmed role is
  *    'admin' or 'staff'. Unauthenticated users go to /login; authenticated
  *    non-admins are redirected to their client portal.
- *  - Handles the post-login race where the session exists but the debounced
- *    profile fetch has not landed yet: performs one safe refreshProfile
- *    retry instead of flashing a denial or spinning forever.
+ *
+ * Race-free waiting:
+ *  - `loading` covers initial session restoration.
+ *  - `profileReady` is an explicit AuthProvider signal that flips true once
+ *    the current user's profile has RESOLVED — whether found, missing, or a
+ *    handled fetch failure. Waiting on this signal (instead of inferring
+ *    state from `profile === null`) makes an indefinite "Verifying access..."
+ *    impossible: every path terminates in either children or a redirect.
  */
 export default function AdminRoute({ children }) {
-  const { user, profile, loading, refreshProfile } = useAuth();
+  const { user, profile, loading, profileReady } = useAuth();
   const location = useLocation();
-  const [retrying, setRetrying] = useState(false);
 
-  const needsProfileRetry = !loading && Boolean(user) && !profile;
+  const waiting = loading || (Boolean(user) && !profileReady);
 
-  useEffect(() => {
-    let active = true;
-
-    async function ensureProfile() {
-      if (!needsProfileRetry || !user) return;
-      setRetrying(true);
-      await refreshProfile(user.id);
-      if (active) setRetrying(false);
-    }
-
-    ensureProfile();
-
-    return () => {
-      active = false;
-    };
-  }, [needsProfileRetry, user, refreshProfile]);
-
-  if (loading || retrying || needsProfileRetry) {
+  if (waiting) {
     return (
       <div className="grid min-h-screen place-items-center bg-[#05020a] text-white">
         <div className="flex flex-col items-center gap-4">

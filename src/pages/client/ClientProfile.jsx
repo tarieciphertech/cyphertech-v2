@@ -47,7 +47,9 @@ export default function ClientProfile() {
       return;
     }
 
-    await refreshProfile(user.id);
+    // Force refresh: the profile cache is keyed per user, so an explicit
+    // reload is required to pick up the just-saved values.
+    await refreshProfile(user.id, { force: true });
     setStatus({ type: "success", message: "Profile updated." });
   }
 
