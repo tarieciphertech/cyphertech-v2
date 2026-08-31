@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" role="img" aria-label="Developer workstation with code editor and terminal">
+  <defs>
+    <radialGradient id="code-bg" cx="50%" cy="30%" r="70%" fx="50%" fy="30%">
+      <stop offset="0%" stop-color="#0b1220"/>
+      <stop offset="100%" stop-color="#060b14"/>
+    </radialGradient>
+    <linearGradient id="screen-glow" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#22d3ee" stop-opacity="0.12"/>
+      <stop offset="100%" stop-color="#060b14" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+  <!-- Background -->
+  <rect width="800" height="500" rx="24" fill="url(#code-bg)" stroke="#1e293b" stroke-width="1"/>
+  <!-- Subtle grid -->
+  <path d="M0 48 H800 M48 0 V500" stroke="#1e293b" stroke-width="1" opacity="0.5"/>
+  <!-- Laptop shell -->
+  <rect x="120" y="90" width="560" height="360" rx="14" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+  <!-- Screen title bar -->
+  <rect x="120" y="90" width="560" height="30" fill="#1e293b"/>
+  <circle cx="140" cy="105" r="5" fill="#f87171"/>
+  <circle cx="160" cy="105" r="5" fill="#facc15"/>
+  <circle cx="180" cy="105" r="5" fill="#4ade80"/>
+  <text x="200" y="110" fill="#94a3b8" font-size="13" font-family="ui-monospace,monospace">App.jsx</text>
+  <!-- Screen inner glow -->
+  <rect x="122" y="120" width="556" height="328" rx="10" fill="url(#screen-glow)"/>
+  <!-- File tree (left) -->
+  <g fill="#94a3b8" font-family="ui-monospace,monospace" font-size="12">
+    <text x="136" y="148">src/</text>
+    <text x="152" y="166">components/</text>
+    <text x="168" y="184">Dashboard.jsx</text>
+    <text x="168" y="202">JobList.jsx</text>
+    <text x="152" y="220">pages/</text>
+    <text x="168" y="238">api/</text>
+  </g>
+  <!-- Code editor (right) with syntax highlighting -->
+  <g font-family="ui-monospace,monospace" font-size="12">
+    <text x="300" y="148" fill="#8b5cf6">import</text><text x="370" y="148" fill="#94a3b8"> { </text><text x="386" y="148" fill="#facc15">Router</text><text x="426" y="148" fill="#94a3b8">, </text><text x="442" y="148" fill="#facc15">Route</text><text x="482" y="148" fill="#94a3b8"> } </text><text x="494" y="148" fill="#94a3b8">from</text><text x="526" y="148" fill="#22d3ee">"react-router"</text>
+    <text x="300" y="166" fill="#8b5cf6">import</text><text x="370" y="166" fill="#94a3b8"> { </text><text x="386" y="166" fill="#facc15">useState</text><text x="446" y="166" fill="#94a3b8"> } </text><text x="458" y="166" fill="#94a3b8">from</text><text x="490" y="166" fill="#22d3ee">"react"</text>
+    <text x="300" y="200" fill="#64748b" font-style="italic">// Build the product</text>
+    <text x="300" y="220" fill="#8b5cf6">function</text><text x="370" y="220" fill="#facc15"> App</text><text x="420" y="220" fill="#94a3b8">() {</text>
+    <text x="370" y="240" fill="#94a3b8">return (</text>
+    <text x="386" y="258" fill="#ec4899">&lt;</text><text x="392" y="258" fill="#22d3ee">Router</text><text x="438" y="258" fill="#ec4899">&gt;</text>
+    <text x="412" y="278" fill="#94a3b8">&lt;</text><text x="420" y="278" fill="#22d3ee">Route</text><text x="466" y="278" fill="#94a3b8"> path="/" </text><text x="530" y="278" fill="#facc15">component={Dashboard}</text><text x="660" y="278" fill="#94a3b8">/&gt;</text>
+    <text x="412" y="298" fill="#94a3b8">&lt;/</text><text x="434" y="298" fill="#22d3ee">Router</text><text x="480" y="298" fill="#ec4899">&gt;</text>
+    <text x="370" y="318" fill="#94a3b8">}</text>
+    <text x="300" y="340" fill="#8b5cf6">export</text><text x="348" y="340" fill="#94a3b8"> default</text><text x="416" y="340" fill="#facc15"> App</text>
+  </g>
+  <!-- Terminal window -->
+  <rect x="120" y="430" width="560" height="70" rx="10" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+  <rect x="120" y="430" width="560" height="22" fill="#1e293b"/>
+  <text x="140" y="444" fill="#94a3b8" font-size="12" font-family="ui-monospace,monospace">terminal — bash</text>
+  <text x="160" y="466" fill="#4ade80" font-size="12" font-family="ui-monospace,monospace">$</text><text x="176" y="466" fill="#94a3b8" font-size="12" font-family="ui-monospace,monospace">npm run dev</text>
+    <text x="176" y="480" fill="#22d3ee" font-size="12" font-family="ui-monospace,monospace">&gt; vite v5.2.0  ready in 420 ms</text>
+  <text x="176" y="496" fill="#22d3ee" font-size="12" font-family="ui-monospace,monospace">  ➜ Local:  http://localhost:5173/</text>
+  <!-- Floating code glyphs -->
+  <text x="80" y="200" fill="#22d3ee" font-size="22" font-family="ui-monospace,monospace" opacity="0.45">{}</text>
+  <text x="680" y="180" fill="#8b5cf6" font-size="22" font-family="ui-monospace,monospace" opacity="0.45">(</text>
+  <text x="712" y="420" fill="#ec4899" font-size="22" font-family="ui-monospace,monospace" opacity="0.45">)</text>
+</svg>

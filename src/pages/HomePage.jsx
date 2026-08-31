@@ -4,15 +4,16 @@ import CapabilitiesStrip from "../components/CapabilitiesStrip";
 import About from "../components/About";
 import Blog from "../components/Blog";
 import Careers from "../components/Careers";
-import Services from "../components/Services";
+import ServicesShowcase from "../components/ServicesShowcase";
 import Solutions from "../components/Solutions";
 import Projects from "../components/Projects";
+import InsideCypher from "../components/InsideCypher";
 import Team from "../components/Team";
 import Technologies from "../components/Technologies";
 import ServicePromises from "../components/ServicePromises";
 import WhyChooseUs from "../components/WhyChooseUs";
 import Process from "../components/Process";
-import FinalCTA from "../components/FinalCTA";
+import BrandHero from "../components/BrandHero";
 import Contact from "../components/Contact";
 import Footer from "../components/Footer";
 
@@ -27,10 +28,11 @@ export default function HomePage() {
       <Navbar />
       <Hero />
       <CapabilitiesStrip />
-      <Services />
+            <ServicesShowcase />
       <Solutions />
       <WhyChooseUs />
-      <Projects />
+            <Projects />
+      <InsideCypher />
       <Process />
       <About />
       <Team />
@@ -38,7 +40,7 @@ export default function HomePage() {
       <Technologies />
       <Blog />
       <Careers />
-      <FinalCTA />
+            <BrandHero />
       <Contact />
       <Footer />
     </main>

@@ -212,6 +212,22 @@ body {
   }
 }
 
+/* Hero background slideshow — very subtle slow zoom (Ken Burns) so the brand
+   imagery feels alive without aggressive movement. The global
+   prefers-reduced-motion rule below disables this animation automatically. */
+@keyframes hero-zoom {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.06);
+  }
+}
+
+.animate-hero-zoom {
+  animation: hero-zoom 12s ease-out forwards;
+}
+
 .field-label {
   display: grid;
   gap: 0.55rem;

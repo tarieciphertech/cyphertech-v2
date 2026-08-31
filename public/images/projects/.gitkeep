@@ -1,0 +1,4 @@
+# Project screenshots go here as they become available.
+# Until then, the ProjectSlideshow component renders clearly-marked placeholders
+# (see src/components/ProjectFrame.jsx). Add a `src` to a project slide in
+# src/data/site.js to use a real screenshot.

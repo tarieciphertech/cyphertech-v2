@@ -1,0 +1,3 @@
+# This folder holds imagery for the Technology ecosystem section.
+# Currently the section renders technology logos as inline icons (react-icons), so
+# no static files are required here; add background assets if desired.

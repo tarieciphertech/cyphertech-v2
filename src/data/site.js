@@ -291,10 +291,14 @@ export const industries = [
   ["SMEs", FaBriefcase],
 ];
 
-// Shape: [title, description, stack, liveUrl, githubUrl, status, category, problem]
+// Shape: [title, description, stack, liveUrl, githubUrl, status, category, problem, slides]
 // status: Completed | Ongoing | In Development | Prototype | Concept
 // category: Web | Software | Infrastructure | Network — only where the data supports it
 // problem: what the project addresses, derived from the project description.
+// slides: array of { src?, label, alt } — `src` is added only when a real product
+//         screenshot exists (see the Job Board entry under images/projects/jobboard/).
+//         When `src` is omitted the ProjectFrame component renders a clearly-marked
+//         placeholder, so the portfolio stays visual without fabricating images.
 // Statuses and links must stay honest — never fabricate URLs, clients, dates, or results.
 export const projects = [
   [
@@ -306,6 +310,15 @@ export const projects = [
     "Completed",
     "Web",
     "Recruiters need a structured way to publish roles, attract applicants, and manage the hiring pipeline.",
+    [
+      { src: "images/projects/jobboard/home.webp", label: "Homepage", alt: "Job Board homepage — hero with Browse Jobs and Get Advertised calls to action, platform stats, and how it works." },
+      { src: "images/projects/jobboard/jobs.webp", label: "Job listings", alt: "Job Board All Job Listings page — the live listing interface, currently with no active listings." },
+      { src: "images/projects/jobboard/register.webp", label: "Registration", alt: "Job Board registration screen with Employer, Job Seeker, and Advertiser account types." },
+      { src: "images/projects/jobboard/login.webp", label: "Login", alt: "Job Board login screen with email and social sign-in options." },
+      { src: "images/projects/jobboard/contact.webp", label: "Contact & fees", alt: "Job Board contact page showing administrator details, EcoCash and bank payment methods, and service fees." },
+      { src: "images/projects/jobboard/marketplace.webp", label: "Marketplace", alt: "Job Board marketplace advertisements page where advertisers list products and services." },
+      { src: "images/projects/jobboard/candidates.webp", label: "Candidates", alt: "Job Board available candidates listing page for employers to browse talent." },
+    ],
   ],
   [
     "FootballFlix",
@@ -316,6 +329,7 @@ export const projects = [
     "Concept",
     "Web",
     "Local and regional football fans lack a dedicated platform for match content and viewing.",
+    [{ label: "Landing page", alt: "FootballFlix — landing page (screenshot placeholder)" }],
   ],
   [
     "MiniFlix",
@@ -326,6 +340,7 @@ export const projects = [
     "Prototype",
     "Software",
     "Private networks need a controlled way to stream media without relying on external internet.",
+    [{ label: "Media library", alt: "MiniFlix — media library (screenshot placeholder)" }],
   ],
   [
     "Internet Cafe Portal",
@@ -336,6 +351,7 @@ export const projects = [
     "Prototype",
     "Network",
     "Internet cafes need reliable session management, time tracking, and admin control for customers.",
+    [{ label: "Captive portal login", alt: "Internet Cafe Portal — login screen (screenshot placeholder)" }],
   ],
   [
     "ISP Management Platform",
@@ -346,6 +362,7 @@ export const projects = [
     "Concept",
     "Software",
     "Small ISPs need a clear way to manage subscribers, packages, billing, and support tickets.",
+    [{ label: "Subscriber management", alt: "ISP Management Platform — subscriber list (screenshot placeholder)" }],
   ],
   [
     "Business Websites",
@@ -356,6 +373,7 @@ export const projects = [
     "Ongoing",
     "Web",
     "Companies need an online presence that builds trust and turns visitors into enquiries.",
+    [{ label: "Company website", alt: "Business Websites — company site (screenshot placeholder)" }],
   ],
   [
     "Inventory System",
@@ -366,6 +384,7 @@ export const projects = [
     "Prototype",
     "Software",
     "Businesses need accurate stock tracking, movement history, and reporting without manual spreadsheets.",
+    [{ label: "Stock list", alt: "Inventory System — stock list (screenshot placeholder)" }],
   ],
   [
     "School Management System",
@@ -376,6 +395,7 @@ export const projects = [
     "In Development",
     "Software",
     "Schools need a central system to manage students, staff, results, attendance, and parent communication.",
+    [{ label: "Student records", alt: "School Management System — student records (screenshot placeholder)" }],
   ],
   [
     "Church Management System",
@@ -386,6 +406,7 @@ export const projects = [
     "In Development",
     "Software",
     "Growing churches need organized workflows for members, giving, events, and communication.",
+    [{ label: "Members directory", alt: "Church Management System — members directory (screenshot placeholder)" }],
   ],
   [
     "Network Deployments",
@@ -396,6 +417,7 @@ export const projects = [
     "Ongoing",
     "Network",
     "Offices and venues need reliable, structured connectivity that users can depend on.",
+    [{ label: "Network diagram", alt: "Network Deployments — site network diagram (screenshot placeholder)" }],
   ],
 ];
 
@@ -468,5 +490,91 @@ export const blogPosts = [
   ["Networking", "What to consider before deploying office Wi-Fi, hotspots, or ISP-style networks."],
   ["Cloud", "Cloud infrastructure basics: backups, monitoring, deployment, and cost control."],
   ["AI", "Where AI automation can save time without making business workflows confusing."],
-  ["Business", "Choosing the right digital partner for long-term technology growth."],
+    ["Business", "Choosing the right digital partner for long-term technology growth."],
+];
+
+// ---------------------------------------------------------------------------
+// Visual service showcase — the 7 headline disciplines Cypher Technologies
+// markets. Each entry pairs an honest short description (derived from the
+// existing `services` catalogue) with a dedicated illustration. The `image`
+// value is a path under public/images/ resolved via the `asset()` helper so it
+// works on both the custom domain and a GitHub Pages project path.
+// ---------------------------------------------------------------------------
+export const servicesShowcase = [
+  {
+    name: "Software Development",
+    short: "Custom platforms and internal tools.",
+    desc: "Custom platforms, internal tools, dashboards, and workflow systems built around your operations.",
+    image: "images/services/code-scene.svg",
+    Icon: FaLaptopCode,
+    cta: "Get a quote",
+    ctaHref: "#contact",
+  },
+  {
+    name: "Web Development",
+    short: "Sites and portals that win trust.",
+    desc: "High-performance company sites, client portals, landing pages, and web apps that turn visitors into enquiries.",
+    image: "images/services/web-development.svg",
+    Icon: FaCode,
+    cta: "See our work",
+    ctaHref: "#projects",
+  },
+  {
+    name: "Business Systems",
+    short: "Operations software that fits.",
+    desc: "Operations software tailored to your exact teams, approvals, reports, and data flows — not the other way around.",
+    image: "images/services/business-systems.svg",
+    Icon: FaBriefcase,
+    cta: "Get a quote",
+    ctaHref: "#contact",
+  },
+  {
+    name: "Cybersecurity",
+    short: "Safer systems by design.",
+    desc: "Security reviews, hardening, safer access patterns, and awareness support built into every deliverable.",
+    image: "images/services/cybersecurity.svg",
+    Icon: FaShieldAlt,
+    cta: "Secure my systems",
+    ctaHref: "#contact",
+  },
+  {
+    name: "Cloud Infrastructure",
+    short: "Hosting that scales.",
+    desc: "Cloud hosting, deployment pipelines, backups, and scalable environments that run without constant hands-on management.",
+    image: "images/services/cloud-infrastructure.svg",
+    Icon: FaCloud,
+    cta: "Talk hosting",
+    ctaHref: "#contact",
+  },
+  {
+    name: "AI & Automation",
+    short: "Automate the repetitive work.",
+    desc: "Smart assistants, content workflows, data extraction, and business automation that removes repetitive manual work.",
+    image: "images/services/ai-automation.svg",
+    Icon: FaBrain,
+    cta: "Automate a workflow",
+    ctaHref: "#contact",
+  },
+  {
+    name: "IT Support & Repairs",
+    short: "Fix, upgrade, keep running.",
+    desc: "Diagnostics, computer and phone repairs, upgrades, setup, and responsive remote and on-site support.",
+    image: "images/services/it-support.svg",
+    Icon: FaTools,
+    cta: "Get support",
+    ctaHref: "#contact",
+  },
+];
+
+// ---------------------------------------------------------------------------
+// "Inside Cypher" collage — real disciplines the company actually performs,
+// expressed as short, human labels over authentic illustration scenes.
+// ---------------------------------------------------------------------------
+export const insideCypher = [
+  { label: "BUILD", image: "images/services/code-scene.svg", caption: "Software, websites and business systems" },
+  { label: "DEPLOY", image: "images/services/cloud-infrastructure.svg", caption: "Cloud, servers and release pipelines" },
+  { label: "SECURE", image: "images/services/cybersecurity.svg", caption: "Hardening, reviews and safer access" },
+  { label: "CONNECT", image: "images/services/network.svg", caption: "Networks, Wi-Fi and structured cabling" },
+  { label: "SCALE", image: "images/services/business-systems.svg", caption: "Operations and reporting systems" },
+  { label: "SUPPORT", image: "images/services/it-support.svg", caption: "Repairs, setup and responsive support" },
 ];
