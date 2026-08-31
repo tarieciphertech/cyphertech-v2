@@ -3,7 +3,6 @@ import { motion, AnimatePresence } from "framer-motion";
 import { FaChevronDown, FaExternalLinkAlt, FaGithub, FaWhatsapp } from "react-icons/fa";
 import { profile, projects } from "../data/site";
 import SectionTitle from "./SectionTitle";
-import ProjectFrame from "./ProjectFrame";
 import ProjectSlideshow from "./ProjectSlideshow";
 
 const whatsappUrl = `${profile.whatsapp}?text=${encodeURIComponent(
@@ -151,12 +150,13 @@ function ProjectCase({ project, alternate, expanded, setExpanded }) {
         alternate ? "lg:flex-row-reverse" : ""
       }`}
     >
-      {/* Image / slideshow side */}
+      {/* Image / slideshow side — real product screenshots where they exist,
+          otherwise an intentional typographic design panel (never a skeleton) */}
       <div className="lg:shrink-0 lg:w-1/2">
         {hasSlides ? (
           <ProjectSlideshow slides={slides} />
         ) : (
-          <ProjectFrame src={null} alt={`${title} — screenshot placeholder`} label={title} />
+          <DesignPanel title={title} stack={stack} status={status} category={category} />
         )}
       </div>
 
@@ -280,5 +280,51 @@ function ProjectCase({ project, alternate, expanded, setExpanded }) {
         </div>
       </div>
     </motion.article>
+  );
+}
+
+/**
+ * DesignPanel — an intentional typographic treatment for projects that don't
+ * yet have public product screenshots. Clearly a design panel, NOT a fake
+ * dashboard or screenshot: a monogram, status/category readout and the stack
+ * as a working spec line. Replaces the old gray "screenshot placeholder".
+ */
+function DesignPanel({ title, stack, status, category }) {
+  const initials = title
+    .split(/\s+/)
+    .filter(Boolean)
+    .slice(0, 2)
+    .map((w) => w[0])
+    .join("")
+    .toUpperCase();
+
+  return (
+    <div className="relative overflow-hidden rounded-xl border border-white/10 bg-[#071022]">
+      <div
+        aria-hidden="true"
+        className="absolute inset-0 bg-[radial-gradient(circle,rgba(148,163,184,0.09)_1px,transparent_1px)] [background-size:22px_22px]"
+      />
+      <div className="relative flex aspect-[16/10] flex-col justify-between p-5 sm:p-7">
+        <div className="flex items-start justify-between gap-4">
+          <span className="grid h-14 w-14 shrink-0 place-items-center border border-cyan-300/25 bg-cyan-300/5 text-xl font-black text-cyan-200">
+            {initials}
+          </span>
+          <span className="text-right font-mono text-[11px] uppercase leading-5 tracking-widest text-gray-500">
+            {status}
+            <br />
+            {category}
+          </span>
+        </div>
+        <div>
+          <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-gray-500">
+            Design treatment
+          </p>
+          <p className="mt-2 max-w-md text-sm leading-6 text-gray-400">
+            This project's public interface isn't available to capture yet. Built
+            with {stack.join(" · ")}.
+          </p>
+        </div>
+      </div>
+    </div>
   );
 }

@@ -37,7 +37,7 @@ export default function ServicesShowcase() {
                 >
                   <img
                     src={asset(svc.image)}
-                    alt={`Illustration for ${svc.name}`}
+                    alt={svc.alt || `Illustration for ${svc.name}`}
                     className="h-full w-full object-cover object-center"
                     loading="lazy"
                     decoding="async"

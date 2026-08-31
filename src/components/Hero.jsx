@@ -7,8 +7,8 @@ import HeroSlideshow from "./HeroSlideshow";
 // Real Cypher brand imagery used as the full-bleed hero background slideshow.
 // - cypher-security-hero.webp      -> dark scene, glowing central focal ✅
 // - cypher-services-showcase.webp  -> dark scene, service panels, dark center ✅
-// - cypher-brand-system.webp       -> brand-sheet composition of scattered
-//   components, not continuous scene imagery -> excluded (see analysis).
+// - africa.webp                    -> dark Africa network map, on-brand ("across
+//   Africa"), from the brand-images repo ✅
 const heroSlides = [
   {
     src: "brand/cypher-security-hero.webp",
@@ -18,6 +18,11 @@ const heroSlides = [
   {
     src: "brand/cypher-services-showcase.webp",
     alt: "Cypher Technologies services showcase brand visual over the brand navy",
+    position: "center",
+  },
+  {
+    src: "images/brand/africa.webp",
+    alt: "Cypher Technologies brand visual — dark map of Africa with connected glowing points",
     position: "center",
   },
 ];

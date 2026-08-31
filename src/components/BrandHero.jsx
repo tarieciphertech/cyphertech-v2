@@ -4,22 +4,22 @@ import { asset } from "../utils/paths";
 
 /**
  * BrandHero — a short, high-contrast closing statement for the home page.
- * Replaces the previous FinalCTA. A faint code-scene backdrop keeps the brand
- * visual present while the foreground stays crisp and readable.
+ * Uses the real Cypher brand-identity sheet (from the brand-images repo)
+ * as a faint backdrop so the closing block stays recognisably Cypher.
  */
 export default function BrandHero() {
   return (
     <section className="section-shell">
       <div className="relative overflow-hidden rounded-3xl border border-cyan-300/20 bg-[#071022]">
         <img
-          src={asset("images/hero/code-scene.svg")}
+          src={asset("images/brand/cypher-brand-identity.webp")}
           alt=""
           aria-hidden="true"
-          className="absolute inset-0 h-full w-full object-cover opacity-8"
+          className="absolute inset-0 h-full w-full object-cover opacity-25"
           loading="lazy"
           decoding="async"
         />
-        <div className="absolute inset-0 bg-[#05020a]/80" />
+        <div className="absolute inset-0 bg-[linear-gradient(115deg,rgba(5,2,10,0.94)_25%,rgba(5,2,10,0.72)_60%,rgba(5,2,10,0.85)_100%)]" />
 
         <div className="relative px-5 py-16 sm:py-20 md:py-24">
           <div className="mx-auto max-w-3xl text-center">

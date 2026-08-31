@@ -1,11 +1,20 @@
 import { useRef, useState } from "react";
-import { FaEnvelope, FaMapMarkerAlt, FaPhone, FaPaperPlane, FaWhatsapp } from "react-icons/fa";
+import { FaEnvelope, FaMapMarkerAlt, FaPhone, FaPaperPlane, FaWhatsapp, FaExternalLinkAlt } from "react-icons/fa";
 import emailjs from "@emailjs/browser";
 import { profile } from "../data/site";
-import { asset } from "../utils/paths";
 import SectionTitle from "./SectionTitle";
 
 const { email, phone, whatsapp, hours, location: address } = profile;
+
+// Official Cypher Technologies location (authoritative).
+const COMPANY = {
+  name: "Cypher Technologies",
+  address: "9651 Lenganeng, Gaborone, Botswana",
+  coords: { lat: -24.656846, lng: 25.981522 },
+  // Exact destination supplied by the client — used verbatim for the action.
+  mapsUrl:
+    "https://www.google.com/maps/dir//Cypher+Technologies,+9651+Lenganeng,+Gaborone/@-24.6488131,25.981812,15.29z/data=!4m8!4m7!1m0!1m5!1s0x1ebb5d388f62fbb9:0x47ac3ac12f4c7140!2m2!1d25.981522!2d-24.656846",
+};
 
 function Field({ label, children }) {
   return (
@@ -160,34 +169,36 @@ export default function Contact() {
             </div>
           </div>
 
-          {/* ── Details + map ── */}
+          {/* ── Details + location ── */}
           <div className="space-y-6">
             <Info icon={FaEnvelope} label="Email us" value={email} href={`mailto:${email}`} />
             <Info icon={FaPhone} label="Call us" value={phone} href={`tel:${phone}`} />
             <Info icon={FaWhatsapp} label="WhatsApp" value={whatsapp} href={whatsapp ?? "#"} />
             <Info icon={FaMapMarkerAlt} label="Visit us" value={address} />
 
-            <div className="mt-2 rounded-xl border border-white/5 bg-[#071022] p-3 shadow-inner">
-              <img
-                src={asset("images/hero/code-scene.svg")}
-                alt=""
-                aria-hidden="true"
-                className="aspect-[4/3] w-full rounded-lg border border-white/5 object-cover opacity-55 grayscale"
-                loading="lazy"
-                decoding="async"
-              />
-              <p className="mt-2 text-center text-xs text-gray-500">Cypher Technologies HQ</p>
-            </div>
-
-            <div className="aspect-[4/3] w-full rounded-xl border border-white/5 bg-[#071022] p-3">
+            {/* Official company location */}
+            <div className="overflow-hidden rounded-xl border border-white/10 bg-[#071022]">
               <iframe
-                title="map"
-                className="block h-full w-full rounded-lg opacity-60"
+                title="Map showing Cypher Technologies' official location at 9651 Lenganeng, Gaborone, Botswana"
+                className="block h-56 w-full grayscale-[0.2]"
                 style={{ border: 0 }}
                 loading="lazy"
+                allowFullScreen
                 referrerPolicy="no-referrer-when-downgrade"
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3153.832290928215!2d-122.3538!3d37.7749!2m3!1f0!2f0!3f0!3m2!1i1024!2zMjAy!5e0!3m2!1sen!2sus!4v1!6m1!1v1"
+                src={`https://maps.google.com/maps?q=${COMPANY.coords.lat},${COMPANY.coords.lng}&z=15&hl=en&output=embed`}
               />
+              <div className="p-5">
+                <p className="font-black text-white">{COMPANY.name}</p>
+                <p className="mt-1 text-sm text-gray-400">{COMPANY.address}</p>
+                <a
+                  href={COMPANY.mapsUrl}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="btn btn-outline mt-4 !px-4 !py-2.5 !text-sm"
+                >
+                  Open in Google Maps <FaExternalLinkAlt className="text-xs" />
+                </a>
+              </div>
             </div>
           </div>
         </div>

@@ -37,7 +37,7 @@ export const profile = {
   email: "cipher@cyphertech.co.zw",
   phone: "+267 71 493 735",
   whatsapp: "https://wa.me/26771493735",
-  location: "Gaborone, Botswana",
+  location: "9651 Lenganeng, Gaborone, Botswana",
   hours: "Mon - Sat, 08:00 - 18:00",
   website: "https://ciphertech.co.zw",
   github: "https://github.com/tarieciphertech",
@@ -295,29 +295,44 @@ export const industries = [
 // status: Completed | Ongoing | In Development | Prototype | Concept
 // category: Web | Software | Infrastructure | Network — only where the data supports it
 // problem: what the project addresses, derived from the project description.
-// slides: array of { src?, label, alt } — `src` is added only when a real product
-//         screenshot exists (see the Job Board entry under images/projects/jobboard/).
-//         When `src` is omitted the ProjectFrame component renders a clearly-marked
-//         placeholder, so the portfolio stays visual without fabricating images.
+// slides: array of { src?, label, alt } — `src` is present only for real product
+//         screenshots or genuine brand assets (see JobConnect under
+//         images/projects/jobboard/, Collectic, and Network Deployments).
+//         When `src` is omitted the Projects component renders an intentional
+//         typographic design panel instead of a screenshot placeholder.
 // Statuses and links must stay honest — never fabricate URLs, clients, dates, or results.
 export const projects = [
   [
-    "Job Board Platform",
-    "Recruitment platform with role listings, SEO-friendly pages, admin workflows, and email notifications.",
+    "JobConnect",
+    "A job marketplace platform connecting employers, job seekers, and advertisers — built by Cypher Technologies and live at jobboard.co.zw.",
     ["Flask", "Python", "PostgreSQL"],
     "https://jobboard.co.zw/",
     null,
     "Completed",
     "Web",
-    "Recruiters need a structured way to publish roles, attract applicants, and manage the hiring pipeline.",
+    "Recruiters and job seekers need a structured, admin-managed marketplace to publish roles, apply, and connect across Africa.",
     [
-      { src: "images/projects/jobboard/home.webp", label: "Homepage", alt: "Job Board homepage — hero with Browse Jobs and Get Advertised calls to action, platform stats, and how it works." },
-      { src: "images/projects/jobboard/jobs.webp", label: "Job listings", alt: "Job Board All Job Listings page — the live listing interface, currently with no active listings." },
-      { src: "images/projects/jobboard/register.webp", label: "Registration", alt: "Job Board registration screen with Employer, Job Seeker, and Advertiser account types." },
-      { src: "images/projects/jobboard/login.webp", label: "Login", alt: "Job Board login screen with email and social sign-in options." },
-      { src: "images/projects/jobboard/contact.webp", label: "Contact & fees", alt: "Job Board contact page showing administrator details, EcoCash and bank payment methods, and service fees." },
-      { src: "images/projects/jobboard/marketplace.webp", label: "Marketplace", alt: "Job Board marketplace advertisements page where advertisers list products and services." },
-      { src: "images/projects/jobboard/candidates.webp", label: "Candidates", alt: "Job Board available candidates listing page for employers to browse talent." },
+      { src: "images/projects/jobboard/home.webp", label: "Homepage", alt: "JobConnect homepage — hero with Browse Jobs and Get Advertised calls to action, platform stats, and how it works." },
+      { src: "images/projects/jobboard/jobs.webp", label: "Job listings", alt: "JobConnect All Job Listings page — the live listing interface, currently with no active listings." },
+      { src: "images/projects/jobboard/register.webp", label: "Registration", alt: "JobConnect registration screen with Employer, Job Seeker, and Advertiser account types." },
+      { src: "images/projects/jobboard/login.webp", label: "Login", alt: "JobConnect login screen with email and social sign-in options." },
+      { src: "images/projects/jobboard/contact.webp", label: "Contact & fees", alt: "JobConnect contact page showing administrator details, EcoCash and bank payment methods, and service fees." },
+      { src: "images/projects/jobboard/marketplace.webp", label: "Marketplace", alt: "JobConnect marketplace advertisements page where advertisers list products and services." },
+      { src: "images/projects/jobboard/candidates.webp", label: "Candidates", alt: "JobConnect available candidates listing page for employers to browse talent." },
+    ],
+  ],
+  [
+    "Collectic",
+    "A real web application built by Cypher Technologies with a clean, responsive product interface for desktop and mobile.",
+    ["Web App", "Responsive UI"],
+    null,
+    null,
+    "Prototype",
+    "Web",
+    "Products need a polished, responsive interface that works equally well on desktop and mobile devices.",
+    [
+      { src: "images/brand/collectic-desktop.webp", label: "Desktop interface", alt: "Collectic — desktop product interface showing the main application screen." },
+      { src: "images/brand/collectic-mobile.webp", label: "Mobile interface", alt: "Collectic — mobile-optimised product interface." },
     ],
   ],
   [
@@ -329,7 +344,7 @@ export const projects = [
     "Concept",
     "Web",
     "Local and regional football fans lack a dedicated platform for match content and viewing.",
-    [{ label: "Landing page", alt: "FootballFlix — landing page (screenshot placeholder)" }],
+    [{ src: "images/brand/football-flix.webp", label: "Platform visual", alt: "FootballFlix — project visual of the football streaming platform interface design with match content layout." }],
   ],
   [
     "MiniFlix",
@@ -340,7 +355,7 @@ export const projects = [
     "Prototype",
     "Software",
     "Private networks need a controlled way to stream media without relying on external internet.",
-    [{ label: "Media library", alt: "MiniFlix — media library (screenshot placeholder)" }],
+    [{ src: "images/brand/mini-flix.webp", label: "Media library", alt: "MiniFlix — project visual of the streaming media library interface with movie artwork." }],
   ],
   [
     "Internet Cafe Portal",
@@ -351,7 +366,7 @@ export const projects = [
     "Prototype",
     "Network",
     "Internet cafes need reliable session management, time tracking, and admin control for customers.",
-    [{ label: "Captive portal login", alt: "Internet Cafe Portal — login screen (screenshot placeholder)" }],
+    [{ src: "images/brand/internet-cafe-portal.webp", label: "Captive portal", alt: "Internet Cafe Portal — project visual of the captive portal session and timing interface." }],
   ],
   [
     "ISP Management Platform",
@@ -362,7 +377,7 @@ export const projects = [
     "Concept",
     "Software",
     "Small ISPs need a clear way to manage subscribers, packages, billing, and support tickets.",
-    [{ label: "Subscriber management", alt: "ISP Management Platform — subscriber list (screenshot placeholder)" }],
+    [{ src: "images/brand/isp-management-platform.webp", label: "Management dashboard", alt: "ISP Management Platform — project visual of the subscriber, billing, and infrastructure management dashboard." }],
   ],
   [
     "Business Websites",
@@ -373,7 +388,7 @@ export const projects = [
     "Ongoing",
     "Web",
     "Companies need an online presence that builds trust and turns visitors into enquiries.",
-    [{ label: "Company website", alt: "Business Websites — company site (screenshot placeholder)" }],
+    [{ src: "images/brand/business-websites.webp", label: "Website showcase", alt: "Business Websites — project visuals of responsive company website designs built by Cypher Technologies." }],
   ],
   [
     "Inventory System",
@@ -384,7 +399,7 @@ export const projects = [
     "Prototype",
     "Software",
     "Businesses need accurate stock tracking, movement history, and reporting without manual spreadsheets.",
-    [{ label: "Stock list", alt: "Inventory System — stock list (screenshot placeholder)" }],
+    [{ src: "images/brand/inventory-system.webp", label: "Stock control", alt: "Inventory System — project visual of the stock control interface with item records and reports." }],
   ],
   [
     "School Management System",
@@ -395,7 +410,7 @@ export const projects = [
     "In Development",
     "Software",
     "Schools need a central system to manage students, staff, results, attendance, and parent communication.",
-    [{ label: "Student records", alt: "School Management System — student records (screenshot placeholder)" }],
+    [{ src: "images/brand/school-management-system.webp", label: "Student records", alt: "School Management System — project visual of the student records and administration interface." }],
   ],
   [
     "Church Management System",
@@ -406,7 +421,7 @@ export const projects = [
     "In Development",
     "Software",
     "Growing churches need organized workflows for members, giving, events, and communication.",
-    [{ label: "Members directory", alt: "Church Management System — members directory (screenshot placeholder)" }],
+    [{ src: "images/brand/church-management-system.webp", label: "Members directory", alt: "Church Management System — project visual of the members directory and church administration interface." }],
   ],
   [
     "Network Deployments",
@@ -417,7 +432,7 @@ export const projects = [
     "Ongoing",
     "Network",
     "Offices and venues need reliable, structured connectivity that users can depend on.",
-    [{ label: "Network diagram", alt: "Network Deployments — site network diagram (screenshot placeholder)" }],
+    [{ src: "images/brand/cyphernet.webp", label: "Network map", alt: "Network Deployments — Cypher network diagram with connected nodes across sites." }],
   ],
 ];
 
@@ -514,7 +529,8 @@ export const servicesShowcase = [
     name: "Web Development",
     short: "Sites and portals that win trust.",
     desc: "High-performance company sites, client portals, landing pages, and web apps that turn visitors into enquiries.",
-    image: "images/services/web-development.svg",
+    image: "images/services/web-development.webp",
+    alt: "Web Development — laptop showing application code, representing the websites and web apps Cypher builds.",
     Icon: FaCode,
     cta: "See our work",
     ctaHref: "#projects",
@@ -523,7 +539,8 @@ export const servicesShowcase = [
     name: "Business Systems",
     short: "Operations software that fits.",
     desc: "Operations software tailored to your exact teams, approvals, reports, and data flows — not the other way around.",
-    image: "images/services/business-systems.svg",
+    image: "images/services/business-systems.webp",
+    alt: "Business Systems — analytics dashboard with charts and reports, representing the operations software Cypher builds.",
     Icon: FaBriefcase,
     cta: "Get a quote",
     ctaHref: "#contact",
@@ -532,7 +549,8 @@ export const servicesShowcase = [
     name: "Cybersecurity",
     short: "Safer systems by design.",
     desc: "Security reviews, hardening, safer access patterns, and awareness support built into every deliverable.",
-    image: "images/services/cybersecurity.svg",
+    image: "images/services/cybersecurity.webp",
+    alt: "Cybersecurity — screen of security-focused code, representing secure engineering practice.",
     Icon: FaShieldAlt,
     cta: "Secure my systems",
     ctaHref: "#contact",
@@ -541,7 +559,8 @@ export const servicesShowcase = [
     name: "Cloud Infrastructure",
     short: "Hosting that scales.",
     desc: "Cloud hosting, deployment pipelines, backups, and scalable environments that run without constant hands-on management.",
-    image: "images/services/cloud-infrastructure.svg",
+    image: "images/services/cloud-infrastructure.webp",
+    alt: "Cloud Infrastructure — view of Earth at night with connected city lights, representing globally distributed hosting.",
     Icon: FaCloud,
     cta: "Talk hosting",
     ctaHref: "#contact",
@@ -559,7 +578,8 @@ export const servicesShowcase = [
     name: "IT Support & Repairs",
     short: "Fix, upgrade, keep running.",
     desc: "Diagnostics, computer and phone repairs, upgrades, setup, and responsive remote and on-site support.",
-    image: "images/services/it-support.svg",
+    image: "images/services/it-support.webp",
+    alt: "IT Support & Repairs — technician working on a computer, representing hands-on diagnostics and repairs.",
     Icon: FaTools,
     cta: "Get support",
     ctaHref: "#contact",
@@ -571,10 +591,10 @@ export const servicesShowcase = [
 // expressed as short, human labels over authentic illustration scenes.
 // ---------------------------------------------------------------------------
 export const insideCypher = [
-  { label: "BUILD", image: "images/services/code-scene.svg", caption: "Software, websites and business systems" },
-  { label: "DEPLOY", image: "images/services/cloud-infrastructure.svg", caption: "Cloud, servers and release pipelines" },
-  { label: "SECURE", image: "images/services/cybersecurity.svg", caption: "Hardening, reviews and safer access" },
-  { label: "CONNECT", image: "images/services/network.svg", caption: "Networks, Wi-Fi and structured cabling" },
-  { label: "SCALE", image: "images/services/business-systems.svg", caption: "Operations and reporting systems" },
-  { label: "SUPPORT", image: "images/services/it-support.svg", caption: "Repairs, setup and responsive support" },
+  { label: "BUILD", image: "images/brand/inside-build.webp", caption: "Software, websites and business systems" },
+  { label: "DEPLOY", image: "images/brand/inside-deploy.webp", caption: "Cloud, servers and release pipelines" },
+  { label: "SECURE", image: "images/brand/inside-secure.webp", caption: "Hardening, reviews and safer access" },
+  { label: "CONNECT", image: "images/brand/inside-connect.webp", caption: "Africa-wide connectivity, Wi-Fi and networks" },
+  { label: "SCALE", image: "images/brand/inside-scale.webp", caption: "Operations and reporting systems" },
+  { label: "SUPPORT", image: "images/brand/inside-support.webp", caption: "Repairs, setup and responsive support" },
 ];

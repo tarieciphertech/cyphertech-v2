@@ -27,13 +27,12 @@ export default function InsideCypher() {
               <div className="relative overflow-hidden rounded-lg">
                 <img
                   src={asset(item.image)}
-                  alt=""
-                  aria-hidden="true"
+                  alt={`${item.label} — ${item.caption}`}
                   className="aspect-[4/3] w-full object-cover object-center grayscale-[0.15]"
                   loading="lazy"
                   decoding="async"
                 />
-                <span className="absolute top-2 left-2 chip chip-cyan !font-black">
+                <span className="absolute top-2 left-2 bg-[#05020a]/70 px-2 py-1 text-[11px] font-black uppercase tracking-[0.2em] text-cyan-200">
                   {item.label}
                 </span>
               </div>

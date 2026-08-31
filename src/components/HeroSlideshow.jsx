@@ -79,14 +79,18 @@ export default function HeroSlideshow({ slides, interval = 5500, paused: externa
           hero while keeping the brand imagery recognizable. pointer-events-none
           so they never block. The directional layer is dark on the text side
           (L) and fades to transparent on the imagery side (R); a bottom scrim
-          anchors the lower third. */}
+          anchors the lower third. The source brand images are already very
+          dark navy on their right halves, so the desktop gradient is tuned
+          lighter on the imagery side than the baseline spec — otherwise the
+          artwork collapses to black. Text side stays at full strength. Mobile
+          keeps its existing (already proven) strength. */}
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute inset-0 bg-[linear-gradient(90deg,rgba(5,2,10,0.86)_0%,rgba(5,2,10,0.7)_38%,rgba(5,2,10,0.45)_68%,rgba(5,2,10,0.22)_100%)]"
+        className="pointer-events-none absolute inset-0 bg-[linear-gradient(90deg,rgba(5,2,10,0.86)_0%,rgba(5,2,10,0.7)_38%,rgba(5,2,10,0.45)_68%,rgba(5,2,10,0.22)_100%)] sm:bg-[linear-gradient(90deg,rgba(5,2,10,0.92)_0%,rgba(5,2,10,0.82)_30%,rgba(5,2,10,0.55)_50%,rgba(5,2,10,0.28)_70%,rgba(5,2,10,0.08)_100%)]"
       />
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute inset-0 bg-[linear-gradient(to_top,rgba(5,2,10,0.55)_0%,rgba(5,2,10,0.22)_38%,transparent_62%)]"
+        className="pointer-events-none absolute inset-0 bg-[linear-gradient(to_top,rgba(5,2,10,0.5)_0%,rgba(5,2,10,0.18)_38%,transparent_62%)]"
       />
 
       {/* Mobile — the text can sit over more of the image, so deepen the
