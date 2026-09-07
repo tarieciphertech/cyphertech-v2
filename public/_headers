@@ -1,0 +1,15 @@
+# Security and indexing rules for the admin custom domain.
+# These headers are consumed by Cloudflare Pages and ignored by GitHub Pages.
+https://admin.cyphertech.co.zw/*
+  X-Frame-Options: DENY
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: no-referrer
+  Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=()
+  X-Robots-Tag: noindex, nofollow, noarchive
+  Strict-Transport-Security: max-age=31536000
+
+# Keep the generated Pages hostname out of search results until the custom
+# admin domain is attached. Preview deployments already receive noindex from
+# Cloudflare Pages by default.
+https://:project.pages.dev/*
+  X-Robots-Tag: noindex, nofollow, noarchive
