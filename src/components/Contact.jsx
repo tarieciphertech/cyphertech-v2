@@ -61,23 +61,17 @@ export default function Contact() {
     const payload = Object.fromEntries(data.entries());
     setLoading(true);
     try {
-      const serviceId = import.meta.env.VITE_EMAILJS_SERVICE ?? "default_service";
-      const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE ?? "default_template";
+      const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID;
+      const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
       const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
 
-      if (publicKey) {
-        await emailjs.send(serviceId, templateId, payload, publicKey);
-        setSent(true);
-        form.current?.reset();
-      } else {
-        // No EmailJS key — fall back to a prefilled mailto link.
-        const body = `${payload.name} <${payload.email}>\n${payload.message}`;
-        window.location.href = `mailto:${email}?subject=${encodeURIComponent(
-          payload.subject || "Website contact form",
-        )}&body=${encodeURIComponent(body)}`;
-        setSent(true);
-        form.current?.reset();
+      if (!serviceId || !templateId || !publicKey) {
+        throw new Error("Email service is not configured. Please try again later or contact us on WhatsApp.");
       }
+
+      await emailjs.send(serviceId, templateId, payload, publicKey);
+      setSent(true);
+      form.current?.reset();
     } catch (err) {
       setError(err?.message || "Something went wrong. Please try again.");
     } finally {
@@ -94,7 +88,7 @@ export default function Contact() {
           centered
         />
 
-                <div className="mt-10 grid gap-6 lg:grid-cols-2 lg:gap-12">
+        <div className="mt-10 grid gap-6 lg:grid-cols-2 lg:gap-12">
           {/* ── Form ── */}
           <div className="space-y-6">
             {sent ? (
@@ -125,20 +119,20 @@ export default function Contact() {
                 noValidate
               >
                 <Field label="Your name">
-                                    <input name="name" type="text" required placeholder="Jane Doe" className="field-input peer" />
+                  <input name="name" type="text" required placeholder="Jane Doe" className="field-input peer" />
                 </Field>
 
                 <div className="grid gap-5 sm:grid-cols-2">
                   <Field label="Email">
-                                        <input name="email" type="email" required placeholder="jane@example.com" className="field-input peer" />
+                    <input name="email" type="email" required placeholder="jane@example.com" className="field-input peer" />
                   </Field>
                   <Field label="Subject">
-                                        <input name="subject" type="text" placeholder="Brief subject" className="field-input peer" />
+                    <input name="subject" type="text" placeholder="Brief subject" className="field-input peer" />
                   </Field>
                 </div>
 
                 <Field label="Message">
-                                    <textarea name="message" required rows={5} placeholder="What can we help with?" className="field-input peer" />
+                  <textarea name="message" required rows={5} placeholder="What can we help with?" className="field-input peer" />
                 </Field>
 
                 <input name="bot-field" type="text" className="hidden" tabIndex={-1} autoComplete="off" />
@@ -147,7 +141,7 @@ export default function Contact() {
 
                 <div className="flex items-center justify-between gap-4">
                   <label className="flex items-center gap-2 text-sm text-gray-400">
-                                        <input type="checkbox" name="newsletter" value="yes" defaultChecked className="h-4 w-4 rounded border-white/30 bg-[#0a0f1a] text-cyan-400 focus:ring-2 focus:ring-cyan-300" />
+                    <input type="checkbox" name="newsletter" value="yes" defaultChecked className="h-4 w-4 rounded border-white/30 bg-[#0a0f1a] text-cyan-400 focus:ring-2 focus:ring-cyan-300" />
                     <span>Join the newsletter</span>
                   </label>
                   <button type="submit" disabled={loading} className="btn btn-primary !px-5 !py-2.5">
