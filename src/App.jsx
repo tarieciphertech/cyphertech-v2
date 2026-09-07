@@ -1,4 +1,4 @@
-import { Routes, Route } from "react-router-dom";
+import { Navigate, Routes, Route } from "react-router-dom";
 import HomePage from "./pages/HomePage";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
@@ -20,29 +20,76 @@ import AdminDashboard from "./pages/admin/AdminDashboard";
 import AdminTickets from "./pages/admin/AdminTickets";
 import AdminTicketDetail from "./pages/admin/AdminTicketDetail";
 
+const ADMIN_HOST = "admin.cyphertech.co.zw";
+
+function isAdminHost() {
+  return window.location.hostname === ADMIN_HOST;
+}
+
+function PublicAdminRedirect() {
+  window.location.replace(`https://${ADMIN_HOST}/`);
+  return null;
+}
+
 /**
- * App — route table for the Cypher Technologies site.
+ * App — public site and dedicated admin host share the same application code,
+ * but the admin hostname exposes only the authenticated administration area.
  *
- * Public marketing site stays at "/" (anchor navigation preserved).
- * Authentication lives at /login and /register (guest-only routes that
- * redirect authenticated users to /client).
- * The client area (/client, /client/projects, /client/tickets,
- * /client/tickets/:ticketId, /client/messages, /client/notifications,
- * /client/files, /client/profile) is protected: unauthenticated users are
- * redirected to /login.
+ * Public host:
+ *   /                marketing site
+ *   /login           authentication
+ *   /client/*        client portal
+ *   /admin/*         redirects to admin.cyphertech.co.zw
  *
- * The admin area (/admin, /admin/tickets, /admin/tickets/:ticketId) is
- * role-gated: only DB-verified admin/staff users may enter; everyone else is
- * redirected. Additional /admin/* module routes are added in their own stages
- * as real functionality is built.
+ * Admin host:
+ *   /                redirects to /admin
+ *   /login           authentication
+ *   /admin/*         DB-role-gated admin application
+ *   everything else  redirects to /login
+ *
+ * Supabase remains the shared authentication/data layer. Security is still
+ * enforced by AdminRoute and database RLS; hostname routing is UX/isolation,
+ * not an authorization boundary.
  */
 export default function App() {
+  const adminHost = isAdminHost();
+
+  if (adminHost) {
+    return (
+      <Routes>
+        <Route path="/" element={<Navigate to="/admin" replace />} />
+
+        <Route
+          path="/login"
+          element={
+            <GuestRoute>
+              <Login />
+            </GuestRoute>
+          }
+        />
+
+        <Route
+          path="/admin"
+          element={
+            <AdminRoute>
+              <AdminLayout />
+            </AdminRoute>
+          }
+        >
+          <Route index element={<AdminDashboard />} />
+          <Route path="tickets" element={<AdminTickets />} />
+          <Route path="tickets/:ticketId" element={<AdminTicketDetail />} />
+        </Route>
+
+        <Route path="*" element={<Navigate to="/login" replace />} />
+      </Routes>
+    );
+  }
+
   return (
     <Routes>
-      {/* Public marketing homepage — unchanged */}
       <Route path="/" element={<HomePage />} />
 
-      {/* Auth pages — only visible when logged out */}
       <Route
         path="/login"
         element={
@@ -60,7 +107,6 @@ export default function App() {
         }
       />
 
-      {/* Protected client area */}
       <Route
         path="/client"
         element={
@@ -80,23 +126,7 @@ export default function App() {
         <Route path="profile" element={<ClientProfile />} />
       </Route>
 
-      {/* Protected admin area — role-gated (admin/staff only, DB-verified).
-          Only implemented modules get routes; /admin/users etc. are added
-          in their own stages when real functionality exists. */}
-      <Route
-        path="/admin"
-        element={
-          <AdminRoute>
-            <AdminLayout />
-          </AdminRoute>
-        }
-      >
-        <Route index element={<AdminDashboard />} />
-        <Route path="tickets" element={<AdminTickets />} />
-        <Route path="tickets/:ticketId" element={<AdminTicketDetail />} />
-      </Route>
-
-      {/* Unknown paths fall back to the homepage (SPA 404 via copy-404.mjs) */}
+      <Route path="/admin/*" element={<PublicAdminRedirect />} />
       <Route path="*" element={<HomePage />} />
     </Routes>
   );
