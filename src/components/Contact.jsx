@@ -1,17 +1,16 @@
 import { useRef, useState } from "react";
 import { FaEnvelope, FaMapMarkerAlt, FaPhone, FaPaperPlane, FaWhatsapp, FaExternalLinkAlt } from "react-icons/fa";
 import emailjs from "@emailjs/browser";
-import { profile } from "../data/site";
+import { profile, services } from "../data/site";
+import { supabase } from "../lib/supabase";
 import SectionTitle from "./SectionTitle";
 
 const { email, phone, whatsapp, hours, location: address } = profile;
 
-// Official Cypher Technologies location (authoritative).
 const COMPANY = {
   name: "Cypher Technologies",
   address: "9651 Lenganeng, Gaborone, Botswana",
   coords: { lat: -24.656846, lng: 25.981522 },
-  // Exact destination supplied by the client — used verbatim for the action.
   mapsUrl:
     "https://www.google.com/maps/dir//Cypher+Technologies,+9651+Lenganeng,+Gaborone/@-24.6488131,25.981812,15.29z/data=!4m8!4m7!1m0!1m5!1s0x1ebb5d388f62fbb9:0x47ac3ac12f4c7140!2m2!1d25.981522!2d-24.656846",
 };
@@ -59,17 +58,42 @@ export default function Contact() {
     setError("");
     const data = new FormData(e.currentTarget);
     const payload = Object.fromEntries(data.entries());
+
+    // Basic honeypot protection. Bots should never reach the database.
+    if (payload["bot-field"]) return;
+
     setLoading(true);
     try {
-      const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID;
-      const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
-      const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
-
-      if (!serviceId || !templateId || !publicKey) {
-        throw new Error("Email service is not configured. Please try again later or contact us on WhatsApp.");
+      if (!supabase) {
+        throw new Error("The inquiry service is not configured. Please try again later or contact us on WhatsApp.");
       }
 
-      await emailjs.send(serviceId, templateId, payload, publicKey);
+      const { error: insertError } = await supabase.from("inquiries").insert({
+        name: String(payload.name || "").trim(),
+        email: String(payload.email || "").trim(),
+        phone: String(payload.phone || "").trim() || null,
+        service: String(payload.service || "").trim() || null,
+        budget: String(payload.budget || "").trim() || null,
+        message: String(payload.message || "").trim(),
+      });
+
+      if (insertError) throw insertError;
+
+      // EmailJS is notification-only. The Supabase inquiry above is the
+      // authoritative submission, so an email notification failure must not
+      // turn a successfully stored inquiry into a false submission error.
+      try {
+        const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID;
+        const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
+        const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
+
+        if (serviceId && templateId && publicKey) {
+          await emailjs.send(serviceId, templateId, payload, publicKey);
+        }
+      } catch (notificationError) {
+        console.warn("Inquiry stored, but email notification failed:", notificationError);
+      }
+
       setSent(true);
       form.current?.reset();
     } catch (err) {
@@ -89,16 +113,15 @@ export default function Contact() {
         />
 
         <div className="mt-10 grid gap-6 lg:grid-cols-2 lg:gap-12">
-          {/* ── Form ── */}
           <div className="space-y-6">
             {sent ? (
               <div className="card p-8 text-center">
                 <div className="mx-auto grid h-12 w-12 place-items-center rounded-full bg-cyan-300/10 text-cyan-300">
                   <FaPaperPlane className="text-xl" />
                 </div>
-                <h3 className="mt-4 text-xl font-black text-white">Message sent.</h3>
+                <h3 className="mt-4 text-xl font-black text-white">Message received.</h3>
                 <p className="mt-2 text-sm text-gray-400">
-                  Thanks for reaching out. We'll be in touch within one business day.
+                  Thanks for reaching out. Your inquiry has been received and we'll be in touch within one business day.
                 </p>
                 <button
                   type="button"
@@ -126,8 +149,30 @@ export default function Contact() {
                   <Field label="Email">
                     <input name="email" type="email" required placeholder="jane@example.com" className="field-input peer" />
                   </Field>
-                  <Field label="Subject">
-                    <input name="subject" type="text" placeholder="Brief subject" className="field-input peer" />
+                  <Field label="Phone">
+                    <input name="phone" type="tel" placeholder="+267 71 000 000" className="field-input peer" />
+                  </Field>
+                </div>
+
+                <div className="grid gap-5 sm:grid-cols-2">
+                  <Field label="Service">
+                    <select name="service" defaultValue="" className="field-input peer">
+                      <option value="">Select a service</option>
+                      {services.map(([name]) => (
+                        <option key={name} value={name}>{name}</option>
+                      ))}
+                    </select>
+                  </Field>
+                  <Field label="Budget">
+                    <select name="budget" defaultValue="" className="field-input peer">
+                      <option value="">Select a budget</option>
+                      <option value="Under BWP 2,500">Under BWP 2,500</option>
+                      <option value="BWP 2,500 – 5,000">BWP 2,500 – 5,000</option>
+                      <option value="BWP 5,000 – 10,000">BWP 5,000 – 10,000</option>
+                      <option value="BWP 10,000 – 25,000">BWP 10,000 – 25,000</option>
+                      <option value="BWP 25,000+">BWP 25,000+</option>
+                      <option value="Not sure yet">Not sure yet</option>
+                    </select>
                   </Field>
                 </div>
 
@@ -135,6 +180,7 @@ export default function Contact() {
                   <textarea name="message" required rows={5} placeholder="What can we help with?" className="field-input peer" />
                 </Field>
 
+                <input name="subject" type="hidden" value="Website inquiry" readOnly />
                 <input name="bot-field" type="text" className="hidden" tabIndex={-1} autoComplete="off" />
 
                 {error && <p className="text-sm text-amber-300">{error}</p>}
@@ -163,14 +209,12 @@ export default function Contact() {
             </div>
           </div>
 
-          {/* ── Details + location ── */}
           <div className="space-y-6">
             <Info icon={FaEnvelope} label="Email us" value={email} href={`mailto:${email}`} />
             <Info icon={FaPhone} label="Call us" value={phone} href={`tel:${phone}`} />
             <Info icon={FaWhatsapp} label="WhatsApp" value={whatsapp} href={whatsapp ?? "#"} />
             <Info icon={FaMapMarkerAlt} label="Visit us" value={address} />
 
-            {/* Official company location */}
             <div className="overflow-hidden rounded-xl border border-white/10 bg-[#071022]">
               <iframe
                 title="Map showing Cypher Technologies' official location at 9651 Lenganeng, Gaborone, Botswana"
