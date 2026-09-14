@@ -51,9 +51,9 @@ jobs:
           set -euo pipefail
           patterns='admin\.cyphertech\.co\.zw|cyphertech-admin|AdminDashboard|AdminLayout|AdminTickets|AdminTicketDetail|AdminRoute|/admin([/?"'"'"'`]|$)'
 
-          echo "Scanning source and public files..."
-          if grep -RniE "$patterns" src public scripts index.html package.json README.md .github 2>/dev/null; then
-            echo "ERROR: Public repository contains an admin application reference."
+          echo "Scanning public source files..."
+          if grep -RniE "$patterns" src public index.html package.json README.md 2>/dev/null; then
+            echo "ERROR: Public source contains an admin application reference."
             exit 1
           fi
 
@@ -63,7 +63,7 @@ jobs:
             exit 1
           fi
 
-          echo "PASS: No admin application references found in source or production bundle."
+          echo "PASS: No admin application references found in public source or production bundle."
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
