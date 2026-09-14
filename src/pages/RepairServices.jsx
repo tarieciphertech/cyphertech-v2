@@ -1,6 +1,7 @@
-import { FaArrowRight, FaCheckCircle, FaLaptop, FaMapMarkerAlt, FaMobileAlt, FaPhone, FaShieldAlt, FaTools, FaWhatsapp } from "react-icons/fa";
+import { FaArrowRight, FaCheckCircle, FaLaptop, FaMapMarkerAlt, FaMobileAlt, FaPhone, FaShieldAlt, FaTools, FaWhatsapp, FaHome, FaTruck, FaBriefcase } from "react-icons/fa";
 
 const whatsapp = "https://wa.me/26771493735?text=Hi%20CypherTech%2C%20I%20need%20a%20repair%20service.%20My%20device%20is%3A%20";
+const logo = "https://cyphertech.co.zw/brand/cypher-logo-dark.webp";
 
 const repairTypes = [
   {
@@ -56,10 +57,18 @@ const problems = [
 export default function RepairServices() {
   return (
     <main className="min-h-screen bg-[#05020a] text-white">
-      <nav className="border-b border-white/10 bg-[#05020a]/95 px-5 py-4 backdrop-blur">
+      <nav className="border-b border-white/10 bg-[#05020a]/95 px-5 py-3 backdrop-blur">
         <div className="mx-auto flex max-w-7xl items-center justify-between gap-4">
-          <a href="/" className="font-black tracking-tight text-white">Cypher<span className="text-cyan-300">Tech</span></a>
-          <a href={whatsapp} target="_blank" rel="noreferrer" className="btn btn-outline !px-4 !py-2 !text-sm"><FaWhatsapp /> WhatsApp</a>
+          <a href="/#home" aria-label="Cypher Technologies — back to homepage" className="flex items-center gap-3">
+            <span className="h-10 w-10 overflow-hidden rounded-xl border border-cyan-300/30 shadow-[0_0_35px_rgba(34,211,238,0.2)]">
+              <img src={logo} alt="Cypher Technologies" className="h-full w-full object-cover" loading="eager" />
+            </span>
+            <span className="text-lg font-black tracking-wide text-white">Cypher Technologies</span>
+          </a>
+          <div className="flex items-center gap-2">
+            <span className="hidden text-sm text-gray-400 sm:inline">Gaborone & Tlokweng</span>
+            <a href={whatsapp} target="_blank" rel="noreferrer" className="btn btn-outline !px-4 !py-2 !text-sm"><FaWhatsapp /> WhatsApp</a>
+          </div>
         </div>
       </nav>
 
@@ -69,24 +78,62 @@ export default function RepairServices() {
           <div className="relative">
             <p className="text-sm font-bold uppercase tracking-[0.2em] text-cyan-300">Repair services • Gaborone • Tlokweng</p>
             <h1 className="mt-4 text-4xl font-black tracking-tight sm:text-6xl sm:leading-[1.05]">Something broken? <span className="gradient-text">Let's fix it.</span></h1>
-            <p className="mt-6 max-w-2xl text-lg leading-8 text-gray-300 sm:text-xl">Computer, laptop and mobile phone repairs from CypherTech. Tell us what is happening, and we'll help you figure out the next step.</p>
+            <p className="mt-6 max-w-2xl text-lg leading-8 text-gray-300 sm:text-xl">Computer, laptop and mobile phone repairs from Cypher Technologies. Tell us what is happening, and we'll help you figure out the next step.</p>
             <div className="mt-8 flex flex-wrap gap-3">
               <a href={whatsapp} target="_blank" rel="noreferrer" className="btn btn-primary !px-6 !py-3"><FaWhatsapp /> Talk to us on WhatsApp</a>
               <a href="tel:+26771493735" className="btn btn-outline !px-6 !py-3"><FaPhone /> Call for a quote</a>
             </div>
             <div className="mt-6 flex flex-wrap gap-5 text-sm text-gray-400">
               <span className="inline-flex items-center gap-2"><FaMapMarkerAlt className="text-cyan-300" /> Gaborone & Tlokweng</span>
-              <span className="inline-flex items-center gap-2"><FaTools className="text-cyan-300" /> On-site support available</span>
+              <span className="inline-flex items-center gap-2"><FaHome className="text-cyan-300" /> House calls available</span>
+              <span className="inline-flex items-center gap-2"><FaTruck className="text-cyan-300" /> Door-to-door service</span>
             </div>
           </div>
 
           <div className="relative overflow-hidden rounded-3xl border border-white/10 bg-white/5 shadow-2xl shadow-cyan-950/30">
-            <img src="https://images.unsplash.com/photo-1601784551446-20c9e07cdbdb?auto=format&fit=crop&w=1400&q=85" alt="Smartphone repair workspace" className="h-[320px] w-full object-cover sm:h-[430px]" fetchPriority="high" />
+            <img src="https://images.unsplash.com/photo-1601784551446-20c9e07cdbdb?auto=format&fit=crop&w=1400&q=85" alt="Technician handling a smartphone during repair" className="h-[320px] w-full object-cover sm:h-[430px]" fetchPriority="high" />
             <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-[#05020a] via-[#05020a]/70 to-transparent p-6 pt-20">
               <p className="text-sm font-bold uppercase tracking-wider text-cyan-200">Real problems. Practical repairs.</p>
               <p className="mt-2 text-lg font-bold">Bring us the problem — we'll start with the diagnosis.</p>
             </div>
           </div>
+        </div>
+      </section>
+
+      <section className="border-b border-cyan-300/20 bg-[#071022] py-12 sm:py-16">
+        <div className="mx-auto max-w-7xl px-5">
+          <div className="grid gap-8 lg:grid-cols-[.9fr_1.1fr] lg:items-center">
+            <div>
+              <div className="inline-flex items-center gap-2 rounded-full border border-cyan-300/30 bg-cyan-300/10 px-4 py-2 text-sm font-black uppercase tracking-[0.16em] text-cyan-200">
+                <FaHome /> We come to you
+              </div>
+              <h2 className="mt-5 text-3xl font-black sm:text-5xl">We Come to You. We Can Also Bring It Back.</h2>
+              <p className="mt-5 max-w-xl text-lg leading-8 text-gray-300">Don't want to carry your computer or phone across town? You don't always have to. We provide <strong className="text-white">house calls and on-site technical support in Gaborone and Tlokweng</strong>, plus <strong className="text-white">door-to-door device collection and delivery</strong> for suitable repairs.</p>
+              <div className="mt-7 flex flex-wrap gap-3">
+                <a href={whatsapp} target="_blank" rel="noreferrer" className="btn btn-primary !px-6 !py-3"><FaWhatsapp /> Arrange a visit or collection</a>
+                <a href="tel:+26771493735" className="btn btn-outline !px-6 !py-3"><FaPhone /> +267 71 493 735</a>
+              </div>
+            </div>
+
+            <div className="grid gap-4 sm:grid-cols-3">
+              <article className="rounded-2xl border border-white/10 bg-[#05020a] p-6 shadow-lg">
+                <FaHome className="text-3xl text-cyan-300" aria-hidden="true" />
+                <h3 className="mt-4 text-xl font-black">House Calls</h3>
+                <p className="mt-3 text-sm leading-6 text-gray-400">We come to your home for suitable repairs, diagnostics and technical support.</p>
+              </article>
+              <article className="rounded-2xl border border-white/10 bg-[#05020a] p-6 shadow-lg">
+                <FaBriefcase className="text-3xl text-cyan-300" aria-hidden="true" />
+                <h3 className="mt-4 text-xl font-black">On-Site Support</h3>
+                <p className="mt-3 text-sm leading-6 text-gray-400">Need help at your office or workplace? We support suitable business IT jobs on-site.</p>
+              </article>
+              <article className="rounded-2xl border border-white/10 bg-[#05020a] p-6 shadow-lg">
+                <FaTruck className="text-3xl text-cyan-300" aria-hidden="true" />
+                <h3 className="mt-4 text-xl font-black">Door-to-Door</h3>
+                <p className="mt-3 text-sm leading-6 text-gray-400">Arrange collection and, for suitable repairs, we'll return your device to your door.</p>
+              </article>
+            </div>
+          </div>
+          <p className="mt-7 text-center text-sm text-gray-500">Available in Gaborone and Tlokweng. Contact us first so we can confirm the device, fault and service arrangement.</p>
         </div>
       </section>
 
@@ -159,8 +206,8 @@ export default function RepairServices() {
         <div className="mx-auto grid max-w-7xl gap-8 px-5 lg:grid-cols-[1fr_auto] lg:items-center">
           <div>
             <p className="text-sm font-bold uppercase tracking-[0.2em] text-cyan-300">Gaborone & Tlokweng</p>
-            <h2 className="mt-3 text-3xl font-black sm:text-4xl">Need us to come to you?</h2>
-            <p className="mt-4 max-w-2xl leading-7 text-gray-400">On-site phone repair and technical support are available for suitable jobs in Gaborone and Tlokweng. Contact us first so we can confirm the device, fault and repair requirements.</p>
+            <h2 className="mt-3 text-3xl font-black sm:text-4xl">Tell us what stopped working.</h2>
+            <p className="mt-4 max-w-2xl leading-7 text-gray-400">Whether you visit us, need a house call, or want to arrange door-to-door collection and delivery, start by telling us about the device and the problem.</p>
           </div>
           <div className="flex flex-wrap gap-3">
             <a href={whatsapp} target="_blank" rel="noreferrer" className="btn btn-primary !px-6 !py-3"><FaWhatsapp /> WhatsApp CypherTech</a>
@@ -170,9 +217,11 @@ export default function RepairServices() {
       </section>
 
       <footer className="border-t border-white/10 px-5 py-10 text-center text-sm text-gray-500">
-        <a href="/" className="font-bold text-gray-300">CypherTech</a>
-        <span className="mx-2">·</span>
-        Computer, laptop and mobile phone repair in Gaborone and Tlokweng.
+        <a href="/#home" className="inline-flex items-center gap-2 font-bold text-gray-300">
+          <img src={logo} alt="" className="h-7 w-7 rounded-lg" />
+          Cypher Technologies
+        </a>
+        <p className="mt-3">Computer, laptop and mobile phone repair in Gaborone and Tlokweng.</p>
       </footer>
     </main>
   );
