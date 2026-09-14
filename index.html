@@ -6,67 +6,122 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <!-- Primary SEO -->
+    <title>Cypher Technologies | Software, Cybersecurity, Cloud & IT Solutions</title>
     <meta
       name="description"
-      content="Cypher Technologies builds software, websites, business systems, cybersecurity, cloud infrastructure, networking, AI automation, and IT support for businesses in Botswana and across Africa."
-    />
-    <meta
-      name="keywords"
-      content="Cypher Technologies, software development Botswana, web development Gaborone, cybersecurity Botswana, cloud infrastructure, networking, AI automation, IT support, business systems"
+      content="Cypher Technologies builds software, websites, business systems, cybersecurity, cloud infrastructure, networking, AI automation, and IT solutions for businesses in Botswana and across Africa."
     />
     <meta name="author" content="Cypher Technologies" />
-    <meta name="robots" content="index, follow" />
+    <meta name="robots" content="index, follow, max-image-preview:large" />
     <meta name="theme-color" content="#05020a" />
-    <!-- Preload the first hero slide (Cypher brand imagery) for an instant, crisp hero -->
-    <link rel="preload" as="image" href="/brand/cypher-security-hero.webp" />
-    <!-- Production domain is active — all canonical/OG/Twitter/JSON-LD URLs use https://cyphertech.co.zw/ -->
     <link rel="canonical" href="https://cyphertech.co.zw/" />
 
+    <!-- Preload the first hero slide for fast visual rendering -->
+    <link rel="preload" as="image" href="/brand/cypher-security-hero.webp" />
+
     <!-- Open Graph -->
-    <meta property="og:title" content="Cypher Technologies | Software, Cybersecurity, Cloud, AI and IT Solutions" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:title" content="Cypher Technologies | Software, Cybersecurity, Cloud & IT Solutions" />
     <meta
       property="og:description"
-      content="Building Software. Securing Systems. Creating the Future. Modern technology solutions for businesses in Botswana and across Africa."
+      content="Building Software. Securing Systems. Creating the Future. Technology solutions for businesses in Botswana and across Africa."
     />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://cyphertech.co.zw/" />
     <meta property="og:image" content="https://cyphertech.co.zw/brand/cypher-logo-dark.webp" />
     <meta property="og:site_name" content="Cypher Technologies" />
 
-    <!-- Twitter -->
+    <!-- Twitter/X -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Cypher Technologies | Software, Cybersecurity, Cloud, AI and IT Solutions" />
+    <meta name="twitter:title" content="Cypher Technologies | Software, Cybersecurity, Cloud & IT Solutions" />
     <meta
       name="twitter:description"
-      content="Building Software. Securing Systems. Creating the Future. Modern technology solutions for businesses in Botswana and across Africa."
+      content="Building Software. Securing Systems. Creating the Future. Technology solutions for businesses in Botswana and across Africa."
     />
     <meta name="twitter:image" content="https://cyphertech.co.zw/brand/cypher-logo-dark.webp" />
 
-    <!-- Structured data -->
+    <!-- Structured data: organization + professional service + website -->
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
-        "@type": "ProfessionalService",
-        "name": "Cypher Technologies",
-        "description": "Software development, websites, business systems, cybersecurity, cloud infrastructure, networking, AI automation, and IT support.",
-        "url": "https://cyphertech.co.zw/",
-        "email": "cipher@cyphertech.co.zw",
-        "telephone": "+26771493735",
-        "founder": { "@type": "Person", "name": "Tarie Cipher", "jobTitle": "Founder & CEO" },
-        "address": { "@type": "PostalAddress", "addressLocality": "Gaborone", "addressCountry": "BW" },
-        "openingHours": "Mo-Sa 08:00-18:00",
-        "sameAs": [
-          "https://github.com/tarieciphertech",
-          "https://www.linkedin.com/in/tarie-cipher",
-          "https://youtube.com/@tarietech5958",
-          "https://www.instagram.com/unclecipher",
-          "https://www.tiktok.com/@cipherhotspot",
-          "https://tarieciphertech.github.io/cypher-portfolio/"
+        "@graph": [
+          {
+            "@type": "Organization",
+            "@id": "https://cyphertech.co.zw/#organization",
+            "name": "Cypher Technologies",
+            "url": "https://cyphertech.co.zw/",
+            "logo": "https://cyphertech.co.zw/brand/cypher-logo-dark.webp",
+            "email": "cipher@cyphertech.co.zw",
+            "founder": {
+              "@type": "Person",
+              "name": "Tarie Cipher",
+              "jobTitle": "Founder & CEO"
+            },
+            "sameAs": [
+              "https://github.com/tarieciphertech",
+              "https://www.linkedin.com/in/tarie-cipher",
+              "https://youtube.com/@tarietech5958",
+              "https://www.instagram.com/unclecipher",
+              "https://www.tiktok.com/@cipherhotspot",
+              "https://portfolio.cyphertech.co.zw/"
+            ]
+          },
+          {
+            "@type": "ProfessionalService",
+            "@id": "https://cyphertech.co.zw/#business",
+            "name": "Cypher Technologies",
+            "description": "Software development, websites, business systems, cybersecurity, cloud infrastructure, networking, AI automation, and IT support.",
+            "url": "https://cyphertech.co.zw/",
+            "email": "cipher@cyphertech.co.zw",
+            "telephone": "+26771493735",
+            "parentOrganization": {
+              "@id": "https://cyphertech.co.zw/#organization"
+            },
+            "founder": {
+              "@type": "Person",
+              "name": "Tarie Cipher"
+            },
+            "address": {
+              "@type": "PostalAddress",
+              "streetAddress": "9651 Lenganeng",
+              "addressLocality": "Gaborone",
+              "addressCountry": "BW"
+            },
+            "areaServed": [
+              {
+                "@type": "City",
+                "name": "Gaborone"
+              },
+              {
+                "@type": "Country",
+                "name": "Botswana"
+              },
+              {
+                "@type": "Place",
+                "name": "Africa"
+              }
+            ],
+            "sameAs": [
+              "https://github.com/tarieciphertech",
+              "https://www.linkedin.com/in/tarie-cipher",
+              "https://youtube.com/@tarietech5958",
+              "https://www.instagram.com/unclecipher",
+              "https://www.tiktok.com/@cipherhotspot"
+            ]
+          },
+          {
+            "@type": "WebSite",
+            "@id": "https://cyphertech.co.zw/#website",
+            "url": "https://cyphertech.co.zw/",
+            "name": "Cypher Technologies",
+            "publisher": {
+              "@id": "https://cyphertech.co.zw/#organization"
+            },
+            "inLanguage": "en"
+          }
         ]
       }
     </script>
-
-    <title>Cypher Technologies | Software, Cybersecurity, Cloud, AI and IT Solutions</title>
   </head>
   <body>
     <div id="root"></div>
