@@ -1,5 +1,8 @@
 import { Navigate, Routes, Route } from "react-router-dom";
 import HomePage from "./pages/HomePage";
+import RepairServices from "./pages/RepairServices";
+import ComputerRepair from "./pages/ComputerRepair";
+import MobilePhoneRepair from "./pages/MobilePhoneRepair";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import GuestRoute from "./components/GuestRoute";
@@ -20,6 +23,9 @@ export default function App() {
   return (
     <Routes>
       <Route path="/" element={<HomePage />} />
+      <Route path="/services/repair" element={<RepairServices />} />
+      <Route path="/services/computer-repair" element={<ComputerRepair />} />
+      <Route path="/services/mobile-phone-repair" element={<MobilePhoneRepair />} />
       <Route path="/login" element={<GuestRoute><Login /></GuestRoute>} />
       <Route path="/register" element={<GuestRoute><Register /></GuestRoute>} />
       <Route path="/client" element={<ProtectedRoute><ClientLayout /></ProtectedRoute>}>
