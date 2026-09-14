@@ -1,6 +1,7 @@
 import Navbar from "../components/Navbar";
 import Hero from "../components/Hero";
 import CapabilitiesStrip from "../components/CapabilitiesStrip";
+import RepairCTA from "../components/RepairCTA";
 import About from "../components/About";
 import Blog from "../components/Blog";
 import Careers from "../components/Careers";
@@ -17,21 +18,17 @@ import BrandHero from "../components/BrandHero";
 import Contact from "../components/Contact";
 import Footer from "../components/Footer";
 
-/**
- * HomePage — the public marketing homepage.
- * Preserved exactly from the Stage 1–6 single-page layout to keep the
- * production site behavior and anchor navigation unchanged.
- */
 export default function HomePage() {
   return (
     <main className="min-h-screen bg-[#05020a] text-white overflow-hidden">
       <Navbar />
       <Hero />
       <CapabilitiesStrip />
-            <ServicesShowcase />
+      <RepairCTA />
+      <ServicesShowcase />
       <Solutions />
       <WhyChooseUs />
-            <Projects />
+      <Projects />
       <InsideCypher />
       <Process />
       <About />
@@ -40,7 +37,7 @@ export default function HomePage() {
       <Technologies />
       <Blog />
       <Careers />
-            <BrandHero />
+      <BrandHero />
       <Contact />
       <Footer />
     </main>
