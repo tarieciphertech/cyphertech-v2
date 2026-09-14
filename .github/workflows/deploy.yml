@@ -45,6 +45,26 @@ jobs:
           VITE_SUPABASE_URL: ${{ secrets.VITE_SUPABASE_URL }}
           VITE_SUPABASE_ANON_KEY: ${{ secrets.VITE_SUPABASE_ANON_KEY }}
 
+      - name: Verify public bundle contains no admin application references
+        shell: bash
+        run: |
+          set -euo pipefail
+          patterns='admin\.cyphertech\.co\.zw|cyphertech-admin|AdminDashboard|AdminLayout|AdminTickets|AdminTicketDetail|AdminRoute|/admin([/?"'"'"'`]|$)'
+
+          echo "Scanning source and public files..."
+          if grep -RniE "$patterns" src public scripts index.html package.json README.md .github 2>/dev/null; then
+            echo "ERROR: Public repository contains an admin application reference."
+            exit 1
+          fi
+
+          echo "Scanning production dist/ bundle..."
+          if grep -RniE "$patterns" dist 2>/dev/null; then
+            echo "ERROR: Production bundle contains an admin application reference."
+            exit 1
+          fi
+
+          echo "PASS: No admin application references found in source or production bundle."
+
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
