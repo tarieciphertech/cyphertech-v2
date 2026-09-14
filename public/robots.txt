@@ -1,4 +1,10 @@
 User-agent: *
 Allow: /
 
+# Keep authenticated/client application routes out of search discovery.
+Disallow: /client
+Disallow: /login
+Disallow: /register
+Disallow: /admin
+
 Sitemap: https://cyphertech.co.zw/sitemap.xml
