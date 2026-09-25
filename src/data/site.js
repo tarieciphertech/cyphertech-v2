@@ -39,7 +39,7 @@ export const profile = {
   whatsapp: "https://wa.me/26771493735",
   location: "9651 Lenganeng, Gaborone, Botswana",
   hours: "Mon - Sat, 08:00 - 18:00",
-  website: "https://ciphertech.co.zw",
+  website: "https://cyphertech.co.zw",
   github: "https://github.com/tarieciphertech",
   portfolio: "https://tarieciphertech.github.io/cypher-portfolio/",
   youtube: "https://youtube.com/@tarietech5958",
