@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
 
-const GA_ID = import.meta.env.VITE_GA_MEASUREMENT_ID || "";
+const GA_ID = import.meta.env.VITE_GA_MEASUREMENT_ID || "G-KLV17V3P0S";
 const GA_ENABLED = /^G-[A-Z0-9]+$/i.test(GA_ID);
 
 function identifyContactLink(anchor) {
