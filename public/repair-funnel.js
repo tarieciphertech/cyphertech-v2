@@ -1,15 +1,21 @@
 (() => {
-  const GTM_ID = "__VITE_GTM_ID__";
+  const GA_ID = "__VITE_GA_MEASUREMENT_ID__";
   window.dataLayer = window.dataLayer || [];
 
-  if (/^GTM-[A-Z0-9]+$/i.test(GTM_ID) && !document.querySelector('script[data-cypher-gtm="true"]')) {
-    window.dataLayer.push({ "gtm.start": Date.now(), event: "gtm.js" });
+  const analyticsReady = /^G-[A-Z0-9]+$/i.test(GA_ID);
+  if (analyticsReady && !document.querySelector('script[data-cypher-ga="true"]')) {
+    window.gtag = window.gtag || function gtag() { window.dataLayer.push(arguments); };
+    window.gtag("js", new Date());
+    window.gtag("config", GA_ID, { send_page_view: false });
     const script = document.createElement("script");
     script.async = true;
-    script.src = "https://www.googletagmanager.com/gtm.js?id=" + encodeURIComponent(GTM_ID);
-    script.dataset.cypherGtm = "true";
+    script.src = "https://www.googletagmanager.com/gtag/js?id=" + encodeURIComponent(GA_ID);
+    script.dataset.cypherGa = "true";
     document.head.appendChild(script);
+    window.__cypherGaInitialized = true;
   }
+  window.dataLayer.push({ event: "page_view", page_location: window.location.href, page_path: window.location.pathname, page_title: document.title });
+  if (analyticsReady && window.gtag) window.gtag("event", "page_view", { page_location: window.location.href, page_path: window.location.pathname, page_title: document.title });
 
   const identifyChannel = (anchor) => {
     const href = (anchor.getAttribute("href") || "").trim().toLowerCase();
@@ -25,14 +31,15 @@
     if (!anchor) return;
     const channel = anchor.dataset.channel || identifyChannel(anchor);
     if (!channel) return;
-    window.dataLayer.push({
-      event: "repair_contact_click",
+    const params = {
       channel,
       source: anchor.dataset.repairSource || window.location.pathname,
       link_url: anchor.href,
       page_path: window.location.pathname,
       link_text: (anchor.innerText || anchor.getAttribute("aria-label") || "").trim().slice(0, 120),
-    });
+    };
+    window.dataLayer.push({ event: "repair_contact_click", ...params });
+    if (analyticsReady && window.gtag) window.gtag("event", "repair_contact_click", params);
   });
 
   const revealItems = document.querySelectorAll(".section,.card,.notice,.faq,.two > *,.grid > *");
@@ -66,11 +73,9 @@
         "Location: " + (d.get("location") || ""),
         "Photo/details: " + (d.get("photo") || ""),
       ].join("\n");
-      window.dataLayer.push({
-        event: "repair_enquiry_submit",
-        source: form.dataset.repairSource || window.location.pathname,
-        page_path: window.location.pathname,
-      });
+      const params = { source: form.dataset.repairSource || window.location.pathname, page_path: window.location.pathname };
+      window.dataLayer.push({ event: "repair_enquiry_submit", ...params });
+      if (analyticsReady && window.gtag) window.gtag("event", "repair_enquiry_submit", params);
       window.location.href = "https://wa.me/26771493735?text=" + encodeURIComponent(message);
     });
   }
