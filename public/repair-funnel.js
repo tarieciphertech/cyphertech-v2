@@ -35,16 +35,6 @@
     });
   });
 
-  document.addEventListener("submit", (event) => {
-    const form = event.target;
-    if (!(form instanceof HTMLFormElement) || !form.matches("[data-repair-form]")) return;
-    window.dataLayer.push({
-      event: "repair_enquiry_submit",
-      source: form.dataset.repairSource || window.location.pathname,
-      page_path: window.location.pathname,
-    });
-  }, true);
-
   const revealItems = document.querySelectorAll(".section,.card,.notice,.faq,.two > *,.grid > *");
   revealItems.forEach((el) => el.classList.add("reveal"));
   if ("IntersectionObserver" in window) {
