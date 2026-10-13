@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { useLocation } from "react-router-dom";
 
 const GA_ID = import.meta.env.VITE_GA_MEASUREMENT_ID || "G-KLV17V3P0S";
@@ -15,8 +15,15 @@ function identifyContactLink(anchor) {
 
 export default function Analytics() {
   const location = useLocation();
+  const isFirstPageRender = useRef(true);
 
   useEffect(() => {
+    // The standard gtag config sends the initial page_view. Only send route-change
+    // page_views here so SPA navigation is tracked without duplicating the first hit.
+    if (isFirstPageRender.current) {
+      isFirstPageRender.current = false;
+      return;
+    }
     const page = {
       page_location: window.location.origin + location.pathname + location.search,
       page_path: location.pathname + location.search,
