@@ -61,6 +61,20 @@ jobs:
           VITE_SUPABASE_ANON_KEY: ${{ secrets.VITE_SUPABASE_ANON_KEY }}
           VITE_GA_MEASUREMENT_ID: ${{ secrets.VITE_GA_MEASUREMENT_ID }}
 
+      - name: Verify GA4 tag is present in production HTML
+        shell: bash
+        run: |
+          set -euo pipefail
+          if ! grep -Fq 'https://www.googletagmanager.com/gtag/js?id=G-KLV17V3P0S' dist/index.html; then
+            echo "ERROR: Production HTML is missing the CypherTech GA4 tag."
+            exit 1
+          fi
+          if grep -Fq '%VITE_GA_MEASUREMENT_ID%' dist/index.html; then
+            echo "ERROR: An unexpanded GA4 placeholder remains in production HTML."
+            exit 1
+          fi
+          echo "PASS: Production HTML contains the expected GA4 measurement ID."
+
       - name: Verify public bundle contains no admin application references
         shell: bash
         run: |
