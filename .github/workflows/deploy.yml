@@ -30,21 +30,21 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Configure optional Google Tag Manager for standalone repair pages
+      - name: Configure optional Google Analytics 4 for standalone repair pages
         shell: bash
         env:
-          VITE_GTM_ID: ${{ secrets.VITE_GTM_ID }}
+          VITE_GA_MEASUREMENT_ID: ${{ secrets.VITE_GA_MEASUREMENT_ID }}
         run: |
           set -euo pipefail
-          if [[ -n "${VITE_GTM_ID}" ]]; then
-            if [[ ! "${VITE_GTM_ID}" =~ ^GTM-[A-Z0-9]+$ ]]; then
-              echo "ERROR: VITE_GTM_ID must look like GTM-XXXXXXX."
+          if [[ -n "${VITE_GA_MEASUREMENT_ID}" ]]; then
+            if [[ ! "${VITE_GA_MEASUREMENT_ID}" =~ ^G-[A-Z0-9]+$ ]]; then
+              echo "ERROR: VITE_GA_MEASUREMENT_ID must look like G-XXXXXXXXXX."
               exit 1
             fi
-            sed -i "s/__VITE_GTM_ID__/${VITE_GTM_ID}/g" public/repair-funnel.js
-            echo "Google Tag Manager configured for standalone repair pages."
+            sed -i "s/__VITE_GA_MEASUREMENT_ID__/${VITE_GA_MEASUREMENT_ID}/g" public/repair-funnel.js
+            echo "Google Analytics 4 configured for standalone repair pages."
           else
-            echo "VITE_GTM_ID is not configured yet; tracking events will queue but won't be sent to Google."
+            echo "VITE_GA_MEASUREMENT_ID is not configured yet; tracking events will queue but won't be sent to Google Analytics."
           fi
 
       - name: Configure Pages
@@ -59,7 +59,7 @@ jobs:
           VITE_EMAILJS_PUBLIC_KEY: ${{ secrets.VITE_EMAILJS_PUBLIC_KEY }}
           VITE_SUPABASE_URL: ${{ secrets.VITE_SUPABASE_URL }}
           VITE_SUPABASE_ANON_KEY: ${{ secrets.VITE_SUPABASE_ANON_KEY }}
-          VITE_GTM_ID: ${{ secrets.VITE_GTM_ID }}
+          VITE_GA_MEASUREMENT_ID: ${{ secrets.VITE_GA_MEASUREMENT_ID }}
 
       - name: Verify public bundle contains no admin application references
         shell: bash
