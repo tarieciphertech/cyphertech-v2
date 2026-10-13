@@ -1,4 +1,5 @@
 import { Navigate, Routes, Route } from "react-router-dom";
+import Analytics from "./components/Analytics";
 import HomePage from "./pages/HomePage";
 import RepairServices from "./pages/RepairServices";
 import ComputerRepair from "./pages/ComputerRepair";
@@ -21,26 +22,29 @@ import ClientMessages from "./pages/client/ClientMessages";
 
 export default function App() {
   return (
-    <Routes>
-      <Route path="/" element={<HomePage />} />
-      <Route path="/services/repair" element={<RepairServices />} />
-      <Route path="/services/computer-repair" element={<ComputerRepair />} />
-      <Route path="/services/mobile-phone-repair" element={<MobilePhoneRepair />} />
-      <Route path="/login" element={<GuestRoute><Login /></GuestRoute>} />
-      <Route path="/register" element={<GuestRoute><Register /></GuestRoute>} />
-      <Route path="/client" element={<ProtectedRoute><ClientLayout /></ProtectedRoute>}>
-        <Route index element={<ClientDashboard />} />
-        <Route path="projects" element={<ClientProjects />} />
-        <Route path="projects/:projectId" element={<ClientProjectDetail />} />
-        <Route path="tickets" element={<ClientTickets />} />
-        <Route path="tickets/new" element={<ClientTicketNew />} />
-        <Route path="tickets/:ticketId" element={<ClientTicketDetail />} />
-        <Route path="messages" element={<ClientMessages />} />
-        <Route path="notifications" element={<ClientNotifications />} />
-        <Route path="files" element={<ClientFiles />} />
-        <Route path="profile" element={<ClientProfile />} />
-      </Route>
-      <Route path="*" element={<Navigate to="/" replace />} />
-    </Routes>
+    <>
+      <Analytics />
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/services/repair" element={<RepairServices />} />
+        <Route path="/services/computer-repair" element={<ComputerRepair />} />
+        <Route path="/services/mobile-phone-repair" element={<MobilePhoneRepair />} />
+        <Route path="/login" element={<GuestRoute><Login /></GuestRoute>} />
+        <Route path="/register" element={<GuestRoute><Register /></GuestRoute>} />
+        <Route path="/client" element={<ProtectedRoute><ClientLayout /></ProtectedRoute>}>
+          <Route index element={<ClientDashboard />} />
+          <Route path="projects" element={<ClientProjects />} />
+          <Route path="projects/:projectId" element={<ClientProjectDetail />} />
+          <Route path="tickets" element={<ClientTickets />} />
+          <Route path="tickets/new" element={<ClientTicketNew />} />
+          <Route path="tickets/:ticketId" element={<ClientTicketDetail />} />
+          <Route path="messages" element={<ClientMessages />} />
+          <Route path="notifications" element={<ClientNotifications />} />
+          <Route path="files" element={<ClientFiles />} />
+          <Route path="profile" element={<ClientProfile />} />
+        </Route>
+        <Route path="*" element={<Navigate to="/" replace />} />
+      </Routes>
+    </>
   );
 }
