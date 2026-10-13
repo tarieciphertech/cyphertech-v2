@@ -30,6 +30,23 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - name: Configure optional Google Tag Manager for standalone repair pages
+        shell: bash
+        env:
+          VITE_GTM_ID: ${{ secrets.VITE_GTM_ID }}
+        run: |
+          set -euo pipefail
+          if [[ -n "${VITE_GTM_ID}" ]]; then
+            if [[ ! "${VITE_GTM_ID}" =~ ^GTM-[A-Z0-9]+$ ]]; then
+              echo "ERROR: VITE_GTM_ID must look like GTM-XXXXXXX."
+              exit 1
+            fi
+            sed -i "s/__VITE_GTM_ID__/${VITE_GTM_ID}/g" public/repair-funnel.js
+            echo "Google Tag Manager configured for standalone repair pages."
+          else
+            echo "VITE_GTM_ID is not configured yet; tracking events will queue but won't be sent to Google."
+          fi
+
       - name: Configure Pages
         uses: actions/configure-pages@v5
 
