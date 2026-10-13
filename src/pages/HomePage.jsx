@@ -23,8 +23,8 @@ export default function HomePage() {
     <main className="min-h-screen bg-[#05020a] text-white overflow-hidden">
       <Navbar />
       <Hero />
-      <CapabilitiesStrip />
       <RepairCTA />
+      <CapabilitiesStrip />
       <ServicesShowcase />
       <Solutions />
       <WhyChooseUs />
