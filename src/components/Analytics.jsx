@@ -2,24 +2,7 @@ import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
 
 const GA_ID = import.meta.env.VITE_GA_MEASUREMENT_ID || "";
-
-function initializeGoogleAnalytics(id) {
-  if (!/^G-[A-Z0-9]+$/i.test(id)) return false;
-  if (window.__cypherGaInitialized) return true;
-
-  window.dataLayer = window.dataLayer || [];
-  window.gtag = window.gtag || function gtag() { window.dataLayer.push(arguments); };
-  window.gtag("js", new Date());
-  window.gtag("config", id, { send_page_view: false });
-
-  const script = document.createElement("script");
-  script.async = true;
-  script.src = "https://www.googletagmanager.com/gtag/js?id=" + encodeURIComponent(id);
-  script.dataset.cypherGa = "true";
-  document.head.appendChild(script);
-  window.__cypherGaInitialized = true;
-  return true;
-}
+const GA_ENABLED = /^G-[A-Z0-9]+$/i.test(GA_ID);
 
 function identifyContactLink(anchor) {
   const href = (anchor.getAttribute("href") || "").trim().toLowerCase();
@@ -34,15 +17,16 @@ export default function Analytics() {
   const location = useLocation();
 
   useEffect(() => {
-    window.dataLayer = window.dataLayer || [];
-    const analyticsReady = initializeGoogleAnalytics(GA_ID);
     const page = {
       page_location: window.location.origin + location.pathname + location.search,
       page_path: location.pathname + location.search,
       page_title: document.title,
     };
+    window.dataLayer = window.dataLayer || [];
     window.dataLayer.push({ event: "page_view", ...page });
-    if (analyticsReady) window.gtag("event", "page_view", page);
+    if (GA_ENABLED && typeof window.gtag === "function") {
+      window.gtag("event", "page_view", page);
+    }
   }, [location.pathname, location.search]);
 
   useEffect(() => {
@@ -61,7 +45,9 @@ export default function Analytics() {
       };
       window.dataLayer = window.dataLayer || [];
       window.dataLayer.push({ event: "repair_contact_click", ...params });
-      if (window.__cypherGaInitialized && window.gtag) window.gtag("event", "repair_contact_click", params);
+      if (GA_ENABLED && typeof window.gtag === "function") {
+        window.gtag("event", "repair_contact_click", params);
+      }
     };
 
     const handleSubmit = (event) => {
@@ -73,7 +59,9 @@ export default function Analytics() {
       };
       window.dataLayer = window.dataLayer || [];
       window.dataLayer.push({ event: "repair_enquiry_submit", ...params });
-      if (window.__cypherGaInitialized && window.gtag) window.gtag("event", "repair_enquiry_submit", params);
+      if (GA_ENABLED && typeof window.gtag === "function") {
+        window.gtag("event", "repair_enquiry_submit", params);
+      }
     };
 
     document.addEventListener("click", handleClick);
