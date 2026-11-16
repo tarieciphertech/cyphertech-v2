@@ -7,7 +7,7 @@ const repairTypes = [
   {
     title: "Computer & Laptop Repair",
     icon: FaLaptop,
-    href: "/services/computer-repair",
+    href: "/services/computer-repair/",
     image: "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&fit=crop&w=1200&q=82",
     alt: "Laptop computer on a repair workspace",
     copy: "Slow machines, Windows problems, hardware faults, diagnostics, upgrades and everyday computer issues.",
@@ -15,7 +15,7 @@ const repairTypes = [
   {
     title: "Mobile Phone Repair",
     icon: FaMobileAlt,
-    href: "/services/mobile-phone-repair",
+    href: "/services/mobile-phone-repair/",
     image: "https://images.unsplash.com/photo-1601784551446-20c9e07cdbdb?auto=format&fit=crop&w=1200&q=82",
     alt: "Smartphone being handled for repair",
     copy: "Screen, battery, charging, software and other smartphone problems. Ask us about on-site repair in Gaborone and Tlokweng.",
@@ -23,7 +23,7 @@ const repairTypes = [
   {
     title: "Business IT Support",
     icon: FaShieldAlt,
-    href: "/services/business-computer-repair",
+    href: "/services/business-computer-repair/",
     image: "https://cyphertech.co.zw/images/services/it-support.webp",
     alt: "CypherTech IT support service",
     copy: "Keep your business moving with technical support, computer maintenance, networking, security and troubleshooting.",
@@ -179,6 +179,22 @@ export default function RepairServices() {
                 <span>{name}</span><FaArrowRight className="text-sm text-cyan-300 transition-transform group-hover:translate-x-1" />
               </a>
             ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="section-shell">
+        <div className="mx-auto max-w-7xl px-5">
+          <p className="text-sm font-bold uppercase tracking-[0.2em] text-cyan-300">Local repair coverage</p>
+          <h2 className="mt-3 text-3xl font-black sm:text-4xl">Repair support in Gaborone and Tlokweng.</h2>
+          <p className="mt-4 max-w-2xl leading-7 text-gray-400">Explore local service information for your area, including device repair options and how to contact CypherTech.</p>
+          <div className="mt-7 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+            {[
+              ["Phone repair in Gaborone", "/locations/gaborone/phone-repair/"],
+              ["Computer repair in Gaborone", "/locations/gaborone/computer-repair/"],
+              ["Phone repair in Tlokweng", "/locations/tlokweng/phone-repair/"],
+              ["Computer repair in Tlokweng", "/locations/tlokweng/computer-repair/"],
+            ].map(([label, href]) => <a key={href} href={href} className="rounded-xl border border-white/10 bg-white/[0.04] px-5 py-4 font-semibold text-cyan-100 transition hover:border-cyan-300/40 hover:bg-cyan-300/10">{label} <FaArrowRight className="ml-2 inline text-xs" /></a>)}
           </div>
         </div>
       </section>
