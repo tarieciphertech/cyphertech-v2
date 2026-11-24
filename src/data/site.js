@@ -48,7 +48,7 @@ export const profile = {
   linkedin: "https://www.linkedin.com/in/tarie-cipher",
   tagline: "Software • Web • Cybersecurity • Cloud • IT",
   positioning:
-    "Cypher Technologies builds modern software, websites, business systems, secure infrastructure, and digital solutions for businesses and organizations in Botswana and across Africa.",
+    "Cypher Technologies (CypherTech) provides phone repair, computer repair and IT support in Gaborone and Tlokweng, alongside modern software, websites, business systems, cybersecurity and cloud solutions for organizations in Botswana and across Africa.",
   mission:
     "We build software, websites, digital business systems, secure infrastructure, and technology solutions that help organizations work smarter and grow faster.",
   vision:
