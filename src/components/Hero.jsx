@@ -25,7 +25,7 @@ export default function Hero() {
           </motion.div>
 
           <h1 className="mt-5 max-w-4xl text-5xl font-black leading-[0.98] tracking-[-0.035em] text-white sm:text-6xl md:text-7xl lg:text-[5.4rem]">
-            Technology that <span className="gradient-text">solves real problems.</span>
+            Phone repair, IT support & <span className="gradient-text">software solutions.</span>
           </h1>
 
           <p className="mt-7 flex flex-wrap items-center gap-x-2 gap-y-1 text-base font-semibold uppercase tracking-[0.12em] text-cyan-100/90 sm:text-lg">
