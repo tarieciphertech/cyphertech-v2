@@ -28,6 +28,44 @@ export default function RepairCTA() {
             </div>
           </div>
         </div>
+        <div className="mt-8 grid gap-5 lg:grid-cols-3" aria-label="Explore CypherTech repair services">
+          <div className="rounded-2xl border border-white/10 bg-[#05020a] p-5">
+            <h3 className="text-lg font-black text-white">Phone repair</h3>
+            <p className="mt-1 text-sm text-gray-400">Model-specific support and common phone faults.</p>
+            <div className="mt-4 grid gap-2 text-sm font-semibold text-cyan-200">
+              <a href="/services/mobile-phone-repair/">Mobile phone repair</a>
+              <a href="/services/android-samsung-repair/">Samsung & Android repair</a>
+              <a href="/services/iphone-repair/">iPhone repair</a>
+              <a href="/services/phone-screen-replacement/">Phone screen replacement</a>
+              <a href="/services/phone-battery-replacement/">Phone battery replacement</a>
+              <a href="/services/on-site-phone-repair-gaborone-tlokweng/">On-site phone repair</a>
+            </div>
+          </div>
+          <div className="rounded-2xl border border-white/10 bg-[#05020a] p-5">
+            <h3 className="text-lg font-black text-white">Computer & laptop repair</h3>
+            <p className="mt-1 text-sm text-gray-400">Diagnostics, software faults and hardware enquiries.</p>
+            <div className="mt-4 grid gap-2 text-sm font-semibold text-cyan-200">
+              <a href="/services/computer-repair/">Computer repair</a>
+              <a href="/services/laptop-repair/">Laptop repair</a>
+              <a href="/services/laptop-screen-replacement/">Laptop screen replacement</a>
+              <a href="/services/computer-diagnostics/">Computer diagnostics</a>
+              <a href="/services/windows-software-repair/">Windows & software repair</a>
+              <a href="/services/virus-malware-removal/">Virus & malware removal</a>
+              <a href="/services/data-recovery/">Data recovery</a>
+              <a href="/services/business-computer-repair/">Business computer repair</a>
+            </div>
+          </div>
+          <div className="rounded-2xl border border-white/10 bg-[#05020a] p-5">
+            <h3 className="text-lg font-black text-white">Repair in your area</h3>
+            <p className="mt-1 text-sm text-gray-400">Local service information for Gaborone and Tlokweng.</p>
+            <div className="mt-4 grid gap-2 text-sm font-semibold text-cyan-200">
+              <a href="/locations/gaborone/phone-repair/">Phone repair in Gaborone</a>
+              <a href="/locations/tlokweng/phone-repair/">Phone repair in Tlokweng</a>
+              <a href="/locations/gaborone/computer-repair/">Computer repair in Gaborone</a>
+              <a href="/locations/tlokweng/computer-repair/">Computer repair in Tlokweng</a>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
   );
