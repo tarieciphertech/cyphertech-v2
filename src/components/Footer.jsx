@@ -16,7 +16,7 @@ const socials = [
 export default function Footer() {
   return (
     <footer className="border-t border-white/10 bg-[#030107] px-5 py-12">
-      <div className="mx-auto grid max-w-7xl gap-10 md:grid-cols-2 lg:grid-cols-[1.2fr_0.8fr_0.8fr_1fr]">
+      <div className="mx-auto grid max-w-7xl gap-10 md:grid-cols-2 lg:grid-cols-[1.2fr_0.8fr_0.8fr_0.8fr_1fr]">
         <div>
           <div className="flex items-center gap-3">
             <span className="h-11 w-11 overflow-hidden rounded-xl border border-cyan-300/30">
@@ -38,6 +38,7 @@ export default function Footer() {
 
         <FooterColumn title="Quick Links" items={navLinks.map(([id, label]) => [label, `#${id}`])} />
         <FooterColumn title="Services" items={services.slice(0, 8).map(([name]) => [name, "#services"])} />
+        <FooterColumn title="Regions" items={[["Botswana services", "/botswana/"], ["Zimbabwe remote services", "/zimbabwe/remote-it-services/"], ["Software development", "/services/software-development/"]]} />
 
         <div>
           <h3 className="font-black text-white">Contact</h3>
